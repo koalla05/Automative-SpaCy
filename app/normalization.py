@@ -1,15 +1,5 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
-import spacy
 import re
-from typing import List, Dict, Union
 
-# Load your trained spaCy model
-nlp = spacy.load("full_ner_model")
-
-app = FastAPI()
-
-# ========== Normalization Data ==========
 equipment_normalization = {
     "INVERTER": [
         # Ukrainian
@@ -141,26 +131,3 @@ def normalize_entity(word: str, label: str) -> str:
             if any(word_lower == v.lower() for v in variants):
                 return canon
     return word  # fallback
-
-# ========== Request Model ==========
-class Query(BaseModel):
-    text: str
-
-# ========== Endpoint ==========
-@app.post("/extract_entities/spacy", response_model=Dict[str, List[str]])
-def extract_entities(query: Query):
-    doc = nlp(query.text)
-    grouped: Dict[str, List[str]] = {}
-
-    for ent in doc.ents:
-        label = ent.label_
-        cleaned = clean_word(ent.text)
-        normalized = normalize_entity(cleaned, label)
-
-        if label not in grouped:
-            grouped[label] = []
-
-        if normalized not in grouped[label]:
-            grouped[label].append(normalized)
-
-    return grouped
