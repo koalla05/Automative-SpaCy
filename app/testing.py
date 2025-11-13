@@ -1,7 +1,7 @@
 import spacy
 
 # Load your trained model
-nlp = spacy.load("full_ner_model")
+nlp = spacy.load("../full_ner_model")
 
 # Example new queries
 new_queries = [
