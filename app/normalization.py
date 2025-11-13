@@ -4,7 +4,7 @@ equipment_normalization = {
     "INVERTER": [
         # Ukrainian
         "інвертор", "інвертора", "інвертори", "інверторів", "інвертору", "інверторі", "інвертором", "інверт",
-        # гівно для тупих
+        # гівно
         "инвертор", "инвертора", "инверторы", "инверторов", "инвертору", "инверторе", "инвертором", "инверт",
         # English
         "inverter", "inverters", "invert", "inverter/charger"
@@ -128,26 +128,26 @@ manufacturer_normalization = {
 }
 
 manufacturer_normalization.update({
-    "NINGBO_DEYE_INVERTER_TECHNOLOGY": [
+    "DEYE": [
         "ningbo deye inverter technology co., ltd.",
         "deye inverter technology",
         "deye", "деє", "дее", "дее інвертор", "деє інвертор",
         "нинбо деє інвертер", "нинбо деє інвертор технолоджі",
         "нингбо дее инвертор", "нингбо дее инвертор технолоджи"
     ],
-    "HUAWEI_TECHNOLOGIES": [
+    "HUAWEI": [
         "huawei technologies co., ltd.",
         "huawei technologies", "huawei", "хуавей", "хуавэй"
     ],
-    "SHENZHEN_SOFARSOLAR": [
+    "SHENZHEN": [
         "Shenzhen Lux Power Technology Co., Ltd", "shenzhen sofarsolar co., ltd.", "sofarsolar", "sofar solar",
         "шеньчжень софарсолар", "софарсолар", "софар солар"
     ],
-    "SUNGROW_POWER_SUPPLY": [
+    "SUNGROW": [
         "sungrow power supply co., ltd.", "sungrow power supply", "sungrow",
         "сангроу", "сангров", "сангроу пауер"
     ],
-    "PYLON_TECHNOLOGY": [
+    "PYLONTECH": [
         "Pylontech", "PylonTech", "Pylon Techology", "Pylon Technology", "Pylon Technologies Co.", "pylon technology", "pylon technologies co., ltd.",
         "пайлон технолоджі", "пайлон", "пілон", "пайлон технолоджіс",
         "пайлон технологии", "пайлон технолоджи"
@@ -155,7 +155,7 @@ manufacturer_normalization.update({
     "PYLONTECH": [
         "pylontech", "pylon tech", "pylon", "пайлонтек", "пайлон тек", "пілонтек"
     ],
-    "SHENZHEN_SHOUHANG_NEW_ENERGY": [
+    "SHENZHEN": [
         "Shenzhen Shouhang New Energy Co., Ltd.",
         "Shenzhen Shouhang New Energy Co., LTD",
         "Shenzhen Shouhang New Energy",
