@@ -8,21 +8,34 @@ from app.model_normalization import normalize_model
 import spacy
 
 from app.normalization import clean_word, normalize_entity
-from app.entity_extractor import extract_entities_spacy
-from config import PASSPORT_TEMPLATES, OTHER_INTENTS, DEFAULT_PARAM_GLOSSARY
+from config import DEFAULT_PARAM_GLOSSARY
 
 # Thresholds
-INTENT_SIMILARITY_THRESHOLD = 0.65
 PARAMETER_CONFIDENCE_THRESHOLD = 0.75
-FUZZY_MATCH_THRESHOLD = 85
-
-EMBED_MODEL = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+FUZZY_MATCH_THRESHOLD = 80  # Lowered for better fuzzy matching
+EXACT_MATCH_THRESHOLD = 90
 
 # Load spacy for position tracking
 nlp = spacy.load("full_ner_model")
 
-# regex for values (numbers + possible units)
-VALUE_REGEX = re.compile(r"(?P<number>\d+(?:[.,]\d+)?)\s*(?P<unit>[A-Za-zА-Яа-я%°/μµhHkKWhkggVv]+)?")
+# Sentence transformers for semantic similarity (lazy load)
+_embed_model = None
+
+
+def get_embed_model():
+    global _embed_model
+    if _embed_model is None:
+        _embed_model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+    return _embed_model
+
+
+# Conjunction and punctuation patterns for splitting
+SPLIT_PATTERNS = [
+    r'\s+(?:і|та|и|а|й|,|;)\s+',  # Ukrainian/Russian conjunctions and punctuation
+    r'\s+(?:and|or|,|;)\s+',  # English conjunctions and punctuation
+]
+
+CONJUNCTION_REGEX = re.compile('|'.join(SPLIT_PATTERNS), re.IGNORECASE)
 
 
 # ------------- Utilities -------------
@@ -30,61 +43,60 @@ def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
     return util.cos_sim(a, b).item()
 
 
-def embed_text(text: str):
-    return EMBED_MODEL.encode(text, convert_to_tensor=True)
+def normalize_for_matching(text: str) -> str:
+    """Normalize text for fuzzy matching - handle plurals and common variations"""
+    text = text.lower().strip()
+
+    # Ukrainian plural normalization
+    text = re.sub(r'(ів|ами|ах|ям|ях)$', '', text)  # Remove plural endings
+    text = re.sub(r'(и|і)$', '', text)  # Remove plural и/і
+
+    # Russian plural normalization
+    text = re.sub(r'(ов|ами|ах|ам|ях)$', '', text)
+
+    # English plural normalization
+    text = re.sub(r'(s|es)$', '', text)
+
+    # Remove extra whitespace
+    text = re.sub(r'\s+', ' ', text).strip()
+
+    return text
 
 
-# ------------- Intent recognition -------------
-def classify_intent(text: str, passport_templates: List[str] = PASSPORT_TEMPLATES,
-                    other_templates: List[str] = OTHER_INTENTS) -> Dict[str, Any]:
+def split_into_segments(text: str) -> List[Dict[str, Any]]:
     """
-    Returns:
-      {
-        "intent": "passport" | "other" | "unknown",
-        "intent_label": str (best match text),
-        "confidence": float (0..1),
-        "status": "simple"|"complex"
-      }
+    Split text into segments by conjunctions and punctuation.
+    Returns list of segments with their positions.
     """
-    q_emb = embed_text(text)
+    segments = []
+    last_end = 0
 
-    best_label = None
-    best_score = 0.0
-    best_bucket = "unknown"
+    for match in CONJUNCTION_REGEX.finditer(text):
+        if last_end < match.start():
+            segment_text = text[last_end:match.start()].strip()
+            if segment_text:
+                segments.append({
+                    "text": segment_text,
+                    "start": last_end,
+                    "end": match.start()
+                })
+        last_end = match.end()
 
-    # Check passport_templates
-    for tpl in passport_templates:
-        tpl_emb = embed_text(tpl)
-        score = cosine_sim(q_emb, tpl_emb)
-        if score > best_score:
-            best_score = score
-            best_label = tpl
-            best_bucket = "passport"
+    # Add final segment
+    if last_end < len(text):
+        segment_text = text[last_end:].strip()
+        if segment_text:
+            segments.append({
+                "text": segment_text,
+                "start": last_end,
+                "end": len(text)
+            })
 
-    # Check other templates
-    for tpl in other_templates:
-        tpl_emb = embed_text(tpl)
-        score = cosine_sim(q_emb, tpl_emb)
-        if score > best_score:
-            best_score = score
-            best_label = tpl
-            best_bucket = "other"
+    # If no splits found, return entire text as one segment
+    if not segments:
+        segments = [{"text": text, "start": 0, "end": len(text)}]
 
-    if best_score < INTENT_SIMILARITY_THRESHOLD:
-        return {
-            "intent": best_bucket,
-            "intent_label": best_label if best_label else "unknown",
-            "confidence": best_score,
-            "status": "complex"
-        }
-    else:
-        status = "simple" if best_bucket == "passport" else "complex"
-        return {
-            "intent": best_bucket,
-            "intent_label": best_label,
-            "confidence": best_score,
-            "status": status
-        }
+    return segments
 
 
 # ------------- Enhanced NER with confidence and position -------------
@@ -111,7 +123,8 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
         entity_dict = {
             "value": normalized,
             "confidence": confidence,
-            "position": ent.start_char
+            "position": ent.start_char,
+            "end_position": ent.end_char
         }
 
         # For models, keep original value
@@ -128,19 +141,31 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
     return grouped
 
 
-# ------------- Parameter extraction with fuzzy matching -------------
+# ------------- Enhanced parameter extraction with fuzzy matching -------------
 def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PARAM_GLOSSARY) -> List[Dict[str, Any]]:
     """
-    Detect parameters in text and return full phrase containing them.
+    Detect parameters in text using exact and fuzzy matching.
+    Handles plurals and variations.
     """
     lower = text.lower()
     results = []
 
-    # Build synonym map
-    synonym_to_key = {syn.lower(): key for key, syns in param_glossary.items() for syn in syns}
+    # Build synonym map with normalized versions
+    synonym_to_key = {}
+    normalized_synonyms = {}
+
+    for key, syns in param_glossary.items():
+        for syn in syns:
+            syn_lower = syn.lower()
+            synonym_to_key[syn_lower] = key
+            normalized_syn = normalize_for_matching(syn_lower)
+            if normalized_syn not in normalized_synonyms:
+                normalized_synonyms[normalized_syn] = []
+            normalized_synonyms[normalized_syn].append((syn_lower, key))
 
     found_positions = set()
 
+    # Phase 1: Exact matching
     for syn, key in synonym_to_key.items():
         start = 0
         while True:
@@ -148,7 +173,9 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
             if idx == -1:
                 break
 
-            pos = idx + 1
+            pos = idx
+
+            # Check if already found nearby
             if any(abs(p - pos) < 5 for p in found_positions):
                 start = idx + len(syn)
                 continue
@@ -157,7 +184,7 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
             phrase_start = max(0, text.rfind(' ', 0, idx))
             phrase_end = text.find('.', idx + len(syn))
             if phrase_end == -1:
-                phrase_end = len(text)
+                phrase_end = min(len(text), idx + len(syn) + 100)
             phrase = text[phrase_start:phrase_end].strip()
 
             results.append({
@@ -165,14 +192,88 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 "synonym_matched": syn,
                 "confidence": 0.95,
                 "position": pos,
-                "extracted_value": phrase
+                "end_position": pos + len(syn),
+                "extracted_value": phrase,
+                "match_type": "exact"
             })
 
             found_positions.add(pos)
             start = idx + len(syn)
 
-    # Sort and deduplicate
+    # Phase 2: Fuzzy matching for missed terms
+    words_with_positions = []
+    for match in re.finditer(r'\b[\w\-]+\b', text, re.UNICODE):
+        word = match.group(0)
+        if len(word) >= 3:  # Only consider words with 3+ characters
+            words_with_positions.append({
+                "word": word,
+                "position": match.start(),
+                "end_position": match.end()
+            })
+
+    for word_info in words_with_positions:
+        word = word_info["word"]
+        pos = word_info["position"]
+
+        # Skip if already matched
+        if any(abs(p - pos) < 5 for p in found_positions):
+            continue
+
+        word_normalized = normalize_for_matching(word)
+
+        # Try fuzzy matching against all synonyms
+        best_match = None
+        best_score = 0
+        best_key = None
+
+        for syn, key in synonym_to_key.items():
+            syn_normalized = normalize_for_matching(syn)
+
+            # Skip very short synonyms for fuzzy matching
+            if len(syn_normalized) < 3:
+                continue
+
+            # Calculate fuzzy ratio
+            ratio = fuzz.ratio(word_normalized, syn_normalized)
+
+            # Also try partial ratio for compound words
+            partial_ratio = fuzz.partial_ratio(word_normalized, syn_normalized)
+
+            # Take the better score
+            score = max(ratio, partial_ratio)
+
+            if score > best_score and score >= FUZZY_MATCH_THRESHOLD:
+                best_score = score
+                best_match = syn
+                best_key = key
+
+        if best_match and best_key:
+            # Grab phrase around parameter
+            phrase_start = max(0, text.rfind(' ', 0, pos))
+            phrase_end = text.find('.', word_info["end_position"])
+            if phrase_end == -1:
+                phrase_end = min(len(text), word_info["end_position"] + 100)
+            phrase = text[phrase_start:phrase_end].strip()
+
+            confidence = best_score / 100.0
+
+            results.append({
+                "key": best_key,
+                "synonym_matched": best_match,
+                "confidence": confidence,
+                "position": pos,
+                "end_position": word_info["end_position"],
+                "extracted_value": phrase,
+                "match_type": "fuzzy",
+                "fuzzy_score": best_score
+            })
+
+            found_positions.add(pos)
+
+    # Sort by position
     results.sort(key=lambda r: r["position"])
+
+    # Deduplicate - keep highest confidence for each key
     final_results = []
     seen_keys = {}
     for r in results:
@@ -186,49 +287,187 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
     return final_results
 
 
-
-# ------------- Build routing with batch support -------------
-def build_routing(ner_entities: Dict[str, List[Dict[str, Any]]],
-                  parameters: List[Dict[str, Any]]) -> Dict[str, Any]:
+# ------------- Smart mapping of parameters to models -------------
+def map_parameters_to_models(
+        parameters: List[Dict[str, Any]],
+        models: List[Dict[str, Any]],
+        manufacturers: List[Dict[str, Any]],
+        eq_types: List[Dict[str, Any]],
+        text: str
+) -> List[Dict[str, Any]]:
     """
-    Map parameters to the closest model and manufacturer, using canonical model names.
+    Intelligently map each parameter to its corresponding model/manufacturer/eq_type
+    based on proximity and text segmentation.
+    """
+    # Split text into segments
+    segments = split_into_segments(text)
+
+    # Assign entities to segments
+    for segment in segments:
+        segment["models"] = []
+        segment["manufacturers"] = []
+        segment["eq_types"] = []
+        segment["parameters"] = []
+
+    # Assign models to segments
+    for model in models:
+        for segment in segments:
+            if segment["start"] <= model["position"] < segment["end"]:
+                segment["models"].append(model)
+                break
+
+    # Assign manufacturers to segments
+    for manufacturer in manufacturers:
+        for segment in segments:
+            if segment["start"] <= manufacturer["position"] < segment["end"]:
+                segment["manufacturers"].append(manufacturer)
+                break
+
+    # Assign eq_types to segments
+    for eq_type in eq_types:
+        for segment in segments:
+            if segment["start"] <= eq_type["position"] < segment["end"]:
+                segment["eq_types"].append(eq_type)
+                break
+
+    # Assign parameters to segments
+    for param in parameters:
+        for segment in segments:
+            if segment["start"] <= param["position"] < segment["end"]:
+                segment["parameters"].append(param)
+                break
+
+    # Build sub-queries based on segments
+    sub_queries = []
+
+    for segment in segments:
+        seg_models = segment["models"]
+        seg_manufacturers = segment["manufacturers"]
+        seg_eq_types = segment["eq_types"]
+        seg_parameters = segment["parameters"]
+
+        # If segment has parameters
+        if seg_parameters:
+            # Determine model for this segment
+            if seg_models:
+                model_value = seg_models[0]["canonical"]
+            elif models:  # Use closest model from entire text
+                closest_model = min(models, key=lambda m: abs(m["position"] - segment["start"]))
+                model_value = closest_model["canonical"]
+            else:
+                model_value = "ALL_LISTED"
+
+            # Determine manufacturer
+            if seg_manufacturers:
+                manufacturer_value = seg_manufacturers[0]["value"]
+            elif manufacturers:
+                closest_manuf = min(manufacturers, key=lambda m: abs(m["position"] - segment["start"]))
+                manufacturer_value = closest_manuf["value"]
+            else:
+                manufacturer_value = ""
+
+            # Determine equipment type
+            if seg_eq_types:
+                eq_type_value = seg_eq_types[0]["value"]
+            elif eq_types:
+                closest_eq = min(eq_types, key=lambda e: abs(e["position"] - segment["start"]))
+                eq_type_value = closest_eq["value"]
+            else:
+                eq_type_value = None
+
+            # Create sub-query for each parameter in this segment
+            for param in seg_parameters:
+                sub_queries.append({
+                    "manufacturer": manufacturer_value,
+                    "model": model_value,
+                    "equipment_type": eq_type_value,
+                    "parameter": param["key"],
+                    "original_part": param.get("extracted_value", ""),
+                    "confidence": param.get("confidence", 0.0),
+                    "match_type": param.get("match_type", "unknown")
+                })
+
+    # If no parameters found in segments, use proximity-based mapping
+    if not sub_queries:
+        for param in parameters:
+            # Find closest model
+            if models:
+                closest_model = min(models, key=lambda m: abs(m["position"] - param["position"]))
+                model_value = closest_model["canonical"]
+            else:
+                model_value = "ALL_LISTED"
+
+            # Find closest manufacturer
+            if manufacturers:
+                closest_manuf = min(manufacturers, key=lambda m: abs(m["position"] - param["position"]))
+                manufacturer_value = closest_manuf["value"]
+            else:
+                manufacturer_value = ""
+
+            # Find closest eq_type
+            if eq_types:
+                closest_eq = min(eq_types, key=lambda e: abs(e["position"] - param["position"]))
+                eq_type_value = closest_eq["value"]
+            else:
+                eq_type_value = None
+
+            sub_queries.append({
+                "manufacturer": manufacturer_value,
+                "model": model_value,
+                "equipment_type": eq_type_value,
+                "parameter": param["key"],
+                "original_part": param.get("extracted_value", ""),
+                "confidence": param.get("confidence", 0.0),
+                "match_type": param.get("match_type", "unknown")
+            })
+
+    return sub_queries
+
+
+# ------------- Build routing with enhanced mapping -------------
+def build_routing(ner_entities: Dict[str, List[Dict[str, Any]]],
+                  parameters: List[Dict[str, Any]],
+                  text: str) -> Dict[str, Any]:
+    """
+    Map parameters to the closest model and manufacturer using smart segmentation.
     """
     manufacturers = ner_entities.get("MANUFACTURER", [])
     models = ner_entities.get("MODEL", [])
+    eq_types = ner_entities.get("EQ_TYPE", [])
 
     if not manufacturers and not models and not parameters:
-        return {"recommended_strategy": "noEntities", "message": "No entities detected", "options": []}
+        return {
+            "recommended_strategy": "noEntities",
+            "message": "No entities detected",
+            "options": []
+        }
 
     # Normalize models first
     for m in models:
         m["canonical"] = normalize_model(m["original_value"])
 
-    sub_queries = []
+    # Smart mapping
+    sub_queries = map_parameters_to_models(
+        parameters, models, manufacturers, eq_types, text
+    )
 
-    for param in parameters:
-        # find closest model
-        closest_model = None
-        min_dist = float('inf')
-        for model in models:
-            dist = abs(param["position"] - model["position"])
-            if dist < min_dist:
-                min_dist = dist
-                closest_model = model
-
-        canonical_name = closest_model["canonical"] if closest_model else "ALL_LISTED"
-        manufacturer_name = manufacturers[0]["value"] if manufacturers else ""
-
-        sub_queries.append({
-            "manufacturer": manufacturer_name,
-            "model": canonical_name,
-            "parameter": param["key"],
-            "original_part": param.get("extracted_value", "")
-        })
-
-    if len(sub_queries) == 1:
-        return {"recommended_strategy": "single_query", "sub_query": sub_queries[0]}
+    if len(sub_queries) == 0:
+        return {
+            "recommended_strategy": "noEntities",
+            "message": "No valid parameter-model mappings found",
+            "options": []
+        }
+    elif len(sub_queries) == 1:
+        return {
+            "recommended_strategy": "single_query",
+            "sub_query": sub_queries[0]
+        }
     else:
-        return {"recommended_strategy": "multi_query", "sub_queries": sub_queries}
+        return {
+            "recommended_strategy": "multi_query",
+            "sub_queries": sub_queries
+        }
+
 
 # ------------- Main processing function -------------
 def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PARAM_GLOSSARY) -> Dict[str, Any]:
@@ -237,16 +476,13 @@ def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_P
     """
     question_raw = text
 
-    # 1. Intent classification
-    intent_info = classify_intent(text)
-
-    # 2. Enhanced NER with metadata
+    # 1. Enhanced NER with metadata
     ner_entities = extract_entities_with_metadata(text)
 
-    # 3. Parameter extraction with fuzzy matching
+    # 2. Parameter extraction with fuzzy matching
     params_extracted = find_parameters(text, param_glossary)
 
-    # 4. Build extracted_entities structure
+    # 3. Build extracted_entities structure
     extracted_entities = {
         "manufacturer": ner_entities.get("MANUFACTURER", []),
         "model": [
@@ -258,23 +494,16 @@ def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_P
             }
             for m in ner_entities.get("MODEL", [])
         ],
-        "equipment_type": ner_entities.get("EQ_TYPE", [None])[0],
+        "equipment_type": ner_entities.get("EQ_TYPE", []),
         "parameters": params_extracted
     }
 
-    # 5. Build routing
-    routing = build_routing(ner_entities, params_extracted)
-
-    # 6. Determine final status
-    status = intent_info["status"]
-    if routing.get("recommended_strategy") == "noEntities":
-        status = "no_entities"
+    # 4. Build routing with smart mapping
+    routing = build_routing(ner_entities, params_extracted, text)
 
     return {
         "$schema": "http://json-schema.org/draft-07/schema#",
         "question_raw": question_raw,
-        "status": status,
-        "question_intent": intent_info,
         "extracted_entities": extracted_entities,
         "routing": routing
     }
@@ -285,15 +514,17 @@ if __name__ == "__main__":
     # Test queries
     test_queries = [
         "Які технічні характеристики Dyness A48100? який максимальний струм заряду і ємність в Ah?",
-        "Який максимальний розрядний струм для інвертора LuxPower SNA 6000?",
-        "Яка ємність у Deye BOS-G25 та вага у Sofar HYD 10KTL?"
+        "Який максимального розрядного струму для інвертора LuxPower SNA 6000?",
+        "Яка ємність у Deye BOS-G25 та вага у Sofar HYD 10KTL?",
+        "Максимальний струм заряджання і вага для Pylontech US5000",
+        "Weight and capacity of BYD Battery-Box Premium HVS 7.7"
     ]
 
     import json
 
     for q in test_queries:
-        print(f"\n{'=' * 60}")
+        print(f"\n{'=' * 80}")
         print(f"Query: {q}")
-        print('=' * 60)
+        print('=' * 80)
         out = process_question(q)
         print(json.dumps(out, ensure_ascii=False, indent=2))

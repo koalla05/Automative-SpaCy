@@ -1,24 +1,3 @@
-# ------------ Конфіги / прості шаблони інтенцій ---------------
-PASSPORT_TEMPLATES = [
-    "Які технічні характеристики моделі {model}?",
-    "Паспортні дані пристрою {model}",
-    "характеристики {model}",
-    "specs of {model}",
-    "технічні характеристики {model}",
-    "паспортний лист на {model}",
-    "data sheet {model}",
-    "datasheet for {model}"
-]
-
-# Інші можливі інтенти (приклад)
-OTHER_INTENTS = [
-    "how to configure {equipment}",
-    "how to repair {equipment}",
-    "which battery is compatible with {model}",
-    "does {model} support {parameter}",
-    "where to buy {model}"
-]
-
 # ------------ Parameter glossary (розширений довідник) ------------
 DEFAULT_PARAM_GLOSSARY = {
     # Battery parameters
