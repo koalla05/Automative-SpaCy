@@ -15,7 +15,7 @@
 
 from fastapi import APIRouter, BackgroundTasks
 from app.models import Query
-from extractor_module import process_question   # ← use your big module
+from extractor_module import process_question
 
 router = APIRouter()
 
