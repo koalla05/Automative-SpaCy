@@ -583,19 +583,111 @@ def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_P
 # ------------- Example usage -------------
 if __name__ == "__main__":
     # Test queries
-    test_queries = [
-        "Які технічні характеристики Dyness A48100? який максимальний струм заряду і ємність в Ah?",
-        "Який максимального розрядного струму для інвертора LuxPower SNA 6000?",
-        "Яка ємність у Deye BOS-G25 та вага у Sofar HYD 10KTL?",
-        "Максимальний струм заряджання і вага для Pylontech US5000",
-        "Weight and capacity of BYD Battery-Box Premium HVS 7.7"
-    ]
+    if __name__ == "__main__":
+        # Comprehensive test queries
+        test_queries = [
+            # === BASIC SINGLE PARAMETER QUERIES ===
+            "Яка ємність Dyness A48100?",
+            "Weight of Pylontech US5000",
+            "Максимальний струм заряджання для Growatt SPF 5000",
+            "What is the max charge current for Tesla Powerwall 2?",
 
-    import json
+            # === MULTIPLE PARAMETERS, SINGLE MODEL ===
+            "Які технічні характеристики Dyness A48100? який максимальний струм заряду і ємність в Ah?",
+            "Вага, ємність та максимальний струм розряду для BYD Battery-Box Premium HVS 10.2",
+            "Give me weight, capacity and voltage range for Pylontech US3000C",
+            "Максимальна потужність заряду, напруга абсорбції і float voltage для Victron MultiPlus II 48/5000",
 
-    for q in test_queries:
-        print(f"\n{'=' * 80}")
-        print(f"Query: {q}")
-        print('=' * 80)
-        out = process_question(q)
-        print(json.dumps(out, ensure_ascii=False, indent=2))
+            # === MULTIPLE MODELS WITH DIFFERENT PARAMETERS ===
+            "Яка ємність у Deye BOS-G25 та вага у Sofar HYD 10KTL?",
+            "Максимальний струм заряджання для Pylontech US5000 і ємність для Dyness A48100",
+            "Compare weight of Growatt SPF 5000 and max AC power of Victron MultiPlus 48/3000",
+            "Вага Huawei LUNA2000-5-S0 та максимальна потужність Solax X3-Hybrid-8.0",
+
+            # === COMPLEX MULTI-MODEL, MULTI-PARAMETER ===
+            "Ємність та вага для Dyness A48100, максимальний струм для Pylontech US5000 і напруга для BYD HVS 7.7",
+            "Які MPPT trackers у Fronius Symo Hybrid, efficiency для SolarEdge SE7600H та nominal AC power for Huawei SUN2000-5KTL",
+
+            # === INVERTER-SPECIFIC QUERIES ===
+            "Скільки MPPT трекерів у інвертора Fronius Primo 8.2?",
+            "What is the max PV input power for SolarEdge SE10K?",
+            "Nominal AC voltage and frequency range for Growatt MIN 6000TL-XH",
+            "Максимальна вхідна напруга з панелей та кількість стрінгів на MPPT для Huawei SUN2000-10KTL-M1",
+            "Efficiency and max AC output power of Victron MultiPlus II 48/5000/70-50",
+
+            # === BATTERY-SPECIFIC QUERIES ===
+            "Тип батареї та діапазон напруги для інвертора Deye SUN-12K-SG04LP3",
+            "Battery voltage range and charging strategy for Sofar HYD 6000-ES",
+            "Чи є захист від зворотної полярності у Pylontech US5000?",
+            "Does LuxPower SNA 5000 support battery temperature sensor?",
+
+            # === PROTECTION FEATURES ===
+            "Які захисти є у інвертора Growatt SPF 5000 ES?",
+            "Anti-islanding protection and ground fault monitoring for SolarEdge SE7600H",
+            "Чи є PID recovery та string monitoring у Fronius Symo 10.0-3-M?",
+            "Arc fault protection and surge protection in Huawei SUN2000-8KTL-M1",
+
+            # === PHYSICAL SPECIFICATIONS ===
+            "Габарити та вага Victron MultiPlus 48/5000",
+            "IP rating, dimensions and cooling type for Growatt MIN 11400TL-XH",
+            "Рівень шуму, робочий температурний діапазон та клас захисту для SMA Sunny Tripower 10.0",
+
+            # === MIXED LANGUAGE QUERIES ===
+            "Яка capacity у Pylontech та weight для Dyness?",
+            "Max charge current для BYD HVS 10.2 і efficiency of Victron MultiPlus",
+            "Ємність в Ah for Tesla Powerwall and вага у кг для Sonnen Eco 10",
+
+            # === QUERIES WITH TYPOS (testing fuzzy matching) ===
+            "Макимальний стурм зарядки для Pylontech US5000",  # typos
+            "Вага та емность для Dyness A48100",  # емность instead of ємність
+            "Waight and capasity of BYD Battery-Box",  # English typos
+
+            # === QUERIES WITH PLURALS ===
+            "Які ємності у Pylontech US5000 та Dyness A48100?",  # plural form
+            "Weights of Pylontech US5000, BYD HVS 7.7 and Dyness A48100",
+            "Максимальні струми заряджання для інверторів Growatt та Victron",
+
+            # === EDGE CASES ===
+            "Порівняти характеристики Dyness A48100 та BYD HVS 10.2",  # "compare specs"
+            "Що краще - Pylontech US5000 чи Dyness A48100?",  # opinion question
+            "Скільки коштує Victron MultiPlus 48/5000?",  # price question (not in glossary)
+            "Де купити Growatt SPF 5000?",  # "where to buy" (OTHER intent)
+            "Як налаштувати Fronius Symo 10.0?",  # configuration question (OTHER intent)
+
+            # === NO ENTITIES ===
+            "Які бувають типи інверторів?",  # general question, no specific model
+            "Що таке MPPT?",  # definition question
+            "Hello, how are you?",  # irrelevant query
+
+            # === EQUIPMENT TYPE QUERIES ===
+            "Максимальна потужність для гібридного інвертора Deye SUN-12K",
+            "Battery capacity for energy storage system Pylontech US5000",
+            "Вага для АКБ Dyness A48100 та інвертора Growatt SPF 5000",
+
+            # === NUMERIC VALUES IN QUERY ===
+            "Чи підтримує Victron MultiPlus 48V батареї?",
+            "Can Fronius Primo handle 600V input voltage?",
+            "Чи може Growatt MIN 11400 працювати з 250A струмом?",
+
+            # === LONG COMPLEX QUERIES ===
+            "Мені потрібно порівняти технічні характеристики трьох інверторів: Fronius Symo Hybrid 5.0 (цікавить максимальна потужність та ККД), SolarEdge SE7600H (хочу знати кількість MPPT та максимальну вхідну напругу) і Huawei SUN2000-8KTL (потрібна інформація про nominal AC power та захист від перенапруги)",
+
+            # === ABBREVIATIONS AND TECHNICAL TERMS ===
+            "Max Isc per MPPT for Fronius Primo 8.2",
+            "THD and power factor range for Victron MultiPlus",
+            "ККД Euro та MPPT efficiency для SolarEdge SE10K",
+            "Voc max and MPP voltage range for Growatt MIN 6000TL-XH",
+        ]
+
+        import json
+
+        print(f"\n{'#' * 80}")
+        print(f"# RUNNING {len(test_queries)} TEST QUERIES")
+        print(f"{'#' * 80}\n")
+
+        for idx, q in enumerate(test_queries, 1):
+            print(f"\n{'=' * 80}")
+            print(f"Test {idx}/{len(test_queries)}: {q}")
+            print('=' * 80)
+            out = process_question(q)
+            print(json.dumps(out, ensure_ascii=False, indent=2))
