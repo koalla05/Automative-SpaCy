@@ -27,7 +27,7 @@ VALUE_REGEX = re.compile(r"(?P<number>\d+(?:[.,]\d+)?)\s*(?P<unit>[A-Za-zА-Яа
 
 # ------------- Utilities -------------
 def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
-    return float(util.cos_sim(a, b).numpy())
+    return util.cos_sim(a, b).item()
 
 
 def embed_text(text: str):
