@@ -79,5 +79,32 @@
     "created_at": "2025-09-28T11:59:06.280605Z",
     "updated_at": "2025-09-28T11:59:06.280605Z",
     "lead_time": 5.0
+  },
+  {
+    "text": "Хто в Києві з дилерів цікавиться Фроніус і Хуавей?",
+    "id": 1,
+    "label": [
+      {
+        "start": 33,
+        "end": 40,
+        "text": "Фроніус",
+        "labels": [
+          "MANUFACTURER"
+        ]
+      },
+      {
+        "start": 43,
+        "end": 49,
+        "text": "Хуавей",
+        "labels": [
+          "MANUFACTURER"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 1,
+    "created_at": "2025-11-13T13:31:00.454265Z",
+    "updated_at": "2025-11-13T13:31:00.454388Z",
+    "lead_time": 5.0
   }
 ]

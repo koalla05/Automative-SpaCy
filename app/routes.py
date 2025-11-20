@@ -10,5 +10,5 @@ def extract_entities(query: Query, background_tasks: BackgroundTasks):
     text = query.text
     result = extract_entities_spacy(text)
 
-    background_tasks.add_task(process_for_annotation, text)
+    #background_tasks.add_task(process_for_annotation, text)
     return result

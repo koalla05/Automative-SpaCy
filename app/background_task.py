@@ -10,7 +10,7 @@ client = OpenAI()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SAVE_DIR = "autolabeled"
-CSV_PATH = os.path.join(BASE_DIR, "data", "file-parameters.csv")
+CSV_PATH = os.path.join(BASE_DIR, "../data", "file-parameters.csv")
 os.makedirs(SAVE_DIR, exist_ok=True)
 
 def load_allowed_parameters(csv_path: str):

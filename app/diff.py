@@ -10,7 +10,7 @@ new_man = set()
 def clean_string(s):
     return s.strip(' "')
 
-with open("data/atmosfera_files.csv", "r", encoding="utf-8") as f:
+with open("../data/atmosfera_files.csv", "r", encoding="utf-8") as f:
     reader = csv.reader(f)  # handles quoted commas correctly
     for line in reader:
         if len(line) < 4:
