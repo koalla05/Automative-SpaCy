@@ -12,8 +12,10 @@ from config import DEFAULT_PARAM_GLOSSARY
 
 # Thresholds
 PARAMETER_CONFIDENCE_THRESHOLD = 0.75
-FUZZY_MATCH_THRESHOLD = 80  # Lowered for better fuzzy matching
-EXACT_MATCH_THRESHOLD = 90
+FUZZY_MATCH_THRESHOLD = 85  # Threshold for fuzzy matching
+EXACT_MATCH_THRESHOLD = 95  # Threshold for considering a match as exact
+MIN_WORD_LENGTH_FOR_FUZZY = 5  # Minimum word length to attempt fuzzy matching
+MIN_SYNONYM_LENGTH_FOR_FUZZY = 5  # Minimum synonym length for fuzzy matching
 
 # Load spacy for position tracking
 nlp = spacy.load("full_ner_model")
@@ -61,6 +63,23 @@ def normalize_for_matching(text: str) -> str:
     text = re.sub(r'\s+', ' ', text).strip()
 
     return text
+
+
+def is_stopword_or_common(word: str) -> bool:
+    """Check if word is a stopword or common word that shouldn't be matched as parameter"""
+    stopwords = {
+        # Ukrainian
+        'які', 'який', 'яка', 'яке', 'які', 'що', 'чи', 'для', 'від', 'при',
+        'під', 'над', 'про', 'без', 'через', 'після', 'перед', 'біля', 'коло',
+        'поза', 'між', 'поміж', 'серед', 'вздовж', 'всередині',
+        # Russian
+        'какой', 'какая', 'какое', 'какие', 'что', 'для', 'от', 'при',
+        'под', 'над', 'про', 'без', 'через', 'после', 'перед',
+        # English
+        'what', 'which', 'how', 'for', 'from', 'with', 'without', 'the',
+        'this', 'that', 'these', 'those', 'and', 'or'
+    }
+    return word.lower().strip() in stopwords
 
 
 def split_into_segments(text: str) -> List[Dict[str, Any]]:
@@ -201,58 +220,110 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
             start = idx + len(syn)
 
     # Phase 2: Fuzzy matching for missed terms
-    words_with_positions = []
+    # Extract both single words and multi-word phrases
+    candidates = []
+
+    # Single words
     for match in re.finditer(r'\b[\w\-]+\b', text, re.UNICODE):
         word = match.group(0)
-        if len(word) >= 3:  # Only consider words with 3+ characters
-            words_with_positions.append({
-                "word": word,
+        # Only consider words with minimum length and not stopwords
+        if len(word) >= MIN_WORD_LENGTH_FOR_FUZZY and not is_stopword_or_common(word):
+            candidates.append({
+                "text": word,
                 "position": match.start(),
-                "end_position": match.end()
+                "end_position": match.end(),
+                "word_count": 1
             })
 
-    for word_info in words_with_positions:
-        word = word_info["word"]
-        pos = word_info["position"]
+    # Multi-word phrases (2-5 words)
+    words = re.findall(r'\b[\w\-]+\b', text, re.UNICODE)
+    word_positions = [m.start() for m in re.finditer(r'\b[\w\-]+\b', text, re.UNICODE)]
+
+    for i in range(len(words)):
+        for length in range(2, min(6, len(words) - i + 1)):  # 2-5 word phrases
+            phrase = ' '.join(words[i:i + length])
+            if len(phrase) >= MIN_WORD_LENGTH_FOR_FUZZY:
+                phrase_start = word_positions[i]
+                phrase_end = word_positions[i + length - 1] + len(words[i + length - 1])
+                candidates.append({
+                    "text": phrase,
+                    "position": phrase_start,
+                    "end_position": phrase_end,
+                    "word_count": length
+                })
+
+    for candidate in candidates:
+        text_chunk = candidate["text"]
+        pos = candidate["position"]
+        word_count = candidate["word_count"]
 
         # Skip if already matched
         if any(abs(p - pos) < 5 for p in found_positions):
             continue
 
-        word_normalized = normalize_for_matching(word)
+        text_normalized = normalize_for_matching(text_chunk)
 
         # Try fuzzy matching against all synonyms
         best_match = None
         best_score = 0
         best_key = None
+        best_match_type = None
 
         for syn, key in synonym_to_key.items():
             syn_normalized = normalize_for_matching(syn)
 
             # Skip very short synonyms for fuzzy matching
-            if len(syn_normalized) < 3:
+            if len(syn_normalized) < MIN_SYNONYM_LENGTH_FOR_FUZZY:
                 continue
 
-            # Calculate fuzzy ratio
-            ratio = fuzz.ratio(word_normalized, syn_normalized)
+            # Calculate word count similarity for multi-word phrases
+            syn_word_count = len(syn_normalized.split())
 
-            # Also try partial ratio for compound words
-            partial_ratio = fuzz.partial_ratio(word_normalized, syn_normalized)
+            # Prefer candidates with similar word counts
+            word_count_diff = abs(word_count - syn_word_count)
 
-            # Take the better score
-            score = max(ratio, partial_ratio)
+            # Skip if word counts are too different for multi-word synonyms
+            if syn_word_count > 1 and word_count_diff > 2:
+                continue
+
+            # Skip if candidate is much shorter than synonym
+            if len(text_normalized) < len(syn_normalized) * 0.4:
+                continue
+
+            # Calculate different fuzzy ratios
+            ratio = fuzz.ratio(text_normalized, syn_normalized)
+            partial_ratio = fuzz.partial_ratio(text_normalized, syn_normalized)
+            token_sort_ratio = fuzz.token_sort_ratio(text_normalized, syn_normalized)
+
+            # Choose scoring method based on synonym structure
+            if syn_word_count > 1:
+                # For multi-word synonyms, use token_sort_ratio which handles word order
+                score = token_sort_ratio
+                # Bonus for exact word count match
+                if word_count == syn_word_count:
+                    score = min(100, score + 5)
+            else:
+                # For single words, be strict
+                score = ratio
 
             if score > best_score and score >= FUZZY_MATCH_THRESHOLD:
                 best_score = score
                 best_match = syn
                 best_key = key
+                best_match_type = "fuzzy"
 
         if best_match and best_key:
+            # Additional validation: check if already found this parameter
+            # Skip duplicates with lower confidence
+            already_found = any(r["key"] == best_key and r["confidence"] > best_score / 100.0 for r in results)
+            if already_found:
+                continue
+
             # Grab phrase around parameter
             phrase_start = max(0, text.rfind(' ', 0, pos))
-            phrase_end = text.find('.', word_info["end_position"])
+            phrase_end = text.find('.', candidate["end_position"])
             if phrase_end == -1:
-                phrase_end = min(len(text), word_info["end_position"] + 100)
+                phrase_end = min(len(text), candidate["end_position"] + 100)
             phrase = text[phrase_start:phrase_end].strip()
 
             confidence = best_score / 100.0
@@ -262,9 +333,9 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 "synonym_matched": best_match,
                 "confidence": confidence,
                 "position": pos,
-                "end_position": word_info["end_position"],
+                "end_position": candidate["end_position"],
                 "extracted_value": phrase,
-                "match_type": "fuzzy",
+                "match_type": best_match_type,
                 "fuzzy_score": best_score
             })
 
