@@ -12,7 +12,7 @@ from config import DEFAULT_PARAM_GLOSSARY
 
 # Thresholds
 PARAMETER_CONFIDENCE_THRESHOLD = 0.75
-FUZZY_MATCH_THRESHOLD = 82  # LOWERED from 85 for better fuzzy matching
+FUZZY_MATCH_THRESHOLD = 75
 EXACT_MATCH_THRESHOLD = 95
 MIN_WORD_LENGTH_FOR_FUZZY = 4  # LOWERED from 5
 MIN_SYNONYM_LENGTH_FOR_FUZZY = 4  # LOWERED from 5
@@ -415,211 +415,66 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
     return final_results
 
 
-def map_parameters_to_models(
-        parameters: List[Dict[str, Any]],
-        models: List[Dict[str, Any]],
-        manufacturers: List[Dict[str, Any]],
-        eq_types: List[Dict[str, Any]],
-        text: str
-) -> List[Dict[str, Any]]:
+def map_parameters_to_models(parameters, models, manufacturers, eq_types, text):
     """
-    Intelligently map each parameter to its corresponding model/manufacturer/eq_type
+    Map each parameter to closest model/manufacturer/eq_type.
+    Ensures all parameters are included in sub-queries.
     """
-    # FIX: Special case - one parameter for multiple models
-    if len(parameters) == 1 and len(models) > 1:
-        param = parameters[0]
-        sub_queries = []
+    # Normalize models first
+    for m in models:
+        m["canonical"] = normalize_model(m.get("original_value", ""))
 
-        for model in models:
-            manufacturer_value = ""
-            # Find manufacturer closest to this model
-            for manuf in manufacturers:
-                if abs(manuf["position"] - model["position"]) < 30:
-                    manufacturer_value = manuf["value"]
-                    break
-
-            if not manufacturer_value and manufacturers:
-                manufacturer_value = manufacturers[0]["value"]
-
-            sub_queries.append({
-                "manufacturer": manufacturer_value,
-                "model": model["canonical"],
-                "equipment_type": eq_types[0]["value"] if eq_types else None,
-                "parameter": param["key"],
-                "original_part": param.get("extracted_value", ""),
-                "confidence": param.get("confidence", 0.0),
-                "match_type": param.get("match_type", "unknown")
-            })
-
-        return sub_queries
-
-    # Split text into segments
-    segments = split_into_segments(text)
-
-    # Assign entities to segments
-    for segment in segments:
-        segment["models"] = []
-        segment["manufacturers"] = []
-        segment["eq_types"] = []
-        segment["parameters"] = []
-
-    # Assign models to segments
-    for model in models:
-        for segment in segments:
-            if segment["start"] <= model["position"] < segment["end"]:
-                segment["models"].append(model)
-                break
-
-    # Assign manufacturers to segments
-    for manufacturer in manufacturers:
-        for segment in segments:
-            if segment["start"] <= manufacturer["position"] < segment["end"]:
-                segment["manufacturers"].append(manufacturer)
-                break
-
-    # Assign eq_types to segments
-    for eq_type in eq_types:
-        for segment in segments:
-            if segment["start"] <= eq_type["position"] < segment["end"]:
-                segment["eq_types"].append(eq_type)
-                break
-
-    # Assign parameters to segments
-    for param in parameters:
-        for segment in segments:
-            if segment["start"] <= param["position"] < segment["end"]:
-                segment["parameters"].append(param)
-                break
-
-    # Build sub-queries based on segments
     sub_queries = []
 
-    for segment in segments:
-        seg_models = segment["models"]
-        seg_manufacturers = segment["manufacturers"]
-        seg_eq_types = segment["eq_types"]
-        seg_parameters = segment["parameters"]
+    for param in parameters:
+        # Closest model
+        if models:
+            closest_model = min(models, key=lambda m: abs(param["position"] - m["position"]))
+            model_value = closest_model["canonical"]
+        else:
+            model_value = "ALL_LISTED"
 
-        # If segment has parameters
-        if seg_parameters:
-            # Determine model for this segment
-            if seg_models:
-                model_value = seg_models[0]["canonical"]
-            elif models:  # Use closest model from entire text
-                closest_model = min(models, key=lambda m: abs(m["position"] - segment["start"]))
-                model_value = closest_model["canonical"]
-            else:
-                model_value = "ALL_LISTED"
+        # Closest manufacturer
+        if manufacturers:
+            closest_manuf = min(manufacturers, key=lambda m: abs(param["position"] - m["position"]))
+            manufacturer_value = closest_manuf["value"]
+        else:
+            manufacturer_value = ""
 
-            # Determine manufacturer
-            if seg_manufacturers:
-                manufacturer_value = seg_manufacturers[0]["value"]
-            elif manufacturers:
-                closest_manuf = min(manufacturers, key=lambda m: abs(m["position"] - segment["start"]))
-                manufacturer_value = closest_manuf["value"]
-            else:
-                manufacturer_value = ""
+        # Closest equipment type
+        if eq_types:
+            closest_eq = min(eq_types, key=lambda e: abs(param["position"] - e["position"]))
+            eq_type_value = closest_eq["value"]
+        else:
+            eq_type_value = None
 
-            # Determine equipment type
-            if seg_eq_types:
-                eq_type_value = seg_eq_types[0]["value"]
-            elif eq_types:
-                closest_eq = min(eq_types, key=lambda e: abs(e["position"] - segment["start"]))
-                eq_type_value = closest_eq["value"]
-            else:
-                eq_type_value = None
-
-            # FIX: Create sub-query for EACH parameter in this segment
-            for param in seg_parameters:
-                sub_queries.append({
-                    "manufacturer": manufacturer_value,
-                    "model": model_value,
-                    "equipment_type": eq_type_value,
-                    "parameter": param["key"],
-                    "original_part": param.get("extracted_value", ""),
-                    "confidence": param.get("confidence", 0.0),
-                    "match_type": param.get("match_type", "unknown")
-                })
-
-    # If no parameters found in segments, use proximity-based mapping
-    if not sub_queries:
-        for param in parameters:
-            # Find closest model
-            if models:
-                closest_model = min(models, key=lambda m: abs(m["position"] - param["position"]))
-                model_value = closest_model["canonical"]
-            else:
-                model_value = "ALL_LISTED"
-
-            # Find closest manufacturer
-            if manufacturers:
-                closest_manuf = min(manufacturers, key=lambda m: abs(m["position"] - param["position"]))
-                manufacturer_value = closest_manuf["value"]
-            else:
-                manufacturer_value = ""
-
-            # Find closest eq_type
-            if eq_types:
-                closest_eq = min(eq_types, key=lambda e: abs(e["position"] - param["position"]))
-                eq_type_value = closest_eq["value"]
-            else:
-                eq_type_value = None
-
-            sub_queries.append({
-                "manufacturer": manufacturer_value,
-                "model": model_value,
-                "equipment_type": eq_type_value,
-                "parameter": param["key"],
-                "original_part": param.get("extracted_value", ""),
-                "confidence": param.get("confidence", 0.0),
-                "match_type": param.get("match_type", "unknown")
-            })
+        sub_queries.append({
+            "manufacturer": manufacturer_value,
+            "model": model_value,
+            "equipment_type": eq_type_value,
+            "parameter": param["key"],
+            "original_part": param.get("extracted_value", ""),
+            "confidence": param.get("confidence", 0.0),
+            "match_type": param.get("match_type", "unknown")
+        })
 
     return sub_queries
 
 
-def build_routing(ner_entities: Dict[str, List[Dict[str, Any]]],
-                  parameters: List[Dict[str, Any]],
-                  text: str) -> Dict[str, Any]:
-    """
-    Map parameters to the closest model and manufacturer using smart segmentation.
-    """
+def build_routing(ner_entities, parameters, text):
     manufacturers = ner_entities.get("MANUFACTURER", [])
     models = ner_entities.get("MODEL", [])
     eq_types = ner_entities.get("EQ_TYPE", [])
 
     if not manufacturers and not models and not parameters:
-        return {
-            "recommended_strategy": "noEntities",
-            "message": "No entities detected",
-            "options": []
-        }
+        return {"recommended_strategy": "noEntities", "message": "No entities detected", "options": []}
 
-    # Normalize models first
-    for m in models:
-        m["canonical"] = normalize_model(m["original_value"])
+    sub_queries = map_parameters_to_models(parameters, models, manufacturers, eq_types, text)
 
-    # Smart mapping
-    sub_queries = map_parameters_to_models(
-        parameters, models, manufacturers, eq_types, text
-    )
-
-    if len(sub_queries) == 0:
-        return {
-            "recommended_strategy": "noEntities",
-            "message": "No valid parameter-model mappings found",
-            "options": []
-        }
-    elif len(sub_queries) == 1:
-        return {
-            "recommended_strategy": "single_query",
-            "sub_query": sub_queries[0]
-        }
+    if len(sub_queries) == 1:
+        return {"recommended_strategy": "single_query", "sub_query": sub_queries[0]}
     else:
-        return {
-            "recommended_strategy": "multi_query",
-            "sub_queries": sub_queries
-        }
+        return {"recommended_strategy": "multi_query", "sub_queries": sub_queries}
 
 
 def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PARAM_GLOSSARY) -> Dict[str, Any]:
