@@ -1,8 +1,18 @@
 # llm_processor.py
 
 import os
-import openai
 from typing import Dict, Any
+from dotenv import load_dotenv
+from openai import OpenAI
+
+
+load_dotenv()
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    raise RuntimeError("OPENAI_API_KEY not found. Please create .env file.")
+
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 SYSTEM_PROMPT = """
 You are the LLM module inside the Intelligence Preprocessing Gateway (IPG) for "Atmosfera" company.
@@ -235,21 +245,23 @@ Any other format is an ERROR.
 
 
 class LLMProcessor:
-    def __init__(self, par_lst, mod_lst, model: str = "gpt-4o-mini"):
+    def __init__(self, par_lst: str, mod_lst: str, model: str = "gpt-4o-mini"):
         self.model = model
         self.parameters_list = par_lst
         self.models_list = mod_lst
 
     def process_question(self, extracted_entities: Dict[str, Any], original_text: str) -> Dict[str, Any]:
         """
-        Sends extracted_entities + original text to OpenAI with system prompt,
-        gets IPG-formatted raw text, then parses it into standard JSON.
+        Sends extracted_entities + original text to OpenAI and receives IPG-formatted text.
         """
-        # Prepare system prompt with embedded context
-        system_content = SYSTEM_PROMPT.replace("{parameters_list_with_type}", self.parameters_list) \
-            .replace("{models_list_with_type}", self.models_list)
 
-        # User message with original query + extracted entities
+        # Inject parameter & model dictionaries
+        system_content = (
+            SYSTEM_PROMPT
+            .replace("{parameters_list_with_type}", self.parameters_list)
+            .replace("{models_list_with_type}", self.models_list)
+        )
+
         user_content = f"""Original query: {original_text}
 
 Extracted entities from NER/fuzzy:
@@ -257,55 +269,63 @@ Extracted entities from NER/fuzzy:
 
 Process this and return in the prescribed format."""
 
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model=self.model,
+            temperature=0,
             messages=[
                 {"role": "system", "content": system_content},
                 {"role": "user", "content": user_content}
-            ],
-            temperature=0
+            ]
         )
 
-        raw_text = response["choices"][0]["message"]["content"].strip()
+        raw_text = response.choices[0].message.content.strip()
 
         return self.parse_ipg_output(raw_text)
 
     def parse_ipg_output(self, raw_text: str) -> Dict[str, Any]:
         """
-        Converts IPG raw text format to structured JSON.
+        Converts IPG-formatted text into structured JSON.
         """
         lines = raw_text.splitlines()
         result = {"status": None, "intent": None, "param_bindings": []}
 
         in_bindings = False
+
         for line in lines:
             line = line.strip()
 
             if line.startswith("STATUS:"):
                 result["status"] = line.split(":", 1)[1].strip()
+
             elif line.startswith("INTENT:"):
                 result["intent"] = line.split(":", 1)[1].strip()
+
             elif line.startswith("PARAM_BINDINGS:"):
                 in_bindings = True
                 continue
+
             elif in_bindings:
                 if line == "NONE":
                     result["param_bindings"] = []
                     break
-                elif line.startswith("MODEL:"):
+
+                if line.startswith("MODEL:"):
                     parts = line.split(";")
-                    model_part = parts[0].split(":", 1)[1].strip()
+                    model_name = parts[0].split(":", 1)[1].strip()
                     params_part = parts[1].split(":", 1)[1].strip() if len(parts) > 1 else ""
+
                     params = [p.strip() for p in params_part.split(",")] if params_part else []
-                    result["param_bindings"].append({"model": model_part, "parameters": params})
+
+                    result["param_bindings"].append({
+                        "model": model_name,
+                        "parameters": params
+                    })
 
         return result
-
 
 if __name__ == "__main__":
     from pprint import pprint
 
-    # Example
     extracted_entities_example = {
         "manufacturer": [{"value": "LuxPower", "confidence": 0.84}],
         "model": [{"value": "lxp_lb", "confidence": 0.88, "original_value": "LXP-LB-EU"}],
@@ -316,8 +336,15 @@ if __name__ == "__main__":
         ]
     }
 
-    parameters_list = "max_charge_current_a (battery): ['максимальний струм заряджання']\nmax_discharge_current_a (battery): ['максимальний струм розряджання']"
-    models_list = "lxp_lb (inverter)\nvictron_multiplus_ii_48_5000 (inverter)"
+    parameters_list = (
+        "max_charge_current_a (battery): ['максимальний струм заряджання']\n"
+        "max_discharge_current_a (battery): ['максимальний струм розряджання']"
+    )
+
+    models_list = (
+        "lxp_lb (inverter)\n"
+        "victron_multiplus_ii_48_5000 (inverter)"
+    )
 
     processor = LLMProcessor(parameters_list, models_list)
     result = processor.process_question(
