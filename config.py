@@ -688,7 +688,7 @@ DEFAULT_PARAM_GLOSSARY = {
   "number_of_mppt": [
     "number of mppt",
     "Кількість MPPT-трекерів",
-    "MPPT трекери"
+    "MPPT трекери",
     "number_of_mppt",
     "количество МРРТ трекеров",
     "число МРРТ",

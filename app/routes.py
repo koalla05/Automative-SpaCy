@@ -15,16 +15,17 @@
 
 from fastapi import APIRouter, BackgroundTasks
 from app.models import Query
-from extractor_module import process_question
+from ipg_pipeline import IPGPipeline
 
 router = APIRouter()
+pipeline = IPGPipeline()
 
 @router.post("/extract_entities")
 def extract_entities(query: Query, background_tasks: BackgroundTasks):
     text = query.text
 
-    # run your complete pipeline from extractor_module.py
-    result = process_question(text)
+    # run the full IPG pipeline
+    result = pipeline.process(text)
 
     # Optionally run async post-processing
     # background_tasks.add_task(process_for_annotation, text)
