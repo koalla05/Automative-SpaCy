@@ -1,73 +1,282 @@
-SUN 5K-SG-EU -> sun_5k_sg
-SUN 6K-SG-EU -> sun_6k_sg
-SUN 8K-SG-EU -> sun_8k_sg
-SUN 10K-SG-EU -> sun_10k_sg
-SUN 12K-SG-EU -> sun_12k_sg
-SUN 15K-SG-EU -> sun_15k_sg
-SUN 20K-SG-EU -> sun_20k_sg
-SUN 25K-SG-EU -> sun_25k_sg
-SUN-29.9K-SG01HP3-EU-BM3 -> sun_29.9k_sg01hp3
-SUN-30K-SG01HP3-EU-BM3 -> sun_30k_sg01hp3
-SUN-35K-SG01HP3-EU-BM3 -> sun_35k_sg01hp3
-SUN-40K-SG01HP3-EU-BM4 -> sun_40k_sg01hp3
-SUN-50K-SG01HP3-EU-BM4 -> sun_50k_sg01hp3
-LUNA2000-7-S1 -> luna2000_7
-LUNA2000-14-S1 -> luna2000_14
-LUNA2000-21-S1 -> luna2000_21
-LUNA2000-5KW-C0 -> luna2000_5kw
-LUNA2000-5-E0 -> luna2000_5
-LUNA2000-5-S0 -> luna2000_5
-LUNA2000-(5-30)-S0 -> luna2000_(5_30)
-SUN2000-(2KTL-6KTL)-L1 -> sun2000_(2ktl_6ktl)*l1
-SUN2000-(3KTL-12KTL)-M1 -> sun2000*(3ktl_12ktl)*m1
-LUNA2000-5/10/15-S0 -> luna2000_5/10/15
-US2000 -> us2000
-US3000 -> us3000
-Phantom-SA -> phantom_sa
-US1800 -> us1800
-US2000B Plus -> us2000b
-US3000C -> us3000c
-UP5000 -> up5000
-US5000 -> us5000
-US2000B -> us2000b
-US2000C -> us2000c
-Pylon LV -> pylon_lv
-Pylon -> pylon
-PowerCube-X1 -> powercube_x1
-PowerCube-H2 -> powercube_h2
-PowerCube-H1 -> powercube_h1
-HV Battery -> hv_battery
-H48050 -> h48050
-H48074 -> h48074
-SC1000-100 -> sc1000_100
-PowerCube-H1/H2-V2 -> powercube_h1/h2_v2
-SC1000-100S-V2 -> sc1000_100s_v2
-PowerCube V2 Series -> powercube_v2
-Force H-V2 -> force_h_v2
-Logger3000 -> logger3000
-Logger1000A -> logger1000a
-Logger1000B -> logger1000b
+12/3000/120 -> 12_3000_120
+24/3000/70 -> 24_3000_70
+3.6K Hybrid -> 3.6k_hybrid
+3K Hybrid -> 3k_hybrid
+4.6K Hybrid -> 4.6k_hybrid
+48/10000/140-100/100 -> 48_10000_140_100_100
+48/15000/200-100/100 -> 48_15000_200_100_100
+48/5000/70 -> 48_5000_70
+4K Hybrid -> 4k_hybrid
+5K Hybrid -> 5k_hybrid
+6K/Hybrid -> 6k_hybrid
+ACR10RH -> acr10rh
+B4850 -> b4850
+BOS-G15 -> bos_g15
+BOS-G20 -> bos_g20
+BOS-G25 -> bos_g25
+BOS-G30 -> bos_g30
+BOS-G35 -> bos_g35
+BOS-G40 -> bos_g40
+BOS-G45 -> bos_g45
+BOS-G50 -> bos_g50
+BOS-G55 -> bos_g55
+BOS-G60 -> bos_g60
+BOS-GM5.1 -> bos_gm5.1
+BTS E10-DS5 -> bts_e10_ds5
+BTS E15-DS5 -> bts_e15_ds5
+BTS E20-DS5 -> bts_e20_ds5
+BTS E5-DS5 -> bts_e5_ds5
+C12/1200/50 -> c12_1200_50
+C12/800/35 -> c12_800_35
+C24/800/16 -> c24_800_16
+COM100A -> com100a
 COM100D -> com100d
 COM100E -> com100e
-COM100A -> com100a
-DTSD1352-C/1 (6)A -> dtsd1352_c/1*(6)a
-S100 -> s100
-DTSD1352-C/10(80)A -> dtsd1352_c/10(80)a
-DTSD1352-C/1(6)A -> dtsd1352_c/1(6)a
-SH5-25T -> sh5_25t
-SH5-25T-V11 -> sh5_25t_v11
-SH5-25T-V112 -> sh5_25t_v112
-SH5.0RT -> sh5.0rt
-SH6.0RT -> sh6.0rt
-SH8.0RT -> sh8.0rt
+Cerbo GX -> cerbo
+Cerbo-S GX -> cerbo_s
+DDSD1352 -> ddsd1352
+DL5.0C -> dl5.0c
+DTSD1352-C/1(6)A -> dtsd1352_c_1(6)a
+DTSD1352-C/10(80)A -> dtsd1352_c_10(80)a
+Dyness A48100 -> a48100
+Dyness B4850-BOX -> b4850
+EPM1-2G -> epm1_2g
+EPM1-5G -> epm1_5g
+EPM3-2G -> epm3_2g
+EPM3-5G -> epm3_5g
+EPM3-5G-PLUS -> epm3_5g_plus
+EasySolar 12/1600/70 -> easysolar_12_1600_70
+EasySolar 24/1600/40 -> easysolar_24_1600_40
+EasySolar 24/3000/70-50 + MPPT150/70 -> easysolar_24_3000_70_50
+EasySolar 48/3000/35-50 + MPPT150/70 -> easysolar_48_3000_35_50
+EasySolar 48/5000/70-100 + MPPT150/100 -> easysolar_48_5000_70_100
+EasySolar-II 24/3000/70-32 + MPPT 250/70 GX -> easysolar_ii_24_3000_70_32
+EasySolar-II 48/3000/35-32 + MPPT 250/70 GX -> easysolar_ii_48_3000_35_32
+EasySolar-II 48/5000/70-50 + MPPT 250/100 GX -> easysolar_ii_48_5000_70_50
+Fronius Eco 25.0-3-S -> eco_25.0_3_s
+Fronius Eco 27.0-3-S -> eco_27.0_3_s
+Fronius Smart Meter 50kA-3 -> smart_meter_50ka_3
+Fronius Smart Meter 63A-1 -> smart_meter_63a_1
+Fronius Smart Meter 63A-3 -> smart_meter_63a_3
+Fronius Symo 10.0-3-M -> symo_10.0_3_m
+Fronius Symo 12.5-3-M -> symo_12.5_3_m
+Fronius Symo 15.0-3-M -> symo_15.0_3_m
+Fronius Symo 17.5-3-M -> symo_17.5_3_m
+Fronius Symo 20.0-3-M -> symo_20.0_3_m
+Fronius Symo 3.0-3-M -> symo_3.0_3_m
+Fronius Symo 3.0-3-S -> symo_3.0_3_s
+Fronius Symo 3.7-3-M -> symo_3.7_3_m
+Fronius Symo 3.7-3-S -> symo_3.7_3_s
+Fronius Symo 4.5-3-M -> symo_4.5_3_m
+Fronius Symo 4.5-3-S -> symo_4.5_3_s
+Fronius Symo 5.0-3-M -> symo_5.0_3_m
+Fronius Symo 6.0-3-M -> symo_6.0_3_m
+Fronius Symo 7.0-3-M -> symo_7.0_3_m
+Fronius Symo 8.2-3-M -> symo_8.2_3_m
+Fronius Symo Advanced 10.0-3-M -> symo_advanced_10.0_3_m
+Fronius Symo Advanced 12.5-3-M -> symo_advanced_12.5_3_m
+Fronius Symo Advanced 15.0-3-M -> symo_advanced_15.0_3_m
+Fronius Symo Advanced 17.5-3-M -> symo_advanced_17.5_3_m
+Fronius Symo Advanced 20.0-3-M -> symo_advanced_20.0_3_m
+Fronius Symo Hybrid 3.0-3-S -> symo_hybrid_3.0_3_s
+Fronius Symo Hybrid 4.0-3-S -> symo_hybrid_4.0_3_s
+Fronius Symo Hybrid 5.0-3-S -> symo_hybrid_5.0_3_s
+Fronius Tauro 50-3-D -> tauro_50_3_d
+Fronius Tauro 50-3-P -> tauro_50_3_p
+Fronius Tauro ECO 100-3-D -> tauro_eco_100_3_d
+Fronius Tauro ECO 100-3-P -> tauro_eco_100_3_p
+Fronius Tauro ECO 50-3-D -> tauro_eco_50_3_d
+Fronius Tauro ECO 50-3-P -> tauro_eco_50_3_p
+Fronius Tauro ECO 99-3-D -> tauro_eco_99_3_d
+Fronius Tauro ECO 99-3-P -> tauro_eco_99_3_p
+H32148 -> h32148
+H48050 -> h48050
+H48050-15S -> h48050_15s
+H48074 -> h48074
+HVB750V/100A-EU -> hvb750v_100a
+HVB750V/100A-US -> hvb750v_100a
+HYD 10KTL-3PH -> hyd_10ktl_3ph
+HYD 10KTL-3PH-A -> hyd_10ktl_3ph_a
+HYD 15KTL-3PH -> hyd_15ktl_3ph
+HYD 20KTL-3PH -> hyd_20ktl_3ph
+HYD 5KTL-3PH -> hyd_5ktl_3ph
+HYD 6KTL-3PH -> hyd_6ktl_3ph
+HYD 8KTL-3PH -> hyd_8ktl_3ph
+LUNA2000-10-S0 -> luna2000_10
+LUNA2000-14-S1 -> luna2000_14
+LUNA2000-15-S0 -> luna2000_15
+LUNA2000-21-S1 -> luna2000_21
+LUNA2000-5-E0 -> luna2000_5
+LUNA2000-5-S0 -> luna2000_5
+LUNA2000-5KW-C0 -> luna2000_5kw
+LUNA2000-7-S1 -> luna2000_7
+LV-HUB -> lv_hub
+LXP10K SPEC -> lxp10k_spec
+LXP4K HB -> lxp4k_hb
+LXP5K HB -> lxp5k_hb
+LXP6K HB -> lxp6k_hb
+LXP8K SPEC -> lxp8k_spec
+Logger1000A -> logger1000a
+Logger1000B -> logger1000b
+Logger3000 -> logger3000
+ME 10KTL-3PH -> me_10ktl_3ph
+ME 15KTL-3PH -> me_15ktl_3ph
+ME 20KTL-3PH -> me_20ktl_3ph
+ME 5KTL-3PH -> me_5ktl_3ph
+ME 6KTL-3PH -> me_6ktl_3ph
+ME 8KTL-3PH -> me_8ktl_3ph
+MultiPlus 12/1200/50 -> multiplus_12_1200_50
+MultiPlus 12/1600/70 -> multiplus_12_1600_70
+MultiPlus 12/2000/80 -> multiplus_12_2000_80
+MultiPlus 12/500/20 -> multiplus_12_500_20
+MultiPlus 12/800/35 -> multiplus_12_800_35
+MultiPlus 24/1200/25 -> multiplus_24_1200_25
+MultiPlus 24/1600/40 -> multiplus_24_1600_40
+MultiPlus 24/2000/50 -> multiplus_24_2000_50
+MultiPlus 24/3000/70 -> multiplus_24_3000_70
+MultiPlus 24/500/10 -> multiplus_24_500_10
+MultiPlus 24/5000/120 -> multiplus_24_5000_120
+MultiPlus 24/800/16 -> multiplus_24_800_16
+MultiPlus 48/1200/13 -> multiplus_48_1200_13
+MultiPlus 48/1600/20 -> multiplus_48_1600_20
+MultiPlus 48/2000/25 -> multiplus_48_2000_25
+MultiPlus 48/500/6 -> multiplus_48_500_6
+MultiPlus 48/800/9 -> multiplus_48_800_9
+MultiPlus C12/1600/70 -> multiplus_c12_1600_70
+MultiPlus C12/2000/80 -> multiplus_c12_2000_80
+MultiPlus C12/3000/120 -> multiplus_c12_3000_120
+MultiPlus C24/1200/25 -> multiplus_c24_1200_25
+MultiPlus C24/1600/40 -> multiplus_c24_1600_40
+MultiPlus C24/2000/50 -> multiplus_c24_2000_50
+MultiPlus C24/3000/70 -> multiplus_c24_3000_70
+MultiPlus C24/5000/120 -> multiplus_c24_5000_120
+MultiPlus C48/3000/35 -> multiplus_c48_3000_35
+MultiPlus C48/5000/70 -> multiplus_c48_5000_70
+MultiPlus-II 12/3000/120-32 -> multiplus_ii_12_3000_120_32
+MultiPlus-II 24/3000/70-32 -> multiplus_ii_24_3000_70_32
+MultiPlus-II 24/5000/120-50 -> multiplus_ii_24_5000_120_50
+MultiPlus-II 48/10000/140-100 -> multiplus_ii_48_10000_140_100
+MultiPlus-II 48/15000/200-100 -> multiplus_ii_48_15000_200_100
+MultiPlus-II 48/3000/35-32 -> multiplus_ii_48_3000_35_32
+MultiPlus-II 48/5000/70-50 -> multiplus_ii_48_5000_70_50
+MultiPlus-II 48/8000/110-100 -> multiplus_ii_48_8000_110_100
+MultiPlus-II GX 24/3000/70-32 -> multiplus_ii_24_3000_70_32
+MultiPlus-II GX 48/3000/35-32 -> multiplus_ii_48_3000_35_32
+MultiPlus-II GX 48/5000/70-50 -> multiplus_ii_48_5000_70_50
+PRIMO 3.0-1 -> primo_3.0_1
+PRIMO 3.5-1 -> primo_3.5_1
+PRIMO 3.6-1 -> primo_3.6_1
+PRIMO 4.0-1 -> primo_4.0_1
+PRIMO 4.6-1 -> primo_4.6_1
+PRIMO 5.0-1 -> primo_5.0_1
+PRIMO 5.0-1 AUS -> primo_5.0_1
+PRIMO 6.0-1 -> primo_6.0_1
+PRIMO 8.2-1 -> primo_8.2_1
+PowerCube-H1 (720V50AH) -> powercube_h1_(720v50ah)
+PowerCube-H1-48/zzzV -> powercube_h1_48_zzzv
+PowerCube-H2-48/zzzV -> powercube_h2_48_zzzv
+PowerCube-X1 -> powercube_x1
+Quattro 12/3000/120-50/30 -> quattro_12_3000_120_50_30
+Quattro 12/3000/120-50/50 -> quattro_12_3000_120_50_50
+Quattro 12/5000/220-100/100 -> quattro_12_5000_220_100_100
+Quattro 24/3000/70-50/30 -> quattro_24_3000_70_50_30
+Quattro 24/3000/70-50/50 -> quattro_24_3000_70_50_50
+Quattro 24/5000/120-100/100 -> quattro_24_5000_120_100_100
+Quattro 24/8000/200-100/100 -> quattro_24_8000_200_100_100
+Quattro 48/3000/35-50/30 -> quattro_48_3000_35_50_30
+Quattro 48/5000/70-100/100 -> quattro_48_5000_70_100_100
+Quattro 48/8000/110-100/100 -> quattro_48_8000_110_100_100
+Quattro-II 24/5000/120-50 -> quattro_ii_24_5000_120_50
+Quattro-II 48/5000/70-50 -> quattro_ii_48_5000_70_50
+RHI-3.6K-48ES -> rhi_3.6k_48es
+RHI-3.6K-48ES-5G -> rhi_3.6k_48es_5g
+RHI-3K-48ES -> rhi_3k_48es
+RHI-3K-48ES-5G -> rhi_3k_48es_5g
+RHI-3P10K-HVES-5G -> rhi_3p10k_hves_5g
+RHI-3P5K-HVES-5G -> rhi_3p5k_hves_5g
+RHI-3P6K-HVES-5G -> rhi_3p6k_hves_5g
+RHI-3P8K-HVES-5G -> rhi_3p8k_hves_5g
+RHI-4.6K-48ES -> rhi_4.6k_48es
+RHI-4.6K-48ES-5G -> rhi_4.6k_48es_5g
+RHI-5K-48ES -> rhi_5k_48es
+RHI-5K-48ES-5G -> rhi_5k_48es_5g
+RHI-6K-48ES-5G -> rhi_6k_48es_5g
+S5-EH1P3.6K-L -> s5_eh1p3.6k_l
+S5-EH1P3K-L -> s5_eh1p3k_l
+S5-EH1P4.6K-L -> s5_eh1p4.6k_l
+S5-EH1P5K-L -> s5_eh1p5k_l
+S5-EH1P6K-L -> s5_eh1p6k_l
+S5-GC100K -> s5_gc100k
+S5-GC110K -> s5_gc110k
+S5-GC25K -> s5_gc25k
+S5-GC30K -> s5_gc30k
+S5-GC33K -> s5_gc33k
+S5-GC36K -> s5_gc36k
+S5-GC40K -> s5_gc40k
+S5-GC50K -> s5_gc50k
+S5-GC60K -> s5_gc60k
+S5-GR3P10K -> s5_gr3p10k
+S5-GR3P10K-LV -> s5_gr3p10k_lv
+S5-GR3P12K -> s5_gr3p12k
+S5-GR3P13K -> s5_gr3p13k
+S5-GR3P15K -> s5_gr3p15k
+S5-GR3P17K -> s5_gr3p17k
+S5-GR3P20K -> s5_gr3p20k
+S5-GR3P3K -> s5_gr3p3k
+S5-GR3P4K -> s5_gr3p4k
+S5-GR3P5K -> s5_gr3p5k
+S5-GR3P6K -> s5_gr3p6k
+S5-GR3P8K -> s5_gr3p8k
+S5-GR3P9K -> s5_gr3p9k
+SAR-100 -> sar_100
+SAR-100-10 -> sar_100_10
+SAR-100-5 -> sar_100_5
+SC0500-100S -> sc0500_100s
+SC1000-100S -> sc1000_100s
+SC1000-100S-V2 -> sc1000_100s_v2
+SC1000-200E -> sc1000_200e
+SG10RS -> sg10rs
+SG10RT -> sg10rt
+SG12RS -> sg12rs
+SG12RT -> sg12rt
+SG15RS -> sg15rs
+SG15RT -> sg15rt
+SG17RS -> sg17rs
+SG17RT -> sg17rt
+SG2.5RS-S -> sg2.5rs_s
+SG20RS -> sg20rs
+SG20RT -> sg20rt
+SG25CX-P2 -> sg25cx_p2
+SG25CX-P2(5) -> sg25cx_p2(5)
+SG3.0RS -> sg3.0rs
+SG3.0RS-S -> sg3.0rs_s
+SG3.0RT -> sg3.0rt
+SG3.6RS -> sg3.6rs
+SG30CX-P2 -> sg30cx_p2
+SG30CX-P2(3) -> sg30cx_p2(3)
+SG30CX-P2(5) -> sg30cx_p2(5)
+SG33CX-P2 -> sg33cx_p2
+SG33CX-P2(5) -> sg33cx_p2(5)
+SG36CX-P2 -> sg36cx_p2
+SG36CX-P2(5) -> sg36cx_p2(5)
+SG4.0RS -> sg4.0rs
+SG4.0RT -> sg4.0rt
+SG4.6RS -> sg4.6rs
+SG40CX-P2 -> sg40cx_p2
+SG40CX-P2(5) -> sg40cx_p2(5)
+SG5.0RS -> sg5.0rs
+SG5.0RT -> sg5.0rt
+SG50CX-P2 -> sg50cx_p2
+SG50CX-P2(3) -> sg50cx_p2(3)
+SG50CX-P2(5) -> sg50cx_p2(5)
+SG6.0RS -> sg6.0rs
+SG6.0RT -> sg6.0rt
+SG7.0RS -> sg7.0rs
+SG7.0RT -> sg7.0rt
+SG8.0RS -> sg8.0rs
+SG8.0RT -> sg8.0rt
 SH10RT -> sh10rt
-SH5.0RT-20 -> sh5.0rt_20
-SH6.0RT-20 -> sh6.0rt_20
-SH8.0RT-20 -> sh8.0rt_20
 SH10RT-20 -> sh10rt_20
-SH5T -> sh5t
-SH6T -> sh6t
-SH8T -> sh8t
 SH10T -> sh10t
 SH12T -> sh12t
 SH15T -> sh15t
@@ -77,440 +286,152 @@ SH3.0RS -> sh3.0rs
 SH3.6RS -> sh3.6rs
 SH4.0RS -> sh4.0rs
 SH5.0RS -> sh5.0rs
+SH5.0RT -> sh5.0rt
+SH5.0RT-20 -> sh5.0rt_20
+SH5T -> sh5t
 SH6.0RS -> sh6.0rs
-SG3.0RT -> sg3.0rt
-SG4.0RT -> sg4.0rt
-SG5.0RT -> sg5.0rt
-SG6.0RT -> sg6.0rt
-SG7.0RT -> sg7.0rt
-SG8.0RT -> sg8.0rt
-SG10RT -> sg10rt
-SG12RT -> sg12rt
-SG15RT -> sg15rt
-SG17RT -> sg17rt
-SG20RT -> sg20rt
-SG25CX-P2 -> sg25cx_p2
-SG30CX-P2 -> sg30cx_p2
-SG33CX-P2 -> sg33cx_p2
-SG36CX-P2 -> sg36cx_p2
-SG40CX-P2 -> sg40cx_p2
-SG50CX-P2 -> sg50cx_p2
-SG2.0RS-S -> sg2.0rs_s
-SG2.5RS-S -> sg2.5rs_s
-SG3.0RS-S -> sg3.0rs_s
-SG3.0RS -> sg3.0rs
-SG3.6RS -> sg3.6rs
-SG4.0RS -> sg4.0rs
-SG5.0RS -> sg5.0rs
-SG6.0RS -> sg6.0rs
-SH3K6 -> sh3k6
-SH4K6 -> sh4k6
-SG2.0-6.0RS -> sg2.0_6.0rs
-SG3.0-20RT -> sg3.0_20rt
-SH3.0-6.0RS -> sh3.0_6.0rs
-SH5.0-10RT -> sh5.0_10rt
-SG33-125CX-P2 -> sg33_125cx_p2
-SG33-110CX -> sg33_110cx
-AC011E-01 -> ac011e_01
-Hybrid-Inverter -> hybrid_inverter
-HYD inverter -> hyd_inverter
-HYD -> hyd
-SOFAR -> sofar
-SCFAR -> scfar
-SAR-100 -> sar_100
-HYD 5KTL-3PH -> hyd_5ktl_3ph
-HYD 8KTL-3PH -> hyd_8ktl_3ph
-HYD 10KTL-3PH -> hyd_10ktl_3ph
-HYD 20KTL-3PH -> hyd_20ktl_3ph
-SOFAR 7K~10.5KTLM-G3 -> 7k~10.5ktlm_g3
-7KTLM-G3 -> 7ktlm_g3
-7.7KTLM-G3 -> 7.7ktlm_g3
-8KTLM-G3 -> 8ktlm_g3
-9KTLM-G3 -> 9ktlm_g3
-10KTLM-G3 -> 10ktlm_g3
-10.5KTLM-G3 -> 10.5ktlm_g3
-SOFAR 3.3~12KTLX-G3 -> 3.3~12ktlx_g3
-3.3KTLX-G3 -> 3.3ktlx_g3
-4.4KTLX-G3 -> 4.4ktlx_g3
-5KTLX-G3-A -> 5ktlx_g3
-5.5KTLX-G3 -> 5.5ktlx_g3
-6.6KTLX-G3 -> 6.6ktlx_g3
-8.8KTLX-G3 -> 8.8ktlx_g3
-11KTLX-G3 -> 11ktlx_g3
-8.8KTLX-G3-A -> 8.8ktlx_g3
-10KTLX-G3-A -> 10ktlx_g3
-11KTLX-G3-A -> 11ktlx_g3
-12KTLX-G3 -> 12ktlx_g3
-3KTLM -> 3ktlm
-3.6KTLM -> 3.6ktlm
-4KTLM -> 4ktlm
-4.6KTLM -> 4.6ktlm
-5KTLM -> 5ktlm
-6KTLM -> 6ktlm
-SOFAR 3K-6KTLM-G2 -> 3k_6ktlm_g2
-SOFAR 15~24KTLX-G3 -> 15~24ktlx_g3
-15KTLX-G3 -> 15ktlx_g3
-15KTLX-G3-A -> 15ktlx_g3
-17KTLX-G3 -> 17ktlx_g3
-20KTLX-G3 -> 20ktlx_g3
-20KTLX-G3-A -> 20ktlx_g3
-22KTLX-G3 -> 22ktlx_g3
-24KTLX-G3 -> 24ktlx_g3
-24KTLX-G3-A -> 24ktlx_g3
-SOFAR 10K-20KTL -> 10k_20ktl
-SOFAR 10000-Sx -> 10000_sx
-SOFAR 15000-Sx -> 15000_sx
-SOFAR 17000-Sx -> 17000_sx
-SOFAR 20000-Sx -> 20000_sx
-SOFAR 1100TL -> 1100tl
-SOFAR 1600TL -> 1600tl
-SOFAR 2200TL -> 2200tl
-SOFAR 2700TL -> 2700tl
-SOFAR 3000TL -> 3000tl
-SOFAR 3300TL -> 3300tl
-ME 5K~20KTL-3PH -> me_5k~20ktl_3ph
-HYD 6KTL-3PH -> hyd_6ktl_3ph
-HYD 15KTL-3PH -> hyd_15ktl_3ph
-SOFAR 100KTLX-G4 -> 100ktlx_g4
-SOFAR 110KTLX-G4 -> 110ktlx_g4
-SOFAR 125KTLX-G4 -> 125ktlx_g4
-SOFAR 125KTLX-G4-A -> 125ktlx_g4
-BTS E5-DS5 -> bts_e5_ds5
-BTS E10-DS5 -> bts_e10_ds5
-BTS E15-DS5 -> bts_e15_ds5
-BTS E20-DS5 -> bts_e20_ds5
-BTS E5 -> bts_e5
-BTS E10 -> bts_e10
-BTS E15 -> bts_e15
-BTS E20 -> bts_e20
-Solarman Smart -> solarman_smart
-Quattro-II -> quattro_ii
-Quattro -> quattro
-Quattro 48/5000/70-100/100 -> quattro_48/5000/70_100/100
-Quattro 48/15000/200-100/100 -> quattro_48/15000/200_100/100
-Quattro 5kVA (24-48)V QISG -> quattro_5kva_(24_48)v_qisg
-Quattro 5kVA (24-48)V -> quattro_5kva_(24_48)v
-Quattro 3kVA (12-48)V QISG -> quattro_3kva_(12_48)v_qisg
-Quattro 3kVA (12-48)V -> quattro_3kva_(12_48)v
-EasySolar-II 3кВА -> easysolar_ii_3ква
-EasySolar-II 5кВА -> easysolar_ii_5ква
-MPPT 250/70 GX -> mppt_250/70
-MPPT 250/100 GX -> mppt_250/100
-EasySolar 12/1600/70 -> easysolar_12/1600/70
-EasySolar 24/1600/40 -> easysolar_24/1600/40
-Blue Solar MPPT 100/50 -> blue_solar_mppt_100/50
-MultiPlus Compact 12/1600/70 -> multiplus_compact_12/1600/70
-MultiPlus Compact 24/1600/40 -> multiplus_compact_24/1600/40
-EasySolar 3 kVA -> easysolar_3_kva
-EasySolar 5 kVA -> easysolar_5_kva
-Easy Solar-II 3кВт MPPT 250/70 GX -> easy_solar_ii_3квт_mppt_250/70
-Easy Solar-II 5кВт MPPT 250/100 GX -> easy_solar_ii_5квт_mppt_250/100
-Cerbo GX -> cerbo
-MultiCompact -> multicompact
-MultiPlus -> multiplus
-Phoenix -> phoenix
-Quattro's -> quattro's
-EasySolar II -> easysolar_ii
-BPP900450100 -> bpp900450100
-BPP900450110 -> bpp900450110
-BPP900451100 -> bpp900451100
-ECO hybrid SNA series -> eco_hybrid_sna
-LXP-LB-EU -> lxp_lb
-Eco-Hybrid -> eco_hybrid
-LXP-Hybrid -> lxp_hybrid
+SH6.0RT -> sh6.0rt
+SH6.0RT-20 -> sh6.0rt_20
+SH6T -> sh6t
+SH8.0RT -> sh8.0rt
+SH8.0RT-20 -> sh8.0rt_20
+SH8T -> sh8t
 SNA3000 WPV -> sna3000
 SNA4000 WPV -> sna4000
+SNA5000 -> sna5000
 SNA5000 WPV -> sna5000
-LXP-LB-EU-8 -> lxp_lb_8
-LXP-LB-EU-10 -> lxp_lb_10
-LXP 3K -> lxp_3k
-LXP 3.6K -> lxp_3.6k
-LXP 4K -> lxp_4k
-LXP 4.6K -> lxp_4.6k
-LXP 5K -> lxp_5k
-LXP 6K -> lxp_6k
-LXP 3K MG -> lxp_3k_mg
-LXP 3.6K MG -> lxp_3.6k_mg
-LXP 4K MG -> lxp_4k_mg
-LXP 4.6K MG -> lxp_4.6k_mg
-LXP 5K MG -> lxp_5k_mg
-LXP 6K MG -> lxp_6k_mg
-LXP 4K HB -> lxp_4k_hb
-LXP 5K HB -> lxp_5k_hb
-LXP 6K HB -> lxp_6k_hb
-LXP 3-5KHybrid-NS -> lxp_3_5khybrid_ns
-LXP 3-6K -> lxp_3_6k
-SNA -> sna
-ACS3600 -> acs3600
-WIZwiki-W7500 -> wizwiki_w7500
-S5-EH1P3K-L -> s5_eh1p3k_l
-S5-EH1P3.6K-L -> s5_eh1p3.6k_l
-S5-EH1P4.6K-L -> s5_eh1p4.6k_l
-S5-EH1P5K-L -> s5_eh1p5k_l
-S5-EH1P6K-L -> s5_eh1p6k_l
-RHI-3P5K-HVES-5G -> rhi_3p5k_hves_5g
-RHI-3P6K-HVES-5G -> rhi_3p6k_hves_5g
-RHI-3P8K-HVES-5G -> rhi_3p8k_hves_5g
-RHI-3P10K-HVES-5G -> rhi_3p10k_hves_5g
-RHI-(3-5)K-48ES -> rhi_(3_5)k_48es
-RHI-(3-6)K-48ES-5G -> rhi_(3_6)k_48es_5g
-RHI-3K-48ES-5G -> rhi_3k_48es_5g
-RHI-3.6K-48ES-5G -> rhi_3.6k_48es_5g
-RHI-4.6K-48ES-5G -> rhi_4.6k_48es_5g
-RHI-5K-48ES-5G -> rhi_5k_48es_5g
-RHI-6K-48ES-5G -> rhi_6k_48es_5g
-RHI-5K-48ES -> rhi_5k_48es
-RHI-3K-48ES -> rhi_3k_48es
-RHI-3.6K-48ES -> rhi_3.6k_48es
-RHI-4.6K-48ES -> rhi_4.6k_48es
-RHI-5K-48ES -> rhi_5k_48es
-Solis-3P(3-20)K-4G -> solis_3p(3_20)k_4g
-Solis-(25-50)K-5G -> solis_(25_50)k_5g
-Solis-EPM3-5G-PLUS -> solis_epm3_5g
-Solis Export Power Manager -> solis_export_power_manager
-Solis-EPM1-2G -> solis_epm1_2g
-Solis-EPM3-2G -> solis_epm3_2g
-EPM 5G Plus -> epm_5g
-Solis-3P(5-20)K-4G -> solis_3p(5_20)k_4g
-Solis-mini-(0.7-3.6)K-4G -> solis_mini_(0.7_3.6)k_4g
-Solis-1P(2.5-6)K-4G -> solis_1p(2.5_6)k_4g
-ACR10RH -> acr10rh
-S5-GR3P15K -> s5_gr3p15k
-S5-GR3P17K -> s5_gr3p17k
-S5-GR3P20K -> s5_gr3p20k
-S5-GR3P10K-LV -> s5_gr3p10k_lv
-Solis-3P3K-4G -> solis_3p3k_4g
-Solis-3P4K-4G -> solis_3p4k_4g
-Solis-3P5K-4G -> solis_3p5k_4g
-Solis-3P6K-4G -> solis_3p6k_4g
-Solis-3P8K-4G -> solis_3p8k_4g
-Solis-3P9K-4G -> solis_3p9k_4g
-Solis-3P10K-4G -> solis_3p10k_4g
-Solis-3P5K-4G-LV -> solis_3p5k_4g_lv
-Solis-3P6K-4G-LV -> solis_3p6k_4g_lv
-Solis-3P8K-4G-BE -> solis_3p8k_4g_be
-Solis-3P10K-4G-BE -> solis_3p10k_4g_be
-Solis-3P12K-4G -> solis_3p12k_4g
-Solis-3P15K-4G -> solis_3p15k_4g
-Solis-3P17K-4G -> solis_3p17k_4g
-Solis-3P20K-4G -> solis_3p20k_4g
-Solis-3P10K-4G-LV -> solis_3p10k_4g_lv
-Solis-25K-5G -> solis_25k_5g
-Solis-30K-5G -> solis_30k_5g
-Solis-33K-5G -> solis_33k_5g
-Solis-36K-5G -> solis_36k_5g
-Solis-40K-5G -> solis_40k_5g
-Solis-40K-HV-5G -> solis_40k_hv_5g
-Solis-50K-HV-5G -> solis_50k_hv_5g
-S5-GR3P3K -> s5_gr3p3k
-S5-GR3P4K -> s5_gr3p4k
-S5-GR3P5K -> s5_gr3p5k
-S5-GR3P6K -> s5_gr3p6k
-S5-GR3P8K -> s5_gr3p8k
-S5-GR3P9K -> s5_gr3p9k
-S5-GR3P10K -> s5_gr3p10k
-S5-GR3P12K -> s5_gr3p12k
-S5-GR3P13K -> s5_gr3p13k
-S5-GR3P17K -> s5_gr3p17k
-S5-GR3P20K -> s5_gr3p20k
-S5-GC50K -> s5_gc50k
-S5-GC60K -> s5_gc60k
-S5-GC25K -> s5_gc25k
-S5-GC30K -> s5_gc30k
-S5-GC33K -> s5_gc33k
-S5-GC36K -> s5_gc36k
-S5-GC40K -> s5_gc40k
-S5-GC100K -> s5_gc100k
-S5-GC110K -> s5_gc110k
-Solis-40K-5G -> solis_40k_5g
-Solis-3P15K-4G -> solis_3p15k_4g
-Solis-3P20K-4G -> solis_3p20k_4g
-Solis-100K-5G -> solis_100k_5g
-Solis-110K-5G -> solis_110k_5g
-Solis-125K-HV-5G -> solis_125k_hv_5g
-Solis-50K-LV-5G -> solis_50k_lv_5g
-Solis-60K-LV-5G -> solis_60k_lv_5g
-K7E6IC -> k7e6ic
-Solis-EPM3-5G-PRO -> solis_epm3_5g
-S5-EH1P(3-6)K-L -> s5_eh1p(3_6)k_l
-Solis-30K-5G-DC -> solis_30k_5g_dc
-EPM3-5G-PLUS -> epm3_5g
-Fronius Verto 25.0 -> verto_25.0
-Fronius Verto 33.3 -> verto_33.3
-Verto 15.0 -> verto_15.0
-Verto 18.0 -> verto_18.0
-Verto 25.0 -> verto_25.0
-Verto 27.0 -> verto_27.0
-Verto 30.0 -> verto_30.0
-Verto 33.3 -> verto_33.3
-Verto 36.0 -> verto_36.0
-Symo GEN24 -> symo_gen24
-Symo GEN24 Plus -> symo_gen24
-Fronius Tauro Eco 50-3-D -> tauro_eco_50_3_d
-Fronius Tauro Eco 100-3-D -> tauro_eco_100_3_d
-Fronius Tauro 50-3-D -> tauro_50_3_d
-Fronius Tauro | 50 кВт | 3 трекери MPP -> tauro_50_квт_3_трекери_mpp
-Fronius Tauro ECO | 50, 99,99 і 100 кВт | 1 трекер MPP -> tauro_eco_50_99,99_і_100_квт_1_трекер_mpp
-Fronius Tauro ECO -> tauro_eco
-Symo Advanced 10.0 -> symo_advanced_10.0
-Symo Advanced 12.5 -> symo_advanced_12.5
-Symo Advanced 15.0 -> symo_advanced_15.0
-Symo Advanced 20.0 -> symo_advanced_20.0
-3.0-3-S -> 3.0_3_s
-3.7-3-S -> 3.7_3_s
-4.5-3-S -> 4.5_3_s
-3.0-3-M -> 3.0_3_m
-3.7-3-M -> 3.7_3_m
-4.5-3-M -> 4.5_3_m
-5.0-3-M -> 5.0_3_m
-6.0-3-M -> 6.0_3_m
-7.0-3-M -> 7.0_3_m
-8.2-3-M -> 8.2_3_m
-10.0-3-M -> 10.0_3_m
-12.5-3-M -> 12.5_3_m
-15.0-3-M -> 15.0_3_m
-17.5-3-M -> 17.5_3_m
-20.0-3-M -> 20.0_3_m
-Fronius Smart Meter 63A/1PH -> smart_meter_63a/1ph
-Fronius Smart Meter 63A/3PH -> smart_meter_63a/3ph
-Fronius Smart Meter 50kA/3PH -> smart_meter_50ka/3ph
-Fronius Smart Meter -> smart_meter
-Fronius Symo -> symo
-Fronius Symo Hybrid -> symo_hybrid
-Fronius Galvo -> galvo
-Fronius Primo -> primo
-Fronius Eco -> eco
-Fronius Datamanager 2.0 -> datamanager_2.0
-Fronius Smart Meter 63A-1 -> smart_meter_63a_1
-Fronius Smart Meter 63A-3 -> smart_meter_63a_3
-Fronius Smart Meter 50kA-3 -> smart_meter_50ka_3
-Fronius Symo 3.0-3-S -> symo_3.0_3_s
-Fronius Symo 3.7-3-S -> symo_3.7_3_s
-Fronius Symo 4.5-3-S -> symo_4.5_3_s
-Fronius Symo 3.0-3-M -> symo_3.0_3_m
-Fronius Symo 3.7-3-M -> symo_3.7_3_m
-Fronius Symo 4.5-3-M -> symo_4.5_3_m
-Fronius Symo 5.0-3-M -> symo_5.0_3_m
-Fronius Symo 6.0-3-M -> symo_6.0_3_m
-Fronius Symo 7.0-3-M -> symo_7.0_3_m
-Fronius Symo 8.2-3-M -> symo_8.2_3_m
-Fronius Symo 10.0-3-M -> symo_10.0_3_m
-Fronius Symo 12.5-3-M -> symo_12.5_3_m
-Fronius Symo 15.0-3-M -> symo_15.0_3_m
-Fronius Symo 17.5-3-M -> symo_17.5_3_m
-Fronius Symo 20.0-3-M -> symo_20.0_3_m
-Fronius Eco 25.0-3-S -> eco_25.0_3_s
-Fronius Eco 27.0-3-S -> eco_27.0_3_s
-Galvo -> galvo
-Primo -> primo
-Symo -> symo
-Eco -> eco
-Fronius Symo 20.0-3 M -> symo_20.0_3_m
-Fronius Symo 20.0-3 M Light -> symo_20.0_3_m_light
-Fronius ECO -> eco
-Fronius Smart Meter TS 65A-3 -> smart_meter_ts_65a_3
-Fronius Smart Meter TS 100A-1 -> smart_meter_ts_100a_1
-Fronius Smart Meter TS 5kA-3 -> smart_meter_ts_5ka_3
-Primo 3.0-1 -> primo_3.0_1
-Primo 3.5-1 -> primo_3.5_1
-Primo 3.6-1 -> primo_3.6_1
-Primo 4.0-1 -> primo_4.0_1
-Primo 4.6-1 -> primo_4.6_1
-Primo 5.0-1 -> primo_5.0_1
-Primo 5.0-1 AUS -> primo_5.0_1
-Primo 6.0-1 -> primo_6.0_1
-Primo 8.2-1 -> primo_8.2_1
-GEN24 Plus -> gen24
-BYD HVS -> byd_hvs
-BYD HVM -> byd_hvm
-BYD Battery-Box Premium -> byd_battery
-Fronius Symo 20 -> symo_20
-Fronius Symo 3-8.2 -> symo_3_8.2
-Fronius Symo 10-20 -> symo_10_20
-Fronius Eco 25-27 -> eco_25_27
-Fronius Symo 10 - 20 kW -> symo_10_20_kw
-Fronius SYMO -> symo
-Fronius ECO25 -> eco25
-Fronius ECO27 -> eco27
-MPPT 2 314 -> mppt_2_314
-Datamanager 1.0 -> datamanager_1.0
-Fronius IG -> ig
-Fronius IG Plus -> ig
-Fronius CL -> cl
-Fronius Datamanager -> datamanager
-B4850-BOX -> b4850
-DL5.0C -> dl5.0c
-GOODWE -> goodwe
-Growatt -> growatt
-ATESS -> atess
-SERMATEC -> sermatec
-SOLIS -> solis
-Sinexcel -> sinexcel
-Hoymiles -> hoymiles
-Bluesun -> bluesun
-HYPONTECH -> hypontech
-Ecactus -> ecactus
-Sunways -> sunways
-Thinkpower -> thinkpower
-Megarevo -> megarevo
-SAJ -> saj
-B4850 -> b4850
-A48100 -> a48100
-BOS-G -> bos_g
-SUN-3.6K-SG05LP1-EU -> sun_3.6k_sg05lp1
-SUN-5K-SG05LP1-EU -> sun_5k_sg05lp1
-SUN-6K-SG05LP1-EU -> sun_6k_sg05lp1
-SUN-7K-SG05LP1-EU -> sun_7k_sg05lp1
-SUN-7.6K-SG05LP1-EU -> sun_7.6k_sg05lp1
-SUN-8K-SG05LP1-EU -> sun_8k_sg05lp1
-SUN-3.6K-SG03LP1-EU -> sun_3.6k_sg03lp1
-SUN-5K-SG03LP1-EU -> sun_5k_sg03lp1
-SUN-6K-SG03LP1-EU -> sun_6k_sg03lp1
-SUN-5K-SG04LP3-EU -> sun_5k_sg04lp3
-SUN-6K-SG04LP3-EU -> sun_6k_sg04lp3
-SUN-8K-SG04LP3-EU -> sun_8k_sg04lp3
-SUN-10K-SG04LP3-EU -> sun_10k_sg04lp3
-SUN-12K-SG04LP3-EU -> sun_12k_sg04lp3
-SUN-5K-SG01LP1-US -> sun_5k_sg01lp1
-SUN-6K-SG01LP1-US -> sun_6k_sg01lp1
-SUN-7.6K-SG01LP1-US/EU -> sun_7.6k_sg01lp1
-SUN-8K-SG01LP1-US/EU -> sun_8k_sg01lp1
-SUN-14K-SG05LP3-EU-SM2 -> sun_14k_sg05lp3_sm2
-SUN-15K-SG05LP3-EU-SM2 -> sun_15k_sg05lp3_sm2
-SUN-16K-SG05LP3-EU-SM2 -> sun_16k_sg05lp3_sm2
-SUN-18K-SG05LP3-EU-SM2 -> sun_18k_sg05lp3_sm2
-SUN-20K-SG05LP3-EU-SM2 -> sun_20k_sg05lp3_sm2
-SUN-7.6K-SG01LP1-EU -> sun_7.6k_sg01lp1
-SUN-8K-SG01LP1-EU -> sun_8k_sg01lp1
-SUN-5K-SG01HP3-EU-AM2 -> sun_5k_sg01hp3
-SUN-6K-SG01HP3-EU-AM2 -> sun_6k_sg01hp3
-SUN-8K-SG01HP3-EU-AM2 -> sun_8k_sg01hp3
+SNA6000 -> sna6000
+SOFAR 10.5KTLM-G3 -> 10.5ktlm_g3
+SOFAR 10000TL-Sx -> 10000tl_sx
+SOFAR 100KTLX-G4 -> 100ktlx_g4
+SOFAR 10KTLM-G3 -> 10ktlm_g3
+SOFAR 10KTLX-G3-A -> 10ktlx_g3_a
+SOFAR 1100TL-G3 -> 1100tl_g3
+SOFAR 110KTLX-G4 -> 110ktlx_g4
+SOFAR 11KTLX-G3 -> 11ktlx_g3
+SOFAR 11KTLX-G3-A -> 11ktlx_g3_a
+SOFAR 125KTLX-G4 -> 125ktlx_g4
+SOFAR 125KTLX-G4-A -> 125ktlx_g4_a
+SOFAR 12KTLX-G3 -> 12ktlx_g3
+SOFAR 15000TL-Sx -> 15000tl_sx
+SOFAR 15KTLX-G3 -> 15ktlx_g3
+SOFAR 15KTLX-G3-A -> 15ktlx_g3_a
+SOFAR 1600TL-G3 -> 1600tl_g3
+SOFAR 17000TL-Sx -> 17000tl_sx
+SOFAR 17KTLX-G3 -> 17ktlx_g3
+SOFAR 20000TL-Sx -> 20000tl_sx
+SOFAR 20KTLX-G3 -> 20ktlx_g3
+SOFAR 20KTLX-G3-A -> 20ktlx_g3_a
+SOFAR 2200TL-G3 -> 2200tl_g3
+SOFAR 22KTLX-G3 -> 22ktlx_g3
+SOFAR 24KTLX-G3 -> 24ktlx_g3
+SOFAR 24KTLX-G3-A -> 24ktlx_g3_a
+SOFAR 25KTLX-G3 -> 25ktlx_g3
+SOFAR 2700TL-G3 -> 2700tl_g3
+SOFAR 3.3KTLX-G3 -> 3.3ktlx_g3
+SOFAR 3.6KTLM-G3 -> 3.6ktlm_g3
+SOFAR 3000TL-G3 -> 3000tl_g3
+SOFAR 3000TLM-G2 -> 3000tlm_g2
+SOFAR 30KTLX-G3 -> 30ktlx_g3
+SOFAR 30KTLX-G3-A -> 30ktlx_g3_a
+SOFAR 3300TL-G3 -> 3300tl_g3
+SOFAR 33KTLX-G3 -> 33ktlx_g3
+SOFAR 3600TLM-G2 -> 3600tlm_g2
+SOFAR 36KTLX-G3 -> 36ktlx_g3
+SOFAR 3KTLM-G3 -> 3ktlm_g3
+SOFAR 4.4KTLX-G3 -> 4.4ktlx_g3
+SOFAR 4.6KTLM-G3 -> 4.6ktlm_g3
+SOFAR 4000TLM-G2 -> 4000tlm_g2
+SOFAR 40KTLX-G3 -> 40ktlx_g3
+SOFAR 40KTLX-G3-HV -> 40ktlx_g3_hv
+SOFAR 45KTLX-G3 -> 45ktlx_g3
+SOFAR 4600TLM-G2 -> 4600tlm_g2
+SOFAR 4KTLM-G3 -> 4ktlm_g3
+SOFAR 5.5KTLX-G3 -> 5.5ktlx_g3
+SOFAR 5000TLM-G2 -> 5000tlm_g2
+SOFAR 50KTLX-G3 -> 50ktlx_g3
+SOFAR 50KTLX-G3-HV -> 50ktlx_g3_hv
+SOFAR 5KTLM-G3 -> 5ktlm_g3
+SOFAR 5KTLM-G3-A -> 5ktlm_g3_a
+SOFAR 5KTLX-G3-A -> 5ktlx_g3_a
+SOFAR 6.6KTLX-G3 -> 6.6ktlx_g3
+SOFAR 6000TLM-G2 -> 6000tlm_g2
+SOFAR 6KTLM-G3 -> 6ktlm_g3
+SOFAR 7.7KTLM-G3 -> 7.7ktlm_g3
+SOFAR 7KTLM-G3 -> 7ktlm_g3
+SOFAR 8.8KTLX-G3 -> 8.8ktlx_g3
+SOFAR 8.8KTLX-G3-A -> 8.8ktlx_g3_a
+SOFAR 8KTLM-G3 -> 8ktlm_g3
+SOFAR 9KTLM-G3 -> 9ktlm_g3
 SUN-10K-SG01HP3-EU-AM2 -> sun_10k_sg01hp3
+SUN-10K-SG04LP3-EU -> sun_10k_sg04lp3
 SUN-12K-SG01HP3-EU-AM2 -> sun_12k_sg01hp3
-SUN-15K-SG01HP3-EU-AM2 -> sun_15k_sg01hp3
-SUN-20K-SG01HP3-EU-AM2 -> sun_20k_sg01hp3
-SUN-25K-SG01HP3-EU-AM2 -> sun_25k_sg01hp3
-SUN-3.6K-SG05LP1-EU -> sun_3.6k_sg05lp1
-SUN-3.6K-SG03LP1-EU -> sun_3.6k_sg03lp1
-SUN-3K-SG04LP1-EU -> sun_3k_sg04lp1
-SUN-3.6K-SG04LP1-EU -> sun_3.6k_sg04lp1
-SUN-5K-SG04LP1-EU -> sun_5k_sg04lp1
-SUN-6K-SG04LP1-EU -> sun_6k_sg04lp1
+SUN-12K-SG04LP3-EU -> sun_12k_sg04lp3
 SUN-14K-SG05LP3-EU-SM2 -> sun_14k_sg05lp3_sm2
+SUN-15K-SG01HP3-EU-AM2 -> sun_15k_sg01hp3
 SUN-15K-SG05LP3-EU-SM2 -> sun_15k_sg05lp3_sm2
 SUN-16K-SG05LP3-EU-SM2 -> sun_16k_sg05lp3_sm2
 SUN-18K-SG05LP3-EU-SM2 -> sun_18k_sg05lp3_sm2
+SUN-20K-SG01HP3-EU-AM2 -> sun_20k_sg01hp3
 SUN-20K-SG05LP3-EU-SM2 -> sun_20k_sg05lp3_sm2
-SUN-5 -> sun_5
-SUN-6 -> sun_6
-SUN-8 -> sun_8
-SUN-10 -> sun_10
-SUN-12 -> sun_12
-Deye HV -> hv
-SUN-12K-SG01LP1-EU -> sun_12k_sg01lp1
-SUN-14K-SG01LP1-EU -> sun_14k_sg01lp1
-SUN-16K-SG01LP1-EU -> sun_16k_sg01lp1
-SUN-3K-SG01LP1-EU -> sun_3k_sg01lp1
-SUN-8K-SG02LP2-US -> sun_8k_sg02lp2
-DY-HV(160-800)-020 -> dy_hv(160_800)_020
-
+SUN-25K-SG01HP3-EU-AM2 -> sun_25k_sg01hp3
+SUN-29.9K-SG01HP3-EU-BM3 -> sun_29.9k_sg01hp3
+SUN-3.6K-SG03LP1-EU -> sun_3.6k_sg03lp1
+SUN-3.6K-SG05LP1-EU -> sun_3.6k_sg05lp1
+SUN-30K-SG01HP3-EU-BM3 -> sun_30k_sg01hp3
+SUN-35K-SG01HP3-EU-BM3 -> sun_35k_sg01hp3
+SUN-40K-SG01HP3-EU-BM4 -> sun_40k_sg01hp3
+SUN-50K-SG01HP3-EU-BM4 -> sun_50k_sg01hp3
+SUN-5K-SG01HP3-EU-AM2 -> sun_5k_sg01hp3
+SUN-5K-SG03LP1-EU -> sun_5k_sg03lp1
+SUN-5K-SG04LP3-EU -> sun_5k_sg04lp3
+SUN-5K-SG05LP1-EU -> sun_5k_sg05lp1
+SUN-6K-SG01HP3-EU-AM2 -> sun_6k_sg01hp3
+SUN-6K-SG03LP1-EU -> sun_6k_sg03lp1
+SUN-6K-SG04LP3-EU -> sun_6k_sg04lp3
+SUN-6K-SG05LP1-EU -> sun_6k_sg05lp1
+SUN-7.6K-SG01LP1-EU -> sun_7.6k_sg01lp1
+SUN-7.6K-SG05LP1-EU -> sun_7.6k_sg05lp1
+SUN-7K-SG05LP1-EU -> sun_7k_sg05lp1
+SUN-8K-SG01HP3-EU-AM2 -> sun_8k_sg01hp3
+SUN-8K-SG01LP1-EU -> sun_8k_sg01lp1
+SUN-8K-SG04LP3-EU -> sun_8k_sg04lp3
+SUN-8K-SG05LP1-EU -> sun_8k_sg05lp1
+Solis-100K-5G -> 100k_5g
+Solis-110K-5G -> 110k_5g
+Solis-125K-HV-5G -> 125k_hv_5g
+Solis-25K-5G -> 25k_5g
+Solis-30K-5G -> 30k_5g
+Solis-33K-5G -> 33k_5g
+Solis-36K-5G -> 36k_5g
+Solis-3P10K-4G -> 3p10k_4g
+Solis-3P10K-4G-BE -> 3p10k_4g_be
+Solis-3P10K-4G-LV -> 3p10k_4g_lv
+Solis-3P12K-4G -> 3p12k_4g
+Solis-3P17K-4G -> 3p17k_4g
+Solis-3P20K-4G -> 3p20k_4g
+Solis-3P3K-4G -> 3p3k_4g
+Solis-3P4K-4G -> 3p4k_4g
+Solis-3P5K-4G -> 3p5k_4g
+Solis-3P5K-4G-LV -> 3p5k_4g_lv
+Solis-3P6K-4G -> 3p6k_4g
+Solis-3P6K-4G-LV -> 3p6k_4g_lv
+Solis-3P8K-4G -> 3p8k_4g
+Solis-3P8K-4G-BE -> 3p8k_4g_be
+Solis-3P9K-4G -> 3p9k_4g
+Solis-40K-5G -> 40k_5g
+Solis-50K-LV-5G -> 50k_lv_5g
+Solis-60K-LV-5G -> 60k_lv_5g
+US2000B -> us2000b
+US2000C -> us2000c
+US3000 -> us3000
+US3000C -> us3000c
+US5000 -> us5000
+Venus GX -> venus
+Verto 15.0 208-240 -> verto_15
+Verto 18.0 -> verto_18
+Verto 25.0 -> verto_25
+Verto 27.0 -> verto_27
+Verto 30.0 -> verto_30
+Verto 33.3 -> verto_33
+Verto 36.0 -> verto_36
