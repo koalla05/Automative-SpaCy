@@ -14,6 +14,42 @@ if not OPENAI_API_KEY:
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
+import re
+
+
+def detect_question_type(text: str) -> str:
+    """
+    Detect question type based on keywords.
+
+    Returns:
+        "compat" if compatibility question, None otherwise
+    """
+    text_lower = text.lower()
+
+    compat_patterns = [
+        # Ukrainian
+        r'\b(сумісн|сумісний|сумісна|сумісне|сумісності|сумісність)\b',
+        r'\bчи можна (підключити|з\'єднати|використати)\b',
+        r'\bв одну систему\b',
+
+        # гівно
+        r'\b(совмест|совместим|совместима|совместимо|совместимости|совместимость)\b',
+        r'\bможно ли (подключить|соединить|использовать)\b',
+        r'\bв одну систему\b',
+
+        # English
+        r'\b(compat|compatible|compatibility)\b',
+        r'\bcan (i|we) (connect|use|combine)\b',
+        r'\bwork (with|together)\b',
+        r'\bac[- ]?coupling\b',
+    ]
+
+    for pattern in compat_patterns:
+        if re.search(pattern, text_lower):
+            return "compat"
+
+    return None
+
 SYSTEM_PROMPT = """
 You are the LLM module inside the Intelligence Preprocessing Gateway (IPG) for "Atmosfera" company.
 

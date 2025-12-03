@@ -1,6 +1,6 @@
 # file: ipg_pipeline.py
 from pipeline.exctractors.parameter_extractor import process_question as extract_entities
-from pipeline.processors.llm_processor import LLMProcessor
+from pipeline.processors.llm_processor import LLMProcessor, detect_question_type
 from core.config import DEFAULT_PARAM_GLOSSARY
 from core.normalization.model_normalization import load_canonical_models
 
@@ -159,34 +159,48 @@ class IPGPipeline:
     def process(self, text: str):
         """
         Full IPG pipeline:
-        1) Extract entities via extractor_module
-        2) Send to LLM to get STATUS / INTENT / PARAM_BINDINGS
-        3) Enrich parameters with mappings
-        4) Build routing from LLM param_bindings
-        5) Return schema-compliant result
+        1) Detect question_type by keywords
+        2) Extract entities via extractor_module
+        3) Send to LLM to get STATUS / INTENT / PARAM_BINDINGS (skip if compat)
+        4) Enrich parameters with mappings
+        5) Build routing from LLM param_bindings
+        6) Return schema-compliant result
         """
-        # Step 1: NER + fuzzy extraction
+        # Step 1: Detect question type (NEW)
+        question_type = detect_question_type(text)
+
+        # Step 2: NER + fuzzy extraction
         extraction_result = extract_entities(text)
         extracted_entities = extraction_result["extracted_entities"]
 
-        # Step 2: LLM processing
-        llm_result = self.llm.process_question(extracted_entities, text)
+        # Step 3: LLM processing (skip if compat)
+        if question_type == "compat":
+            # For compatibility queries, skip LLM entirely
+            llm_result = {
+                "status": "complex",
+                "intent": "compatibility_query",
+                "param_bindings": []  # No param bindings for compat
+            }
+        else:
+            # Normal processing through LLM
+            llm_result = self.llm.process_question(extracted_entities, text)
 
-        # Step 3: Build parameters from LLM param_bindings (LLM is source of truth)
+        # Step 4: Build parameters from LLM param_bindings (LLM is source of truth)
         final_params = self.build_parameters_from_llm(
             extracted_entities.get("parameters", []),
             llm_result
         )
         extracted_entities["parameters"] = final_params
 
-        # Step 4: Build routing from LLM param_bindings
+        # Step 5: Build routing from LLM param_bindings
         routing = self.build_final_routing(llm_result, extracted_entities, text)
 
-        # Step 5: Build final schema-compliant output
+        # Step 6: Build final schema-compliant output
         return {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "question_raw": text,
             "status": llm_result.get("status", "complex"),
+            "question_type": question_type,  # NEW FIELD
             "question_intent": llm_result.get("intent", "uncertain"),
             "extracted_entities": extracted_entities,
             "routing": routing
@@ -195,10 +209,21 @@ class IPGPipeline:
 
 # -------- Example usage --------
 if __name__ == "__main__":
-    text = "Який максимальний струм заряджання/розряджання АКБ на інверторі LuxPwer LXP-LB-EU 10k?"
-    pipeline = IPGPipeline()
-    result = pipeline.process(text)
-
     import json
 
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    pipeline = IPGPipeline()
+
+    test_queries = [
+        # Spec query
+        "Який максимальний струм заряджання на інверторі LuxPower LXP-LB-EU 10k?",
+
+        # Compatibility query
+        "Чи сумісний Pylontech US5000 з Victron MultiPlus?",
+    ]
+
+    for query in test_queries:
+        print(f"\n{'=' * 80}")
+        print(f"Query: {query}")
+        print('=' * 80)
+        result = pipeline.process(query)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
