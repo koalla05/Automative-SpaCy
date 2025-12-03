@@ -1,7 +1,6 @@
 # file: test_extractor_module.py
 import pytest
-from extractor_module import (
-    classify_intent,
+from pipeline.exctractors.parameter_extractor import (
     extract_entities_with_metadata,
     find_parameters,
     build_routing,

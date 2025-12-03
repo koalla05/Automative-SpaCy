@@ -1,6 +1,6 @@
 import spacy
 from typing import Dict, List
-from app.normalization import clean_word, normalize_entity
+from core.normalization.entity_normalization import clean_word, normalize_entity
 
 nlp = spacy.load("full_ner_model")
 

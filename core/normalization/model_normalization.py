@@ -1,7 +1,7 @@
 import os
 from functools import lru_cache
 
-DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "canon_models.txt")
+DATA_FILE = os.path.join(os.path.dirname(__file__), "../..", "data", "canon_models.txt")
 DATA_FILE = os.path.abspath(DATA_FILE)
 
 

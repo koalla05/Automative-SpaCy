@@ -1,8 +1,8 @@
 # file: ipg_pipeline.py
-from extractor_module import process_question as extract_entities
-from llm_processor import LLMProcessor
-from config import DEFAULT_PARAM_GLOSSARY
-from app.model_normalization import load_canonical_models
+from pipeline.exctractors.parameter_extractor import process_question as extract_entities
+from pipeline.processors.llm_processor import LLMProcessor
+from core.config import DEFAULT_PARAM_GLOSSARY
+from core.normalization.model_normalization import load_canonical_models
 
 
 class IPGPipeline:

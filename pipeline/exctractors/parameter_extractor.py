@@ -1,14 +1,16 @@
-# file: extractor_module.py
-from typing import List, Dict, Any, Optional, Tuple
+# file: parameter_extractor.py
+from typing import List, Dict, Any
+import os
+from pathlib import Path
 import re
 import numpy as np
 from sentence_transformers import SentenceTransformer, util
-from rapidfuzz import fuzz, process
-from app.model_normalization import normalize_model
+from rapidfuzz import fuzz
+from core.normalization.model_normalization import normalize_model
 import spacy
 
-from app.normalization import clean_word, normalize_entity
-from config import DEFAULT_PARAM_GLOSSARY
+from core.normalization.entity_normalization import clean_word, normalize_entity
+from core.config import DEFAULT_PARAM_GLOSSARY
 
 # Thresholds
 PARAMETER_CONFIDENCE_THRESHOLD = 0.75
@@ -17,8 +19,12 @@ EXACT_MATCH_THRESHOLD = 95
 MIN_WORD_LENGTH_FOR_FUZZY = 4  # LOWERED from 5
 MIN_SYNONYM_LENGTH_FOR_FUZZY = 4  # LOWERED from 5
 
+CURRENT_FILE_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = CURRENT_FILE_DIR.parent.parent  # Up two levels from pipeline/extractors/
+SPACY_MODEL_PATH = PROJECT_ROOT / "models" / "full_ner_model"
+
 # Load spacy for position tracking
-nlp = spacy.load("full_ner_model")
+nlp = spacy.load(SPACY_MODEL_PATH)
 
 # Sentence transformers for semantic similarity (lazy load)
 _embed_model = None
