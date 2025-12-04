@@ -9,6 +9,7 @@ from core.normalization.model_normalization import normalize_model
 import spacy
 
 from core.normalization.entity_normalization import clean_word, normalize_entity
+from core.normalization.model_metadata import get_model_metadata
 from core.config import DEFAULT_PARAM_GLOSSARY
 
 # Thresholds
@@ -116,7 +117,9 @@ def split_into_segments(text: str) -> List[Dict[str, Any]]:
 
 def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]:
     """
-    Extract entities with confidence scores and positions
+    Extract entities with confidence scores and positions.
+    Now uses improved model normalization with cleaning.
+    Also enriches with metadata from CSV if canonical model is found.
     """
     doc = nlp(text)
     grouped: Dict[str, List[Dict[str, Any]]] = {}
@@ -140,16 +143,24 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
 
         if label == "MODEL":
             entity_dict["original_value"] = ent.text
+            # Use improved normalization with cleaning
+            canonical = normalize_model(ent.text)
+            entity_dict["value"] = canonical  # Will be None if not in canon
+
+            # If canonical model found, get metadata from CSV
+            if canonical:
+                metadata = get_model_metadata(canonical)
+                if metadata:
+                    entity_dict["metadata"] = metadata
 
         if label not in grouped:
             grouped[label] = []
 
         # Avoid duplicates
-        if not any(e["value"] == normalized for e in grouped[label]):
+        if not any(e["value"] == entity_dict["value"] for e in grouped[label]):
             grouped[label].append(entity_dict)
 
     return grouped
-
 
 def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PARAM_GLOSSARY) -> List[Dict[str, Any]]:
     """
@@ -435,7 +446,8 @@ def build_routing(ner_entities, parameters, text):
 
 def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PARAM_GLOSSARY) -> Dict[str, Any]:
     """
-    Main function to process a question and return complete JSON structure
+    Main function to process a question and return complete JSON structure.
+    Now automatically enriches manufacturer and equipment_type from CSV metadata.
     """
     question_raw = text
 
@@ -443,18 +455,58 @@ def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_P
 
     params_extracted = find_parameters(text, param_glossary)
 
+    # Extract models with normalization
+    models = []
+    for m in ner_entities.get("MODEL", []):
+        model_dict = {
+            "value": normalize_model(m["original_value"]),
+            "confidence": m["confidence"],
+            "position": m["position"],
+            "original_value": m["original_value"]
+        }
+
+        # Add metadata if available
+        if "metadata" in m:
+            model_dict["metadata"] = m["metadata"]
+
+        models.append(model_dict)
+
+    # Get manufacturers and equipment types from NER
+    manufacturers_ner = ner_entities.get("MANUFACTURER", [])
+    eq_types_ner = ner_entities.get("EQ_TYPE", [])
+
+    # Enrich manufacturers from model metadata if missing
+    manufacturers = list(manufacturers_ner)  # Copy NER results
+    eq_types = list(eq_types_ner)  # Copy NER results
+
+    for model in models:
+        if model.get("value") and "metadata" in model:
+            metadata = model["metadata"]
+
+            # Add manufacturer if not found by NER
+            if not manufacturers and metadata.get("manufacturer"):
+                manufacturers.append({
+                    "value": metadata["manufacturer"],
+                    "confidence": 0.95,
+                    "position": model["position"],
+                    "end_position": model["position"],
+                    "source": "metadata"  # Mark as coming from CSV
+                })
+
+            # Add equipment type if not found by NER
+            if not eq_types and metadata.get("equipment_type"):
+                eq_types.append({
+                    "value": metadata["equipment_type"],
+                    "confidence": 0.95,
+                    "position": model["position"],
+                    "end_position": model["position"],
+                    "source": "metadata"  # Mark as coming from CSV
+                })
+
     extracted_entities = {
-        "manufacturer": ner_entities.get("MANUFACTURER", []),
-        "model": [
-            {
-                "value": normalize_model(m["original_value"]),
-                "confidence": m["confidence"],
-                "position": m["position"],
-                "original_value": m["original_value"]
-            }
-            for m in ner_entities.get("MODEL", [])
-        ],
-        "equipment_type": ner_entities.get("EQ_TYPE", []),
+        "manufacturer": manufacturers,
+        "model": models,
+        "equipment_type": eq_types,
         "parameters": params_extracted
     }
 
@@ -466,6 +518,7 @@ def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_P
         "extracted_entities": extracted_entities,
         "routing": routing
     }
+
 
 if __name__ == "__main__":
     if __name__ == "__main__":
