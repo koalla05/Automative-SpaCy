@@ -1,6 +1,11 @@
 # file: ipg_pipeline.py
 from pipeline.exctractors.parameter_extractor import process_question as extract_entities
-from pipeline.processors.llm_processor import LLMProcessor, detect_question_type
+from pipeline.processors.llm_processor import (
+    LLMProcessor,
+    detect_question_type,
+    build_param_bindings_logic,
+    determine_intent_logic
+)
 from core.config import DEFAULT_PARAM_GLOSSARY
 from core.normalization.model_normalization import load_canonical_models
 
@@ -56,12 +61,36 @@ class IPGPipeline:
         closest_manuf = min(manufacturers, key=lambda m: abs(m.get("position", 999999) - model_pos))
         return closest_manuf["value"]
 
-    def build_final_routing(self, llm_result: dict, extracted_entities: dict, text: str) -> dict:
+    def build_final_routing(
+            self,
+            param_bindings: list,
+            extracted_entities: dict,
+            text: str,
+            question_type: str = None
+    ) -> dict:
         """
-        Build routing based on LLM's param_bindings decision.
-        Uses the actual model names from NER (not concatenated manufacturer+model).
+        Build routing based on param_bindings.
+
+        Args:
+            param_bindings: List of model->parameters mappings
+            extracted_entities: All extracted entities
+            text: Original query text
+            question_type: "compat" or None
+
+        Returns:
+            Routing dictionary
         """
-        param_bindings = llm_result.get("param_bindings", [])
+        # If compatibility query, return special routing
+        if question_type == "compat":
+            return {
+                "recommended_strategy": "compatibility_check",
+                "message": "Compatibility query detected",
+                "entities": {
+                    "manufacturers": [m["value"] for m in extracted_entities.get("manufacturer", [])],
+                    "models": [m["value"] for m in extracted_entities.get("model", [])],
+                    "equipment_types": [e["value"] for e in extracted_entities.get("equipment_type", [])]
+                }
+            }
 
         if not param_bindings:
             return {
@@ -86,7 +115,7 @@ class IPGPipeline:
             for param in parameters:
                 sub_queries.append({
                     "manufacturer": manufacturer_value,
-                    "model": model,  # Use model name exactly as LLM provided (from NER)
+                    "model": model,
                     "equipment_type": eq_type_value,
                     "parameter": param,
                     "original_part": text[:100]  # first 100 chars as context
@@ -103,105 +132,57 @@ class IPGPipeline:
                 "sub_queries": sub_queries
             }
 
-    def build_parameters_from_llm(self, fuzzy_parameters: list, llm_result: dict) -> list:
-        """
-        Build final parameters list using LLM's param_bindings as the source of truth.
-        - If fuzzy found the parameter, use its metadata (confidence, position, etc.)
-        - If LLM added a parameter fuzzy missed, create it with LLM confidence
-        - If fuzzy found a parameter LLM rejected, discard it
-        """
-        param_bindings = llm_result.get("param_bindings", [])
-
-        # Build mapping: param_key -> [models]
-        param_to_models = {}
-        llm_confirmed_params = set()
-
-        for binding in param_bindings:
-            model = binding.get("model", "")
-            for param in binding.get("parameters", []):
-                llm_confirmed_params.add(param)
-                if param not in param_to_models:
-                    param_to_models[param] = []
-                param_to_models[param].append(model)
-
-        # Index fuzzy parameters by key for quick lookup
-        fuzzy_by_key = {p["key"]: p for p in fuzzy_parameters}
-
-        # Build final parameter list
-        final_parameters = []
-
-        for param_key in llm_confirmed_params:
-            # Check if fuzzy matching found this parameter
-            if param_key in fuzzy_by_key:
-                # Use fuzzy's metadata
-                param = fuzzy_by_key[param_key].copy()
-            else:
-                # LLM found it but fuzzy didn't - create new entry
-                param = {
-                    "key": param_key,
-                    "confidence": 0.90,  # High confidence from LLM
-                    "match_type": "llm_detected",
-                    "synonym_matched": "detected by LLM from context"
-                }
-
-            # Add model mapping
-            models = param_to_models.get(param_key, ["UNKNOWN"])
-            if len(models) > 1:
-                param["batch"] = True
-                param["mapped_to_model"] = ", ".join(models)
-            else:
-                param["mapped_to_model"] = models[0]
-
-            final_parameters.append(param)
-
-        return final_parameters
-
     def process(self, text: str):
         """
         Full IPG pipeline:
         1) Detect question_type by keywords
         2) Extract entities via extractor_module
-        3) Send to LLM to get STATUS / INTENT / PARAM_BINDINGS (skip if compat)
-        4) Enrich parameters with mappings
-        5) Build routing from LLM param_bindings
-        6) Return schema-compliant result
+        3) Determine intent with logic (not LLM)
+        4) Send to LLM ONLY if not compat (to get STATUS only)
+        5) Build param_bindings with logic (not LLM)
+        6) Build routing
+        7) Return schema-compliant result
         """
-        # Step 1: Detect question type (NEW)
+        # Step 1: Detect question type
         question_type = detect_question_type(text)
 
         # Step 2: NER + fuzzy extraction
         extraction_result = extract_entities(text)
         extracted_entities = extraction_result["extracted_entities"]
 
-        # Step 3: LLM processing (skip if compat)
+        # Step 3: Determine intent with LOGIC (not LLM)
+        question_intent = determine_intent_logic(question_type, extracted_entities)
+
+        # Step 4: LLM processing (ONLY for STATUS, skip if compat)
         if question_type == "compat":
             # For compatibility queries, skip LLM entirely
-            llm_result = {
-                "status": "complex",
-                "intent": "compatibility_query",
-                "param_bindings": []  # No param bindings for compat
-            }
+            status = "complex"
         else:
-            # Normal processing through LLM
+            # Ask LLM only for STATUS
             llm_result = self.llm.process_question(extracted_entities, text)
+            status = llm_result.get("status", "complex")
 
-        # Step 4: Build parameters from LLM param_bindings (LLM is source of truth)
-        final_params = self.build_parameters_from_llm(
-            extracted_entities.get("parameters", []),
-            llm_result
+        # Step 5: Build param_bindings with LOGIC (not LLM)
+        if question_type == "compat":
+            param_bindings = []
+        else:
+            param_bindings = build_param_bindings_logic(extracted_entities)
+
+        # Step 6: Build routing
+        routing = self.build_final_routing(
+            param_bindings,
+            extracted_entities,
+            text,
+            question_type
         )
-        extracted_entities["parameters"] = final_params
 
-        # Step 5: Build routing from LLM param_bindings
-        routing = self.build_final_routing(llm_result, extracted_entities, text)
-
-        # Step 6: Build final schema-compliant output
+        # Step 7: Return complete result
         return {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "question_raw": text,
-            "status": llm_result.get("status", "complex"),
-            "question_type": question_type,  # NEW FIELD
-            "question_intent": llm_result.get("intent", "uncertain"),
+            "status": status,
+            "question_type": question_type,  # "compat" or None
+            "question_intent": question_intent,  # determined by logic
             "extracted_entities": extracted_entities,
             "routing": routing
         }
@@ -219,11 +200,15 @@ if __name__ == "__main__":
 
         # Compatibility query
         "Чи сумісний Pylontech US5000 з Victron MultiPlus?",
+
+        # Multi-model spec query
+        "Вага Dyness A48100 та максимальний струм для Pylontech US5000",
     ]
 
-    for query in test_queries:
+    for idx, query in enumerate(test_queries, 1):
         print(f"\n{'=' * 80}")
-        print(f"Query: {query}")
+        print(f"Test {idx}: {query}")
         print('=' * 80)
+
         result = pipeline.process(query)
         print(json.dumps(result, ensure_ascii=False, indent=2))

@@ -18,7 +18,7 @@ from typing import List, Tuple, Dict, Any
 
 # ============= CONFIGURATION =============
 EXISTING_MODEL_PATH = "../models/full_ner_model"
-NEW_LABELS_FILE = "model_training/data/new_model_labels.json"
+NEW_LABELS_FILE = "model_training/data/labels.json"
 OUTPUT_MODEL_PATH = "../models/full_ner_model_updated"
 
 N_ITER = 10  # Fewer iterations for incremental training

@@ -57,8 +57,8 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 DATA_DIR = PROJECT_ROOT / "data"
 
 # Input and output files
-INPUT_FILE = DATA_DIR / "new_model_labels.json"
-OUTPUT_FILE = DATA_DIR / "labels_normalized.json"
+INPUT_FILE = DATA_DIR / "training/labels.json"
+OUTPUT_FILE = DATA_DIR / "training/labels_normalized.json"
 
 print(f"📂 Looking for input file at: {INPUT_FILE}")
 
@@ -81,6 +81,8 @@ if not INPUT_FILE.exists():
 print(f"📖 Reading file...")
 with open(INPUT_FILE, "r", encoding="utf-8") as f:
     original_data = json.load(f)
+
+print(type(original_data[0]))
 
 print(f"🔧 Normalizing {len(original_data)} examples...")
 normalized_data = normalize_labels(original_data)

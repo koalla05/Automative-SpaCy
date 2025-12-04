@@ -119,7 +119,7 @@ class ModelTrainingWorkflow:
             except Exception as e:
                 stats["invalid_examples"] += 1
                 stats["errors"].append({
-                    "index": idx,
+                    "index": item["id"],
                     "text": item["text"][:50],
                     "error": str(e)
                 })
@@ -140,7 +140,7 @@ class ModelTrainingWorkflow:
 
         if stats["errors"]:
             print(f"\n   ⚠️  First few errors:")
-            for error in stats["errors"][:3]:
+            for error in stats["errors"]:
                 print(f"      Example {error['index']}: {error['error']}")
 
         return stats
@@ -277,7 +277,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--data",
-        default="data/training/labels_normalized.json",
+        default="data/labels_normalized.json",
         help="Path to training data (relative to model_training folder)"
     )
     parser.add_argument(
