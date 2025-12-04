@@ -1,9 +1,14 @@
 import os
+import re
 from functools import lru_cache
 from typing import Optional
 
 DATA_FILE = os.path.join(os.path.dirname(__file__), "../..", "data", "canon_models.txt")
 DATA_FILE = os.path.abspath(DATA_FILE)
+
+def clean_model_name(name: str) -> str:
+    cleaned = re.sub(r'[^a-zA-Z0-9]', '', name)
+    return cleaned.lower()
 
 
 @lru_cache(None)
@@ -60,38 +65,10 @@ def normalize_model(model_name: str) -> Optional[str]:
         return None
 
     mapping = load_canonical_models()
-    key = model_name.strip().lower()
+    key = clean_model_name(model_name.strip().lower())
 
     # Return canonical name if found, None otherwise
     return mapping.get(key)
-
-
-def is_model_in_canon(model_name: str) -> bool:
-    """
-    Check if a model exists in canonical models file.
-
-    Args:
-        model_name: Model name to check
-
-    Returns:
-        True if model exists in canon_models.txt, False otherwise
-    """
-    if not model_name:
-        return False
-
-    mapping = load_canonical_models()
-    key = model_name.strip().lower()
-    return key in mapping
-
-
-def get_all_canonical_models() -> dict:
-    """
-    Get all canonical models from file.
-
-    Returns:
-        Dictionary of original -> canonical mappings
-    """
-    return load_canonical_models()
 
 
 # For debugging - print stats about loaded models

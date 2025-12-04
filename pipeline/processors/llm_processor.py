@@ -1,26 +1,15 @@
 # llm_processor.py
 
-import os
 import re
 from typing import Dict, Any
-from dotenv import load_dotenv
-from openai import OpenAI
-
-load_dotenv()
-
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-if not OPENAI_API_KEY:
-    raise RuntimeError("OPENAI_API_KEY not found. Please create .env file.")
-
-client = OpenAI(api_key=OPENAI_API_KEY)
 
 
-def detect_question_type(text: str) -> str:
+def detect_compatibility_query(text: str) -> bool:
     """
-    Detect question type based on keywords.
+    Detect if query is asking about compatibility.
 
     Returns:
-        "compat" if compatibility question, None otherwise
+        True if compatibility question, False otherwise
     """
     text_lower = text.lower()
 
@@ -29,11 +18,13 @@ def detect_question_type(text: str) -> str:
         r'\b(сумісн|сумісний|сумісна|сумісне|сумісності|сумісність)\b',
         r'\bчи можна (підключити|з\'єднати|використати)\b',
         r'\bв одну систему\b',
+        r'\bчи працює (з|разом)\b',
 
         # Russian
         r'\b(совмест|совместим|совместима|совместимо|совместимости|совместимость)\b',
         r'\bможно ли (подключить|соединить|использовать)\b',
         r'\bв одну систему\b',
+        r'\bработает ли (с|вместе)\b',
 
         # English
         r'\b(compat|compatible|compatibility)\b',
@@ -44,118 +35,94 @@ def detect_question_type(text: str) -> str:
 
     for pattern in compat_patterns:
         if re.search(pattern, text_lower):
-            return "compat"
+            return True
 
-    return None
-
-
-# SIMPLIFIED SYSTEM PROMPT - ONLY STATUS
-SYSTEM_PROMPT = """
-You are a STATUS classifier for the IPG (Intelligence Preprocessing Gateway).
-
-Your ONLY job: Determine if the query is "simple" or "complex".
-
-STATUS = "simple" if:
-- Query asks for specification parameters from model datasheets (вага, ємність, струм, напруга, потужність, ККД, etc.)
-- Can be answered by direct SQL/database lookup
-- Examples: 
-  * "What is max charge current for Model X?"
-  * "Вага Pylontech US5000"
-  * "Максимальний струм для US5000 і ємність для A48100"
-
-STATUS = "complex" if:
-- Compatibility questions
-- Configuration/setup questions  
-- Calculations needed
-- Documentation/instructions
-- Vague/unclear queries
-- Examples:
-  * "Can I connect X to Y?"
-  * "How to configure Z?"
-  * "Wiring diagram for W"
-
-Response format (STRICT):
-STATUS: <simple|complex>
-
-Nothing else. Just one line.
-"""
+    return False
 
 
-class LLMProcessor:
-    def __init__(self, par_lst: str, mod_lst: str, model: str = "gpt-4o-mini"):
-        self.model = model
-        self.parameters_list = par_lst
-        self.models_list = mod_lst
+def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> str:
+    """
+    Determine query status based on extracted entities and text analysis.
 
-    def process_question(self, extracted_entities: Dict[str, Any], original_text: str) -> Dict[str, Any]:
-        """
-        Sends extracted_entities + original text to OpenAI.
-        NOW ONLY RETURNS STATUS.
-        """
-        user_content = f"""Original query: {original_text}
+    STATUS logic:
+    - "compat": Compatibility questions (detected by keywords)
+    - "simple": Direct parameter lookup from SQL/YAML
+      * Has at least 1 VALID CANONICAL model (value != null)
+      * Has parameters (datasheet specs)
+      * Can be answered by SQL without interpretation/logic/combination
+      * Allowed: 1-2 params + 1-2 models
+      * Meaning: "Give me parameter value(s) for model(s)"
+    - "complex": Everything else (calculations, >2 models, >2 params, no entities, invalid models, etc.)
 
-Extracted entities:
-- Manufacturers: {[m['value'] for m in extracted_entities.get('manufacturer', [])]}
-- Models: {[m['value'] for m in extracted_entities.get('model', [])]}
-- Equipment types: {[e['value'] for e in extracted_entities.get('equipment_type', [])]}
-- Parameters: {[p['key'] for p in extracted_entities.get('parameters', [])]}
+    Args:
+        extracted_entities: Dict with manufacturer, model, equipment_type, parameters
+        original_text: Original query text
 
-Classify this query as "simple" or "complex"."""
+    Returns:
+        Status: "compat", "simple", or "complex"
+    """
+    # Check for compatibility query first
+    if detect_compatibility_query(original_text):
+        return "compat"
 
-        response = client.chat.completions.create(
-            model=self.model,
-            temperature=0,
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_content}
-            ]
-        )
+    models = extracted_entities.get("model", [])
+    parameters = extracted_entities.get("parameters", [])
 
-        raw_text = response.choices[0].message.content.strip()
+    # Filter out invalid models (where value is None/null)
+    valid_models = [m for m in models if m.get("value") is not None]
 
-        # Parse status
-        status = self.parse_status(raw_text)
+    # Count valid entities
+    num_valid_models = len(valid_models)
+    num_params = len(parameters)
 
-        return {
-            "status": status,
-            "intent": None,  # Will be determined by logic
-            "param_bindings": []  # Will be built by logic
-        }
+    # SIMPLE criteria:
+    # - At least 1 VALID canonical model
+    # - Has parameters
+    # - 1-2 valid models AND 1-2 parameters
+    if num_valid_models >= 1 and num_params >= 1:
+        if num_valid_models <= 2 and num_params <= 2:
+            return "simple"
 
-    def parse_status(self, raw_text: str) -> str:
-        """Extract status from LLM response."""
-        for line in raw_text.split('\n'):
-            line = line.strip()
-            if line.startswith("STATUS:"):
-                status = line.split(":", 1)[1].strip().lower()
-                if status in ["simple", "complex"]:
-                    return status
-
-        # Fallback
-        return "complex"
+    # All other cases -> complex
+    # - No valid canonical models
+    # - No parameters
+    # - More than 2 models
+    # - More than 2 parameters
+    # - Vague queries
+    return "complex"
 
 
-# Helper function to build param_bindings with logic (not LLM)
 def build_param_bindings_logic(extracted_entities: Dict[str, Any]) -> list:
     """
-    Build parameter bindings using direct logic (no LLM).
+    Build parameter bindings using direct logic.
     Maps parameters to closest models by position in text.
+
+    Only includes VALID canonical models (value != None).
+
+    Args:
+        extracted_entities: Dict with model and parameters lists
+
+    Returns:
+        List of bindings: [{"model": str, "parameters": [str]}]
     """
     models = extracted_entities.get("model", [])
     parameters = extracted_entities.get("parameters", [])
 
-    if not models or not parameters:
+    # Filter out invalid models (where value is None/null)
+    valid_models = [m for m in models if m.get("value") is not None]
+
+    if not valid_models or not parameters:
         return []
 
-    # Map each parameter to closest model by position
+    # Map each parameter to closest valid model by position
     bindings_dict = {}  # model_value -> [param_keys]
 
     for param in parameters:
         param_pos = param.get("position", 0)
 
-        # Find closest model
+        # Find closest valid model
         closest_model = min(
-            models,
+            valid_models,
             key=lambda m: abs(m.get("position", 0) - param_pos)
         )
 
@@ -179,80 +146,166 @@ def build_param_bindings_logic(extracted_entities: Dict[str, Any]) -> list:
     return param_bindings
 
 
-# Helper function to determine intent with logic (not LLM)
-def determine_intent_logic(question_type: str, extracted_entities: Dict[str, Any]) -> str:
+def determine_intent_logic(status: str, extracted_entities: Dict[str, Any]) -> str:
     """
-    Determine question intent using logic.
+    Determine question intent based on status and entities.
 
     Args:
-        question_type: "compat" or None
+        status: "compat", "simple", or "complex"
         extracted_entities: Extracted entities
 
     Returns:
         Intent string
     """
-    if question_type == "compat":
+    if status == "compat":
         return "compatibility_query"
 
-    # If has parameters, it's sql_query
-    if extracted_entities.get("parameters"):
+    if status == "simple":
         return "sql_query"
 
-    # If has models but no parameters, uncertain
+    # Complex status
+    if extracted_entities.get("parameters"):
+        return "multi_model_query"
+
     if extracted_entities.get("model"):
         return "uncertain"
 
-    return "uncertain"
+    return "no_entities"
 
 
 if __name__ == "__main__":
     from pprint import pprint
 
-    # Test 1: Regular spec query
-    print("=" * 60)
-    print("Test 1: Regular spec query")
-    print("=" * 60)
+    # Test cases
+    test_cases = [
+        {
+            "query": "Який максимальний струм заряджання на інверторі LuxPower LXP-LB-EU 10k?",
+            "entities": {
+                "manufacturer": [{"value": "luxpower", "confidence": 0.84, "position": 50}],
+                "model": [{"value": "lxp_lb_eu_10k", "confidence": 0.88, "position": 60}],
+                "equipment_type": [{"value": "inverter", "confidence": 0.88, "position": 45}],
+                "parameters": [
+                    {"key": "max_charge_current_a", "confidence": 0.95, "position": 10}
+                ]
+            },
+            "expected": "simple"  # 1 model + 1 param
+        },
+        {
+            "query": "Чи сумісний Pylontech US5000 з Victron MultiPlus?",
+            "entities": {
+                "manufacturer": [
+                    {"value": "pylontech", "confidence": 0.9, "position": 15},
+                    {"value": "victron", "confidence": 0.9, "position": 40}
+                ],
+                "model": [
+                    {"value": "us5000", "confidence": 0.9, "position": 25},
+                    {"value": "multiplus", "confidence": 0.9, "position": 50}
+                ],
+                "equipment_type": [],
+                "parameters": []
+            },
+            "expected": "compat"  # compatibility keywords
+        },
+        {
+            "query": "Вага Dyness A48100 та максимальний струм для Pylontech US5000",
+            "entities": {
+                "manufacturer": [
+                    {"value": "dyness", "confidence": 0.9, "position": 5},
+                    {"value": "pylontech", "confidence": 0.9, "position": 40}
+                ],
+                "model": [
+                    {"value": "a48100", "confidence": 0.9, "position": 12},
+                    {"value": "us5000", "confidence": 0.9, "position": 55}
+                ],
+                "equipment_type": [],
+                "parameters": [
+                    {"key": "weight_kg", "confidence": 0.95, "position": 0},
+                    {"key": "max_charge_current_a", "confidence": 0.90, "position": 25}
+                ]
+            },
+            "expected": "simple"  # 2 models + 2 params - allowed
+        },
+        {
+            "query": "Які є інвертори?",
+            "entities": {
+                "manufacturer": [],
+                "model": [],
+                "equipment_type": [{"value": "inverter", "confidence": 0.9, "position": 5}],
+                "parameters": []
+            },
+            "expected": "complex"  # no models
+        },
+        {
+            "query": "Вага Pylontech US5000",
+            "entities": {
+                "manufacturer": [{"value": "pylontech", "confidence": 0.9, "position": 5}],
+                "model": [{"value": "us5000", "confidence": 0.9, "position": 15}],
+                "equipment_type": [],
+                "parameters": [
+                    {"key": "weight_kg", "confidence": 0.95, "position": 0}
+                ]
+            },
+            "expected": "simple"  # 1 model + 1 param
+        },
+        {
+            "query": "Порівняти 5 моделей батарей по ємності",
+            "entities": {
+                "manufacturer": [],
+                "model": [
+                    {"value": "model1", "position": 10},
+                    {"value": "model2", "position": 20},
+                    {"value": "model3", "position": 30},
+                    {"value": "model4", "position": 40},
+                    {"value": "model5", "position": 50}
+                ],
+                "equipment_type": [],
+                "parameters": [
+                    {"key": "capacity_ah", "confidence": 0.95, "position": 60}
+                ]
+            },
+            "expected": "complex"  # 5 models > 2
+        },
+        {
+            "query": "Вага, ємність, напруга для Pylontech US5000",
+            "entities": {
+                "manufacturer": [{"value": "pylontech", "confidence": 0.9, "position": 30}],
+                "model": [{"value": "us5000", "confidence": 0.9, "position": 40}],
+                "equipment_type": [],
+                "parameters": [
+                    {"key": "weight_kg", "confidence": 0.95, "position": 0},
+                    {"key": "capacity_ah", "confidence": 0.95, "position": 5},
+                    {"key": "voltage_v", "confidence": 0.95, "position": 15}
+                ]
+            },
+            "expected": "complex"  # 1 model + 3 params > 2
+        },
+        {
+            "query": "Який максимальний струм заряджання на інверторі LuxPower LXP-LB-EU 10k",
+            "entities": {
+                "manufacturer": [{"value": "luxpower", "confidence": 0.86, "position": 48}],
+                "model": [{"value": None, "confidence": 0.95, "position": 57, "original_value": "LXP-LB-EU 10k"}],
+                "equipment_type": [],
+                "parameters": [
+                    {"key": "max_charge_current_a", "confidence": 0.975, "position": 5}
+                ]
+            },
+            "expected": "complex"  # model value is None - not canonical
+        }
+    ]
 
-    extracted_entities_example = {
-        "manufacturer": [{"value": "luxpower", "confidence": 0.84, "position": 50}],
-        "model": [{"value": "lxp_lb", "confidence": 0.88, "position": 60}],
-        "equipment_type": [{"value": "inverter", "confidence": 0.88, "position": 45}],
-        "parameters": [
-            {"key": "max_charge_current_a", "confidence": 0.95, "position": 10},
-            {"key": "max_discharge_current_a", "confidence": 0.90, "position": 15}
-        ]
-    }
+    for i, test in enumerate(test_cases, 1):
+        print(f"\n{'=' * 70}")
+        print(f"Test {i}: {test['query']}")
+        print('=' * 70)
 
-    processor = LLMProcessor("", "")
+        status = determine_status(test['entities'], test['query'])
+        intent = determine_intent_logic(status, test['entities'])
+        param_bindings = build_param_bindings_logic(test['entities'])
 
-    query1 = "Який максимальний струм заряджання/розряджання на інверторі LuxPower?"
-    llm_result = processor.process_question(extracted_entities_example, query1)
+        expected = test.get('expected', '?')
+        status_mark = "✓" if status == expected else "✗"
 
-    print(f"\nQuery: {query1}")
-    print(f"LLM Result:")
-    pprint(llm_result)
-
-    # Build param_bindings with logic
-    param_bindings = build_param_bindings_logic(extracted_entities_example)
-    print(f"\nParam bindings (logic):")
-    pprint(param_bindings)
-
-    # Determine intent with logic
-    question_type = detect_question_type(query1)
-    intent = determine_intent_logic(question_type, extracted_entities_example)
-    print(f"\nQuestion type: {question_type}")
-    print(f"Intent (logic): {intent}")
-
-    # Test 2: Compatibility query
-    print("\n" + "=" * 60)
-    print("Test 2: Compatibility query")
-    print("=" * 60)
-
-    query2 = "Чи сумісний Pylontech US5000 з Victron MultiPlus?"
-    question_type2 = detect_question_type(query2)
-    intent2 = determine_intent_logic(question_type2, {"model": [{"value": "us5000"}]})
-
-    print(f"\nQuery: {query2}")
-    print(f"Question type: {question_type2}")
-    print(f"Intent (logic): {intent2}")
-    print("(LLM not called for compat queries)")
+        print(f"\nStatus: {status} (expected: {expected}) {status_mark}")
+        print(f"Intent: {intent}")
+        print(f"Param bindings:")
+        pprint(param_bindings)

@@ -1,6 +1,5 @@
 # file: parameter_extractor.py
 from typing import List, Dict, Any
-import os
 from pathlib import Path
 import re
 import numpy as np
@@ -20,13 +19,11 @@ MIN_WORD_LENGTH_FOR_FUZZY = 4  # LOWERED from 5
 MIN_SYNONYM_LENGTH_FOR_FUZZY = 4  # LOWERED from 5
 
 CURRENT_FILE_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = CURRENT_FILE_DIR.parent.parent  # Up two levels from pipeline/extractors/
+PROJECT_ROOT = CURRENT_FILE_DIR.parent.parent
 SPACY_MODEL_PATH = PROJECT_ROOT / "models" / "full_ner_model"
 
-# Load spacy for position tracking
 nlp = spacy.load(SPACY_MODEL_PATH)
 
-# Sentence transformers for semantic similarity (lazy load)
 _embed_model = None
 
 
@@ -37,9 +34,8 @@ def get_embed_model():
     return _embed_model
 
 
-# Conjunction and punctuation patterns for splitting
 SPLIT_PATTERNS = [
-    r'\s+(?:і|та|и|а|й|,|;)\s+',  # Ukrainian/Russian conjunctions
+    r'\s+(?:і|та|и|а|й|,|;)\s+',  # Ukrainian/гівно conjunctions
     r'\s+(?:and|or|,|;)\s+',  # English conjunctions
 ]
 
@@ -54,17 +50,13 @@ def normalize_for_matching(text: str) -> str:
     """Normalize text for fuzzy matching - handle plurals and common variations"""
     text = text.lower().strip()
 
-    # Ukrainian plural normalization
     text = re.sub(r'(ів|ами|ах|ям|ях)$', '', text)
     text = re.sub(r'(и|і)$', '', text)
 
-    # Russian plural normalization
     text = re.sub(r'(ов|ами|ах|ам|ях)$', '', text)
 
-    # English plural normalization
     text = re.sub(r'(s|es)$', '', text)
 
-    # Remove extra whitespace
     text = re.sub(r'\s+', ' ', text).strip()
 
     return text
@@ -77,7 +69,7 @@ def is_stopword_or_common(word: str) -> bool:
         'які', 'який', 'яка', 'яке', 'що', 'чи', 'для', 'від', 'при',
         'під', 'над', 'про', 'без', 'через', 'після', 'перед', 'біля', 'коло',
         'поза', 'між', 'поміж', 'серед', 'вздовж', 'всередині',
-        # Russian
+        # гівно
         'какой', 'какая', 'какое', 'какие', 'что', 'для', 'от', 'при',
         'под', 'над', 'про', 'без', 'через', 'после', 'перед',
         # English
@@ -107,7 +99,6 @@ def split_into_segments(text: str) -> List[Dict[str, Any]]:
                 })
         last_end = match.end()
 
-    # Add final segment
     if last_end < len(text):
         segment_text = text[last_end:].strip()
         if segment_text:
@@ -117,7 +108,6 @@ def split_into_segments(text: str) -> List[Dict[str, Any]]:
                 "end": len(text)
             })
 
-    # If no splits found, return entire text as one segment
     if not segments:
         segments = [{"text": text, "start": 0, "end": len(text)}]
 
@@ -136,11 +126,9 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
         cleaned = clean_word(ent.text)
         normalized = normalize_entity(cleaned, label)
 
-        # FIX: Skip common stopwords detected as manufacturers
         if label == "MANUFACTURER" and is_stopword_or_common(normalized):
             continue
 
-        # Calculate confidence based on entity length and context
         confidence = min(0.95, 0.7 + (len(ent.text) / 50))
 
         entity_dict = {
@@ -150,7 +138,6 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
             "end_position": ent.end_char
         }
 
-        # For models, keep original value
         if label == "MODEL":
             entity_dict["original_value"] = ent.text
 
@@ -172,7 +159,6 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
     lower = text.lower()
     results = []
 
-    # Build synonym map with normalized versions
     synonym_to_key = {}
     normalized_synonyms = {}
 
@@ -187,7 +173,6 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
 
     found_positions = set()
 
-    # Phase 1: Exact matching - prioritize longer phrases first
     sorted_synonyms = sorted(synonym_to_key.items(), key=lambda x: len(x[0]), reverse=True)
 
     for syn, key in sorted_synonyms:
@@ -199,12 +184,10 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
 
             pos = idx
 
-            # Check if already found nearby
             if any(abs(p - pos) < 5 for p in found_positions):
                 start = idx + len(syn)
                 continue
 
-            # FIX: Check word boundaries for better exact matching
             before_ok = idx == 0 or not text[idx - 1].isalnum()
             after_ok = (idx + len(syn) >= len(text)) or not text[idx + len(syn)].isalnum()
 
@@ -212,7 +195,6 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 start = idx + len(syn)
                 continue
 
-            # Grab phrase around parameter
             phrase_start = max(0, text.rfind(' ', 0, idx))
             phrase_end = text.find('.', idx + len(syn))
             if phrase_end == -1:
@@ -232,15 +214,12 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
             found_positions.add(pos)
             start = idx + len(syn)
 
-    # Phase 2: Fuzzy matching for missed terms
     candidates = []
 
-    # Extract multi-word phrases (2-5 words) - PRIORITIZE THESE
     words = re.findall(r'\b[\w\-]+\b', text, re.UNICODE)
     word_positions = [m.start() for m in re.finditer(r'\b[\w\-]+\b', text, re.UNICODE)]
 
     for i in range(len(words)):
-        # Multi-word phrases FIRST (they're more specific)
         for length in range(5, 1, -1):  # 5, 4, 3, 2 words
             if i + length <= len(words):
                 phrase = ' '.join(words[i:i + length])
@@ -254,7 +233,6 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                         "word_count": length
                     })
 
-        # Single words last
         word = words[i]
         if len(word) >= MIN_WORD_LENGTH_FOR_FUZZY and not is_stopword_or_common(word):
             candidates.append({
@@ -269,13 +247,11 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
         pos = candidate["position"]
         word_count = candidate["word_count"]
 
-        # Skip if already matched
         if any(abs(p - pos) < 5 for p in found_positions):
             continue
 
         text_normalized = normalize_for_matching(text_chunk)
 
-        # Try fuzzy matching against all synonyms
         best_match = None
         best_score = 0
         best_key = None
@@ -284,42 +260,31 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
         for syn, key in synonym_to_key.items():
             syn_normalized = normalize_for_matching(syn)
 
-            # Skip very short synonyms for fuzzy matching
             if len(syn_normalized) < MIN_SYNONYM_LENGTH_FOR_FUZZY:
                 continue
 
-            # Calculate word count similarity for multi-word phrases
             syn_word_count = len(syn_normalized.split())
 
-            # Prefer candidates with similar word counts
             word_count_diff = abs(word_count - syn_word_count)
 
-            # FIX: More lenient for multi-word phrases
             if syn_word_count > 1 and word_count_diff > 3:
                 continue
 
-            # FIX: More lenient length check
             if len(text_normalized) < len(syn_normalized) * 0.3:
                 continue
 
-            # Calculate different fuzzy ratios
             ratio = fuzz.ratio(text_normalized, syn_normalized)
             partial_ratio = fuzz.partial_ratio(text_normalized, syn_normalized)
             token_sort_ratio = fuzz.token_sort_ratio(text_normalized, syn_normalized)
             token_set_ratio = fuzz.token_set_ratio(text_normalized, syn_normalized)
 
-            # Choose scoring method based on synonym structure
             if syn_word_count > 1:
-                # For multi-word synonyms, use token_sort_ratio
                 score = max(token_sort_ratio, token_set_ratio)
-                # Bonus for exact word count match
                 if word_count == syn_word_count:
                     score = min(100, score + 5)
-                # Bonus for partial matches in multi-word
                 if partial_ratio > score:
                     score = (score + partial_ratio) / 2
             else:
-                # For single words, use ratio but consider partial
                 score = max(ratio, partial_ratio)
 
             if score > best_score and score >= FUZZY_MATCH_THRESHOLD:
@@ -329,7 +294,6 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 best_match_type = "fuzzy"
 
         if best_match and best_key:
-            # FIX: Check if already found this parameter with HIGHER confidence
             already_found = any(
                 r["key"] == best_key and
                 abs(r["position"] - pos) < 50 and
@@ -339,7 +303,6 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
             if already_found:
                 continue
 
-            # Grab phrase around parameter
             phrase_start = max(0, text.rfind(' ', 0, pos))
             phrase_end = text.find('.', candidate["end_position"])
             if phrase_end == -1:
@@ -361,10 +324,8 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
 
             found_positions.add(pos)
 
-    # Sort by position
     results.sort(key=lambda r: r["position"])
 
-    # FIX: Better deduplication - allow same key if far apart OR in overlapping regions
     final_results = []
     seen_keys = {}
 
@@ -373,20 +334,17 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
         pos = r["position"]
         end_pos = r["end_position"]
 
-        # Check for overlapping matches
         is_overlapping = False
         for existing in final_results:
             existing_start = existing["position"]
             existing_end = existing["end_position"]
 
-            # Check if positions overlap
             if (existing_start <= pos < existing_end or
                     existing_start < end_pos <= existing_end or
                     (pos <= existing_start and end_pos >= existing_end)):
 
                 is_overlapping = True
 
-                # Keep the one with higher confidence
                 if r["confidence"] > existing["confidence"]:
                     final_results.remove(existing)
                     if existing["key"] in seen_keys and seen_keys[existing["key"]] == existing:
@@ -397,17 +355,13 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
         if is_overlapping:
             continue
 
-        # FIX: Allow same key if positions are far apart (different segments)
         if key in seen_keys:
             existing = seen_keys[key]
             distance = abs(pos - existing["position"])
 
-            # If far apart (50+ chars), likely different segment - allow both
             if distance > 50:
                 final_results.append(r)
-                # Don't update seen_keys, keep both
             elif r["confidence"] > existing["confidence"]:
-                # Replace with higher confidence
                 final_results.remove(existing)
                 seen_keys[key] = r
                 final_results.append(r)
@@ -415,7 +369,6 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
             seen_keys[key] = r
             final_results.append(r)
 
-    # Sort final results by position
     final_results.sort(key=lambda r: r["position"])
 
     return final_results
@@ -426,14 +379,12 @@ def map_parameters_to_models(parameters, models, manufacturers, eq_types, text):
     Map each parameter to closest model/manufacturer/eq_type.
     Ensures all parameters are included in sub-queries.
     """
-    # Normalize models first
     for m in models:
         m["canonical"] = normalize_model(m.get("original_value", ""))
 
     sub_queries = []
 
     for param in parameters:
-        # Closest model
         if models:
             closest_model = min(models, key=lambda m: abs(param["position"] - m["position"]))
             model_value = closest_model["canonical"]
@@ -447,7 +398,6 @@ def map_parameters_to_models(parameters, models, manufacturers, eq_types, text):
         else:
             manufacturer_value = ""
 
-        # Closest equipment type
         if eq_types:
             closest_eq = min(eq_types, key=lambda e: abs(param["position"] - e["position"]))
             eq_type_value = closest_eq["value"]
@@ -489,13 +439,10 @@ def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_P
     """
     question_raw = text
 
-    # 1. Enhanced NER with metadata
     ner_entities = extract_entities_with_metadata(text)
 
-    # 2. Parameter extraction with fuzzy matching
     params_extracted = find_parameters(text, param_glossary)
 
-    # 3. Build extracted_entities structure
     extracted_entities = {
         "manufacturer": ner_entities.get("MANUFACTURER", []),
         "model": [
@@ -511,7 +458,6 @@ def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_P
         "parameters": params_extracted
     }
 
-    # 4. Build routing with smart mapping
     routing = build_routing(ner_entities, params_extracted, text)
 
     return {
@@ -521,11 +467,8 @@ def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_P
         "routing": routing
     }
 
-# ------------- Example usage -------------
 if __name__ == "__main__":
-    # Test queries
     if __name__ == "__main__":
-        # Comprehensive test queries
         test_queries = [
             "Який максимальний струм заряджання/розряджання АКБ на інверторі LuxPwer LXP-LB-EU 10k?",
             "Скільки MPPT трекерів та входів у інвертора Fronius Verto?",
