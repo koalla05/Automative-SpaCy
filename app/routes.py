@@ -15,7 +15,7 @@
 
 from fastapi import APIRouter, BackgroundTasks
 from app.models import Query
-from ipg_pipeline import IPGPipeline
+from pipeline.ipg_pipeline import IPGPipeline
 
 router = APIRouter()
 pipeline = IPGPipeline()

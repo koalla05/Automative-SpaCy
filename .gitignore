@@ -3,7 +3,7 @@ documentation/
 
 specy_venv/
 
-full_ner_model/
+models/full_ner_model/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

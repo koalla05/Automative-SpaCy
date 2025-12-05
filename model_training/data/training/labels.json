@@ -1,0 +1,10276 @@
+[
+{
+  "text": "Чи сумісний Multiplus-II 48\/5000\/70-50 з US3000C?",
+  "id": 727,
+  "label": [
+    {
+      "start": 12,
+      "end": 38,
+      "text": "Multiplus-II 48\/5000\/70-50",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "US3000C",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 269,
+  "created_at": "2025-12-04T09:33:52.299358Z",
+  "updated_at": "2025-12-04T09:33:52.299379Z",
+  "lead_time": 15.351
+},
+{
+  "text": "Solis-3P10K-4G — яка вхідна напруга MPPT?",
+  "id": 728,
+  "label": [
+    {
+      "start": 0,
+      "end": 14,
+      "text": "Solis-3P10K-4G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 270,
+  "created_at": "2025-12-04T09:34:05.842142Z",
+  "updated_at": "2025-12-04T09:34:05.842167Z",
+  "lead_time": 8.974
+},
+{
+  "text": "Sofar 6KTLX-G3 чи підтримує паралельну роботу з іншими моделями Sofar?",
+  "id": 729,
+  "label": [
+    {
+      "start": 0,
+      "end": 14,
+      "text": "Sofar 6KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 271,
+  "created_at": "2025-12-04T09:34:17.217373Z",
+  "updated_at": "2025-12-04T09:34:17.217396Z",
+  "lead_time": 9.467
+},
+{
+  "text": "SNA5000 WPV — чи можна використовувати без акумулятора?",
+  "id": 730,
+  "label": [
+    {
+      "start": 0,
+      "end": 11,
+      "text": "SNA5000 WPV",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 272,
+  "created_at": "2025-12-04T09:34:26.731683Z",
+  "updated_at": "2025-12-04T09:34:26.731706Z",
+  "lead_time": 6.726
+},
+{
+  "text": "Quattro 24\/5000\/120-100\/100 сумісний з LUNA2000-5-S0?",
+  "id": 731,
+  "label": [
+    {
+      "start": 0,
+      "end": 27,
+      "text": "Quattro 24\/5000\/120-100\/100",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 52,
+      "text": "LUNA2000-5-S0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 273,
+  "created_at": "2025-12-04T09:34:41.385920Z",
+  "updated_at": "2025-12-04T09:34:41.385941Z",
+  "lead_time": 12.873
+},
+{
+  "text": "ІзіСолар-II 48\/5000\/70-50+MPPT250\/100 GX — яку батарею варто вибрати?",
+  "id": 732,
+  "label": [
+    {
+      "start": 0,
+      "end": 40,
+      "text": "ІзіСолар-II 48\/5000\/70-50+MPPT250\/100 GX",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 274,
+  "created_at": "2025-12-04T09:34:50.262750Z",
+  "updated_at": "2025-12-04T12:55:06.221869Z",
+  "lead_time": 34.311
+},
+{
+  "text": "US2000C підходить для Multiplus-II 24\/3000\/70-32?",
+  "id": 733,
+  "label": [
+    {
+      "start": 0,
+      "end": 7,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 48,
+      "text": "Multiplus-II 24\/3000\/70-32",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 275,
+  "created_at": "2025-12-04T09:35:15.783023Z",
+  "updated_at": "2025-12-04T09:35:15.783047Z",
+  "lead_time": 9.809
+},
+{
+  "text": "Мультиплюс 48\/1200\/13 — чи є захист від короткого замикання?",
+  "id": 734,
+  "label": [
+    {
+      "start": 0,
+      "end": 21,
+      "text": "Мультиплюс 48\/1200\/13",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 276,
+  "created_at": "2025-12-04T09:35:23.806497Z",
+  "updated_at": "2025-12-04T09:35:23.806523Z",
+  "lead_time": 6.3
+},
+{
+  "text": "Tauro ECO 50-3-D — яка ступінь захисту IP?",
+  "id": 735,
+  "label": [
+    {
+      "start": 0,
+      "end": 16,
+      "text": "Tauro ECO 50-3-D",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 277,
+  "created_at": "2025-12-04T09:35:32.263603Z",
+  "updated_at": "2025-12-04T09:35:32.263629Z",
+  "lead_time": 6.461
+},
+{
+  "text": "Софар 4.4KTLX-G3 — як увімкнути Wi-Fi моніторинг?",
+  "id": 736,
+  "label": [
+    {
+      "start": 0,
+      "end": 16,
+      "text": "Софар 4.4KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 278,
+  "created_at": "2025-12-04T09:35:40.954356Z",
+  "updated_at": "2025-12-04T09:35:40.954378Z",
+  "lead_time": 6.944
+},
+{
+  "text": "US 2000C чи підтримується інвертором Solis-5K-4G-LV?",
+  "id": 737,
+  "label": [
+    {
+      "start": 0,
+      "end": 8,
+      "text": "US 2000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 37,
+      "end": 51,
+      "text": "Solis-5K-4G-LV",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 279,
+  "created_at": "2025-12-04T09:35:53.091849Z",
+  "updated_at": "2025-12-04T09:35:53.091871Z",
+  "lead_time": 10.35
+},
+{
+  "text": "LUNA2000-10-S0 — яка максимальна кількість модулів у стеку?",
+  "id": 738,
+  "label": [
+    {
+      "start": 0,
+      "end": 14,
+      "text": "LUNA2000-10-S0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 280,
+  "created_at": "2025-12-04T09:36:02.659231Z",
+  "updated_at": "2025-12-04T09:36:02.659253Z",
+  "lead_time": 7.694
+},
+{
+  "text": "Multiplus-II 24\/5000\/120-50 — чи підходить для системи 48 В?",
+  "id": 739,
+  "label": [
+    {
+      "start": 0,
+      "end": 27,
+      "text": "Multiplus-II 24\/5000\/120-50",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 281,
+  "created_at": "2025-12-04T09:36:10.641422Z",
+  "updated_at": "2025-12-04T09:36:10.641443Z",
+  "lead_time": 5.973
+},
+{
+  "text": "SNA 3000 WPV — який номінальний струм на вході DC?",
+  "id": 740,
+  "label": [
+    {
+      "start": 0,
+      "end": 12,
+      "text": "SNA 3000 WPV",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 282,
+  "created_at": "2025-12-04T09:36:25.556292Z",
+  "updated_at": "2025-12-04T12:55:23.837417Z",
+  "lead_time": 21.438
+},
+{
+  "text": "Quattro 48\/8000\/110-100\/100 — чи можна працювати з генератором?",
+  "id": 741,
+  "label": [
+    {
+      "start": 0,
+      "end": 27,
+      "text": "Quattro 48\/8000\/110-100\/100",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 283,
+  "created_at": "2025-12-04T09:36:33.833954Z",
+  "updated_at": "2025-12-04T09:36:33.833977Z",
+  "lead_time": 6.574
+},
+{
+  "text": "Verto 18.0 — яку напругу MPPT він приймає?",
+  "id": 742,
+  "label": [
+    {
+      "start": 0,
+      "end": 10,
+      "text": "Verto 18.0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 284,
+  "created_at": "2025-12-04T09:36:40.729879Z",
+  "updated_at": "2025-12-04T09:36:40.729899Z",
+  "lead_time": 5.096
+},
+{
+  "text": "Solis-3P8K-4G-LV сумісний з US3000C?",
+  "id": 743,
+  "label": [
+    {
+      "start": 0,
+      "end": 16,
+      "text": "Solis-3P8K-4G-LV",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 28,
+      "end": 35,
+      "text": "US3000C",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 285,
+  "created_at": "2025-12-04T09:36:55.327196Z",
+  "updated_at": "2025-12-04T09:36:55.327220Z",
+  "lead_time": 12.87
+},
+{
+  "text": "Сімо 15.0-3-M — які параметри по AC виходу?",
+  "id": 744,
+  "label": [
+    {
+      "start": 0,
+      "end": 13,
+      "text": "Сімо 15.0-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 286,
+  "created_at": "2025-12-04T09:37:05.796681Z",
+  "updated_at": "2025-12-04T09:37:05.796705Z",
+  "lead_time": 5.109
+},
+{
+  "text": "EasySolar-II 48\/3000\/35-32+MPPT250\/70 — чи можливий запуск без АКБ?",
+  "id": 745,
+  "label": [
+    {
+      "start": 0,
+      "end": 37,
+      "text": "EasySolar-II 48\/3000\/35-32+MPPT250\/70",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 287,
+  "created_at": "2025-12-04T09:37:17.675158Z",
+  "updated_at": "2025-12-04T12:55:57.837986Z",
+  "lead_time": 19.607
+},
+{
+  "text": "Луна2000-5-S0 — як оновити прошивку модуля?",
+  "id": 746,
+  "label": [
+    {
+      "start": 0,
+      "end": 13,
+      "text": "Луна2000-5-S0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 288,
+  "created_at": "2025-12-04T09:37:27.975473Z",
+  "updated_at": "2025-12-04T09:37:27.975495Z",
+  "lead_time": 8.52
+},
+{
+  "text": "US 3000C — чи можна змішувати з US2000C?",
+  "id": 747,
+  "label": [
+    {
+      "start": 0,
+      "end": 8,
+      "text": "US 3000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 32,
+      "end": 39,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 289,
+  "created_at": "2025-12-04T09:37:39.160302Z",
+  "updated_at": "2025-12-04T09:37:39.160324Z",
+  "lead_time": 9.476
+},
+{
+  "text": "SNA5000 WPV сумісний із Sofar 10KTLX-G3?",
+  "id": 748,
+  "label": [
+    {
+      "start": 0,
+      "end": 11,
+      "text": "SNA5000 WPV",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 39,
+      "text": "Sofar 10KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 290,
+  "created_at": "2025-12-04T09:37:55.266955Z",
+  "updated_at": "2025-12-04T12:56:07.976001Z",
+  "lead_time": 22.31
+},
+{
+  "text": "Sofar 8.8KTLX-G3 — яка максимальна потужність PV?",
+  "id": 749,
+  "label": [
+    {
+      "start": 0,
+      "end": 16,
+      "text": "Sofar 8.8KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 291,
+  "created_at": "2025-12-04T09:38:03.203955Z",
+  "updated_at": "2025-12-04T09:38:03.203979Z",
+  "lead_time": 5.871
+},
+{
+  "text": "Quattro 48\/5000\/70-100\/100 — чи є можливість резервної лінії?",
+  "id": 750,
+  "label": [
+    {
+      "start": 0,
+      "end": 26,
+      "text": "Quattro 48\/5000\/70-100\/100",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 292,
+  "created_at": "2025-12-04T09:38:11.698538Z",
+  "updated_at": "2025-12-04T09:38:11.698561Z",
+  "lead_time": 6.471
+},
+{
+  "text": "Multiplus 24\/1600\/40 — які кабелі потрібні для підключення?",
+  "id": 751,
+  "annotator": 1,
+  "annotation_id": 293,
+  "created_at": "2025-12-04T09:38:20.782321Z",
+  "updated_at": "2025-12-04T09:38:20.782355Z",
+  "lead_time": 7.551
+},
+{
+  "text": "Tauro ECO 99-3-P — яку напругу мережі він підтримує?",
+  "id": 752,
+  "label": [
+    {
+      "start": 0,
+      "end": 16,
+      "text": "Tauro ECO 99-3-P",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 294,
+  "created_at": "2025-12-04T09:38:28.122479Z",
+  "updated_at": "2025-12-04T09:38:28.122505Z",
+  "lead_time": 5.528
+},
+{
+  "text": "US2000C — який максимальний струм заряду?",
+  "id": 753,
+  "label": [
+    {
+      "start": 0,
+      "end": 7,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 295,
+  "created_at": "2025-12-04T09:38:37.070038Z",
+  "updated_at": "2025-12-04T09:38:37.070068Z",
+  "lead_time": 6.622
+},
+{
+  "text": "Symo 20.0-3-M — яка його європейська ефективність (EU efficiency)?",
+  "id": 754,
+  "label": [
+    {
+      "start": 0,
+      "end": 13,
+      "text": "Symo 20.0-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 296,
+  "created_at": "2025-12-04T09:39:01.147359Z",
+  "updated_at": "2025-12-04T09:39:01.147381Z",
+  "lead_time": 18.96
+},
+{
+  "text": "Solis 50K-LV-5G — які вимоги до DC кабелів?",
+  "id": 755,
+  "label": [
+    {
+      "start": 0,
+      "end": 15,
+      "text": "Solis 50K-LV-5G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 297,
+  "created_at": "2025-12-04T09:39:08.901386Z",
+  "updated_at": "2025-12-04T09:39:08.901409Z",
+  "lead_time": 5.601
+},
+{
+  "text": "EasySolar 12\/1600\/70 — який діапазон вхідної напруги PV?",
+  "id": 756,
+  "label": [
+    {
+      "start": 0,
+      "end": 21,
+      "text": "EasySolar 12\/1600\/70 ",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 298,
+  "created_at": "2025-12-04T09:39:22.389626Z",
+  "updated_at": "2025-12-04T09:39:22.389648Z",
+  "lead_time": 11.637
+},
+{
+  "text": "US3000C чи сумісний з Мультиплюс-II 48\/3000\/35-32?",
+  "id": 757,
+  "label": [
+    {
+      "start": 0,
+      "end": 7,
+      "text": "US3000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 49,
+      "text": "Мультиплюс-II 48\/3000\/35-32",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 299,
+  "created_at": "2025-12-04T09:39:34.476288Z",
+  "updated_at": "2025-12-04T09:39:34.476310Z",
+  "lead_time": 9.604
+},
+{
+  "text": "SNA 5000 WPV — які вхідні параметри AC?",
+  "id": 758,
+  "label": [
+    {
+      "start": 0,
+      "end": 12,
+      "text": "SNA 5000 WPV",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 300,
+  "created_at": "2025-12-04T09:39:45.557877Z",
+  "updated_at": "2025-12-04T13:06:12.434446Z",
+  "lead_time": 14.344000000000001
+},
+{
+  "text": "Соліс-3P12K-4G — чи можливий zero export?",
+  "id": 759,
+  "label": [
+    {
+      "start": 0,
+      "end": 14,
+      "text": "Соліс-3P12K-4G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 301,
+  "created_at": "2025-12-04T09:39:54.753295Z",
+  "updated_at": "2025-12-04T09:39:54.753319Z",
+  "lead_time": 7.361
+},
+{
+  "text": "Верто 25.0 — які вимоги до захисту на стороні AC?",
+  "id": 760,
+  "label": [
+    {
+      "start": 0,
+      "end": 10,
+      "text": "Верто 25.0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 302,
+  "created_at": "2025-12-04T09:40:02.326402Z",
+  "updated_at": "2025-12-04T09:40:02.326423Z",
+  "lead_time": 5.727
+},
+{
+  "text": "Quattro 12\/3000\/120-50\/50 — потрібна схема підключення генератора.",
+  "id": 761,
+  "label": [
+    {
+      "start": 0,
+      "end": 25,
+      "text": "Quattro 12\/3000\/120-50\/50",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 303,
+  "created_at": "2025-12-04T09:40:10.297331Z",
+  "updated_at": "2025-12-04T09:40:10.297352Z",
+  "lead_time": 5.924
+},
+{
+  "text": "Sofar 3.3KTLX-G3 — який стартовий поріг DC?",
+  "id": 762,
+  "label": [
+    {
+      "start": 0,
+      "end": 16,
+      "text": "Sofar 3.3KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 304,
+  "created_at": "2025-12-04T09:40:23.174948Z",
+  "updated_at": "2025-12-04T09:40:23.174972Z",
+  "lead_time": 10.57
+},
+{
+  "text": "Multiplus-II GX 48\/5000\/70-50 — чи є підтримка CAN для батарей?",
+  "id": 763,
+  "label": [
+    {
+      "start": 0,
+      "end": 29,
+      "text": "Multiplus-II GX 48\/5000\/70-50",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 305,
+  "created_at": "2025-12-04T09:40:34.242873Z",
+  "updated_at": "2025-12-04T09:40:34.242897Z",
+  "lead_time": 8.267
+},
+{
+  "text": "Symo Advanced 10.0-3-M — чи можна підключати лічильник енергії?",
+  "id": 764,
+  "label": [
+    {
+      "start": 0,
+      "end": 23,
+      "text": "Symo Advanced 10.0-3-M ",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 306,
+  "created_at": "2025-12-04T09:40:45.542392Z",
+  "updated_at": "2025-12-04T09:40:45.542416Z",
+  "lead_time": 9.408
+},
+{
+  "text": "LUNA2000-15-S0 — сумісний із Solis-3P20K-4G?",
+  "id": 765,
+  "label": [
+    {
+      "start": 0,
+      "end": 14,
+      "text": "LUNA2000-15-S0",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 43,
+      "text": "Solis-3P20K-4G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 307,
+  "created_at": "2025-12-04T09:40:58.327525Z",
+  "updated_at": "2025-12-04T09:40:58.327548Z",
+  "lead_time": 10.954
+},
+{
+  "text": "SNA5000 WPV — який реальний ККД інвертора?",
+  "id": 766,
+  "label": [
+    {
+      "start": 0,
+      "end": 11,
+      "text": "SNA5000 WPV",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 308,
+  "created_at": "2025-12-04T09:41:15.059962Z",
+  "updated_at": "2025-12-04T13:05:57.972121Z",
+  "lead_time": 14.315999999999999
+},
+{
+  "text": "US 5000 — чи працює з Quattro 48\/10000\/140-100?",
+  "id": 767,
+  "label": [
+    {
+      "start": 0,
+      "end": 7,
+      "text": "US 5000",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 46,
+      "text": "Quattro 48\/10000\/140-100",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 309,
+  "created_at": "2025-12-04T09:41:26.524701Z",
+  "updated_at": "2025-12-04T09:41:26.524725Z",
+  "lead_time": 9.594
+},
+{
+  "text": "Софар 20000TL-Sx — які параметри MPPT?",
+  "id": 768,
+  "label": [
+    {
+      "start": 0,
+      "end": 16,
+      "text": "Софар 20000TL-Sx",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 310,
+  "created_at": "2025-12-04T09:41:36.465935Z",
+  "updated_at": "2025-12-04T09:41:36.465956Z",
+  "lead_time": 8.133
+},
+{
+  "text": "EasySolar-II 48\/5000\/70-50+MPPT250\/100 GX — чи можна паралелити?",
+  "id": 769,
+  "label": [
+    {
+      "start": 0,
+      "end": 41,
+      "text": "EasySolar-II 48\/5000\/70-50+MPPT250\/100 GX",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 311,
+  "created_at": "2025-12-04T09:41:53.719206Z",
+  "updated_at": "2025-12-04T13:05:44.264835Z",
+  "lead_time": 20.012999999999998
+},
+{
+  "text": "Tauro 50-3-P — який рівень шуму при роботі?",
+  "id": 770,
+  "label": [
+    {
+      "start": 0,
+      "end": 12,
+      "text": "Tauro 50-3-P",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 312,
+  "created_at": "2025-12-04T09:42:06.698083Z",
+  "updated_at": "2025-12-04T09:42:06.698106Z",
+  "lead_time": 10.885
+},
+{
+  "text": "Solis-30KTLX-G3 — як обмежити вихідну потужність?",
+  "id": 771,
+  "label": [
+    {
+      "start": 0,
+      "end": 15,
+      "text": "Solis-30KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 313,
+  "created_at": "2025-12-04T09:42:14.574848Z",
+  "updated_at": "2025-12-04T09:42:14.574869Z",
+  "lead_time": 5.794
+},
+{
+  "text": "Quattro 24\/3000\/70-50\/30 сумісний з US 2000C?",
+  "id": 772,
+  "label": [
+    {
+      "start": 0,
+      "end": 24,
+      "text": "Quattro 24\/3000\/70-50\/30",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 44,
+      "text": "US 2000C",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 314,
+  "created_at": "2025-12-04T09:42:27.719260Z",
+  "updated_at": "2025-12-04T09:42:27.719282Z",
+  "lead_time": 11.352
+},
+{
+  "text": "Мультиплюс 48\/500\/6 — які доступні режими роботи?",
+  "id": 773,
+  "label": [
+    {
+      "start": 0,
+      "end": 19,
+      "text": "Мультиплюс 48\/500\/6",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 315,
+  "created_at": "2025-12-04T09:42:36.157780Z",
+  "updated_at": "2025-12-04T09:42:36.157804Z",
+  "lead_time": 6.594
+},
+{
+  "text": "Сімо 8.2-3-M — у якому діапазоні працює MPPT?",
+  "id": 774,
+  "label": [
+    {
+      "start": 0,
+      "end": 12,
+      "text": "Сімо 8.2-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 316,
+  "created_at": "2025-12-04T09:42:43.500561Z",
+  "updated_at": "2025-12-04T09:42:43.500584Z",
+  "lead_time": 5.649
+},
+{
+  "text": "US3000C — до якого рівня можна розряджати?",
+  "id": 775,
+  "label": [
+    {
+      "start": 0,
+      "end": 7,
+      "text": "US3000C",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 317,
+  "created_at": "2025-12-04T09:42:54.043790Z",
+  "updated_at": "2025-12-04T09:42:54.043812Z",
+  "lead_time": 6.852
+},
+{
+  "text": "SNA 4000 WPV — потрібна інструкція українською.",
+  "id": 776,
+  "label": [
+    {
+      "start": 0,
+      "end": 12,
+      "text": "SNA 4000 WPV",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 318,
+  "created_at": "2025-12-04T09:43:05.510736Z",
+  "updated_at": "2025-12-04T13:05:28.435035Z",
+  "lead_time": 14.377
+},
+{
+  "text": "US2000C сумісний з EasySolar-II 24\/3000\/70-32+MPPT250\/70?",
+  "id": 777,
+  "label": [
+    {
+      "start": 0,
+      "end": 7,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 19,
+      "end": 56,
+      "text": "EasySolar-II 24\/3000\/70-32+MPPT250\/70",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 319,
+  "created_at": "2025-12-04T09:43:22.725130Z",
+  "updated_at": "2025-12-04T13:05:15.402191Z",
+  "lead_time": 20.552
+},
+{
+  "text": "Solis 6.0RT — які вимоги до захисту?",
+  "id": 778,
+  "label": [
+    {
+      "start": 0,
+      "end": 11,
+      "text": "Solis 6.0RT",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 320,
+  "created_at": "2025-12-04T09:43:31.909769Z",
+  "updated_at": "2025-12-04T09:43:31.909790Z",
+  "lead_time": 7.233
+},
+{
+  "text": "Multiplus-II 48\/3000\/35-32 — чи можна використовувати без PV?",
+  "id": 779,
+  "label": [
+    {
+      "start": 0,
+      "end": 27,
+      "text": "Multiplus-II 48\/3000\/35-32 ",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 321,
+  "created_at": "2025-12-04T09:43:41.505492Z",
+  "updated_at": "2025-12-04T09:43:41.505515Z",
+  "lead_time": 7.289
+},
+{
+  "text": "EasySolar 24\/1600\/40 — який максимальний струм заряду АКБ?",
+  "id": 780,
+  "label": [
+    {
+      "start": 0,
+      "end": 20,
+      "text": "EasySolar 24\/1600\/40",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 322,
+  "created_at": "2025-12-04T09:43:49.769025Z",
+  "updated_at": "2025-12-04T09:43:49.769056Z",
+  "lead_time": 6.336
+},
+{
+  "text": "Sofar 5.5KTLX-G3 — як оновити прошивку?",
+  "id": 781,
+  "label": [
+    {
+      "start": 0,
+      "end": 16,
+      "text": "Sofar 5.5KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 323,
+  "created_at": "2025-12-04T09:43:59.223284Z",
+  "updated_at": "2025-12-04T09:43:59.223309Z",
+  "lead_time": 7.553
+},
+{
+  "text": "Tauro ECO 100-3-P — які AC параметри номіналу?",
+  "id": 782,
+  "label": [
+    {
+      "start": 0,
+      "end": 17,
+      "text": "Tauro ECO 100-3-P",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 324,
+  "created_at": "2025-12-04T09:44:07.258286Z",
+  "updated_at": "2025-12-04T09:44:07.258319Z",
+  "lead_time": 6.114
+},
+{
+  "text": "LUNA2000-7-S1 — сумісний із Solis-3P6K-4G?",
+  "id": 783,
+  "label": [
+    {
+      "start": 0,
+      "end": 13,
+      "text": "LUNA2000-7-S1",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 28,
+      "end": 41,
+      "text": "Solis-3P6K-4G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 325,
+  "created_at": "2025-12-04T09:44:23.276529Z",
+  "updated_at": "2025-12-04T09:44:23.276551Z",
+  "lead_time": 14.287
+},
+{
+  "text": "Quattro-II 24\/5000\/120-50 — який вхідний струм AC?",
+  "id": 784,
+  "label": [
+    {
+      "start": 0,
+      "end": 25,
+      "text": "Quattro-II 24\/5000\/120-50",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 326,
+  "created_at": "2025-12-04T09:44:33.119690Z",
+  "updated_at": "2025-12-04T09:44:33.119712Z",
+  "lead_time": 6.77
+},
+{
+  "text": "Софар 12KTLX-G3 — як налаштувати zero export?",
+  "id": 785,
+  "label": [
+    {
+      "start": 0,
+      "end": 15,
+      "text": "Софар 12KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 327,
+  "created_at": "2025-12-04T09:44:55.497866Z",
+  "updated_at": "2025-12-04T09:44:55.497888Z",
+  "lead_time": 14.474
+},
+{
+  "text": "Verto 15.0 208-240 — які параметри AC?",
+  "id": 786,
+  "label": [
+    {
+      "start": 0,
+      "end": 18,
+      "text": "Verto 15.0 208-240",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 328,
+  "created_at": "2025-12-04T09:45:04.757343Z",
+  "updated_at": "2025-12-04T09:45:04.757364Z",
+  "lead_time": 7.509
+},
+{
+  "text": "SNA5000 WPV сумісний із US2000C?",
+  "id": 787,
+  "label": [
+    {
+      "start": 0,
+      "end": 11,
+      "text": "SNA5000 WPV",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 31,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 329,
+  "created_at": "2025-12-04T09:45:22.989683Z",
+  "updated_at": "2025-12-04T13:05:00.148867Z",
+  "lead_time": 23.43
+},
+{
+  "text": "Solis 4.6KTLX-G3 — який номінальний струм AC?",
+  "id": 788,
+  "label": [
+    {
+      "start": 0,
+      "end": 16,
+      "text": "Solis 4.6KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 330,
+  "created_at": "2025-12-04T09:45:30.791645Z",
+  "updated_at": "2025-12-04T09:45:30.791667Z",
+  "lead_time": 6.23
+},
+{
+  "text": "Symo 5.0-3-M — чи є підтримка 3 MPPT?",
+  "id": 789,
+  "label": [
+    {
+      "start": 0,
+      "end": 12,
+      "text": "Symo 5.0-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 331,
+  "created_at": "2025-12-04T09:45:38.310652Z",
+  "updated_at": "2025-12-04T09:45:38.310676Z",
+  "lead_time": 5.744
+},
+{
+  "text": "EasySolar-II 48\/3000\/35-32 — які налаштування для LiFePO4?",
+  "id": 790,
+  "label": [
+    {
+      "start": 0,
+      "end": 26,
+      "text": "EasySolar-II 48\/3000\/35-32",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 332,
+  "created_at": "2025-12-04T09:45:47.840506Z",
+  "updated_at": "2025-12-04T09:45:47.840527Z",
+  "lead_time": 6.556
+},
+{
+  "text": "Multiplus 12\/2000\/80 — який максимальний струм навантаження?",
+  "id": 791,
+  "label": [
+    {
+      "start": 0,
+      "end": 20,
+      "text": "Multiplus 12\/2000\/80",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 333,
+  "created_at": "2025-12-04T09:45:56.466494Z",
+  "updated_at": "2025-12-04T09:45:56.466515Z",
+  "lead_time": 6.702
+},
+{
+  "text": "US 3000C — потрібна інструкція з монтажу.",
+  "id": 792,
+  "label": [
+    {
+      "start": 0,
+      "end": 8,
+      "text": "US 3000C",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 334,
+  "created_at": "2025-12-04T09:46:04.136077Z",
+  "updated_at": "2025-12-04T09:46:04.136100Z",
+  "lead_time": 5.594
+},
+{
+  "text": "Tauro 99-3-D — як він охолоджується?",
+  "id": 793,
+  "label": [
+    {
+      "start": 0,
+      "end": 12,
+      "text": "Tauro 99-3-D",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 335,
+  "created_at": "2025-12-04T09:46:13.215082Z",
+  "updated_at": "2025-12-04T09:46:13.215107Z",
+  "lead_time": 7.164
+},
+{
+  "text": "Quattro 48\/3000\/35-50\/30 — чи підходить для оффгрід систем?",
+  "id": 794,
+  "label": [
+    {
+      "start": 0,
+      "end": 24,
+      "text": "Quattro 48\/3000\/35-50\/30",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 336,
+  "created_at": "2025-12-04T09:46:22.141590Z",
+  "updated_at": "2025-12-04T09:46:22.141613Z",
+  "lead_time": 6.913
+},
+{
+  "text": "Сімо 4.5-3-M — чи можна підключати оптимізатори?",
+  "id": 795,
+  "label": [
+    {
+      "start": 0,
+      "end": 12,
+      "text": "Сімо 4.5-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 337,
+  "created_at": "2025-12-04T09:46:29.657549Z",
+  "updated_at": "2025-12-04T09:46:29.657571Z",
+  "lead_time": 5.799
+},
+{
+  "text": "LUNA2000-5-S0 сумісна з Multiplus-II 48\/5000\/70-50?",
+  "id": 796,
+  "label": [
+    {
+      "start": 0,
+      "end": 13,
+      "text": "LUNA2000-5-S0",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 50,
+      "text": "Multiplus-II 48\/5000\/70-50",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 338,
+  "created_at": "2025-12-04T09:46:55.370020Z",
+  "updated_at": "2025-12-04T09:46:55.370046Z",
+  "lead_time": 13.559
+},
+{
+  "text": "US2000C чи підтримує роботу паралельно з US 5000?",
+  "id": 797,
+  "label": [
+    {
+      "start": 0,
+      "end": 7,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "US 5000",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 339,
+  "created_at": "2025-12-04T09:47:08.489525Z",
+  "updated_at": "2025-12-04T09:47:08.489550Z",
+  "lead_time": 10.933
+},
+{
+  "text": "Solis-3.0RS — які вимоги до PV масиву?",
+  "id": 798,
+  "label": [
+    {
+      "start": 0,
+      "end": 11,
+      "text": "Solis-3.0RS",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 340,
+  "created_at": "2025-12-04T09:47:19.454654Z",
+  "updated_at": "2025-12-04T09:47:19.454677Z",
+  "lead_time": 9.048
+},
+{
+  "text": "Мультиплюс 24\/800\/16 — як працює в режимі інвертора?",
+  "id": 799,
+  "label": [
+    {
+      "start": 0,
+      "end": 20,
+      "text": "Мультиплюс 24\/800\/16",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 341,
+  "created_at": "2025-12-04T09:47:27.105757Z",
+  "updated_at": "2025-12-04T09:47:27.105780Z",
+  "lead_time": 5.868
+},
+{
+  "text": "Sofar 7KTLM-G3 — потрібна схема підключення.",
+  "id": 800,
+  "label": [
+    {
+      "start": 0,
+      "end": 14,
+      "text": "Sofar 7KTLM-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 342,
+  "created_at": "2025-12-04T09:47:35.232814Z",
+  "updated_at": "2025-12-04T09:47:35.232835Z",
+  "lead_time": 6.195
+},
+{
+  "text": "Quattro 12\/5000\/220-100\/100 — чи підтримує ATS?",
+  "id": 801,
+  "label": [
+    {
+      "start": 0,
+      "end": 27,
+      "text": "Quattro 12\/5000\/220-100\/100",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 343,
+  "created_at": "2025-12-04T09:47:43.386941Z",
+  "updated_at": "2025-12-04T09:47:43.386964Z",
+  "lead_time": 5.86
+},
+{
+  "text": "Verto 33.3 — які параметри AC фазності?",
+  "id": 802,
+  "label": [
+    {
+      "start": 0,
+      "end": 10,
+      "text": "Verto 33.3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 344,
+  "created_at": "2025-12-04T09:47:51.741473Z",
+  "updated_at": "2025-12-04T09:47:51.741501Z",
+  "lead_time": 6.162
+},
+{
+  "text": "SNA 5000 WPV — який максимальний вхідний струм DC?",
+  "id": 803,
+  "label": [
+    {
+      "start": 0,
+      "end": 12,
+      "text": "SNA 5000 WPV",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 345,
+  "created_at": "2025-12-04T09:48:01.387735Z",
+  "updated_at": "2025-12-04T09:48:01.387754Z",
+  "lead_time": 6.403
+},
+{
+  "text": "US 2000C — чи треба калібрувати після установки?",
+  "id": 804,
+  "label": [
+    {
+      "start": 0,
+      "end": 8,
+      "text": "US 2000C",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 346,
+  "created_at": "2025-12-04T09:48:10.228588Z",
+  "updated_at": "2025-12-04T09:48:10.228611Z",
+  "lead_time": 7.125
+},
+{
+  "text": "EasySolar-II 48\/5000\/70-50 — які типи акумуляторів підтримуються?",
+  "id": 805,
+  "label": [
+    {
+      "start": 0,
+      "end": 26,
+      "text": "EasySolar-II 48\/5000\/70-50",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 347,
+  "created_at": "2025-12-04T09:48:20.103525Z",
+  "updated_at": "2025-12-04T09:48:20.103548Z",
+  "lead_time": 8.061
+},
+{
+  "text": "Symo 7.0-3-M — яка стартова напруга панелей?",
+  "id": 806,
+  "label": [
+    {
+      "start": 0,
+      "end": 12,
+      "text": "Symo 7.0-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 348,
+  "created_at": "2025-12-04T09:48:28.773438Z",
+  "updated_at": "2025-12-04T09:48:28.773472Z",
+  "lead_time": 6.975
+},
+{
+  "text": "Який діапазон робочої напруги по DC у Верто 25.0?",
+  "id": 807,
+  "label": [
+    {
+      "start": 38,
+      "end": 48,
+      "text": "Верто 25.0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 349,
+  "created_at": "2025-12-04T09:57:11.787200Z",
+  "updated_at": "2025-12-04T09:57:11.787222Z",
+  "lead_time": 6.81
+},
+{
+  "text": "Чи сумісний Верто 15.0 208-240 з US2000C?",
+  "id": 808,
+  "label": [
+    {
+      "start": 12,
+      "end": 30,
+      "text": "Верто 15.0 208-240",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 40,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 350,
+  "created_at": "2025-12-04T09:57:25.488322Z",
+  "updated_at": "2025-12-04T09:57:25.488342Z",
+  "lead_time": 11.773
+},
+{
+  "text": "Чи підтримує Верто33.3 роботу з трифазним навантаженням?",
+  "id": 809,
+  "label": [
+    {
+      "start": 13,
+      "end": 22,
+      "text": "Верто33.3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 351,
+  "created_at": "2025-12-04T09:57:33.637730Z",
+  "updated_at": "2025-12-04T09:57:33.637750Z",
+  "lead_time": 6.24
+},
+{
+  "text": "Який номінальний струм по AC має Верто33.3?",
+  "id": 810,
+  "label": [
+    {
+      "start": 33,
+      "end": 42,
+      "text": "Верто33.3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 352,
+  "created_at": "2025-12-04T09:57:42.218842Z",
+  "updated_at": "2025-12-04T09:57:42.218863Z",
+  "lead_time": 6.638
+},
+{
+  "text": "Чи є інструкція українською для Верто 18.0?",
+  "id": 811,
+  "label": [
+    {
+      "start": 32,
+      "end": 42,
+      "text": "Верто 18.0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 353,
+  "created_at": "2025-12-04T09:57:51.508727Z",
+  "updated_at": "2025-12-04T09:57:51.508748Z",
+  "lead_time": 7.108
+},
+{
+  "text": "Чи можна використовувати ІзіСолар-II 48\/3000\/35-32+MPPT250\/70 без акумулятора?",
+  "id": 812,
+  "label": [
+    {
+      "start": 25,
+      "end": 61,
+      "text": "ІзіСолар-II 48\/3000\/35-32+MPPT250\/70",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 354,
+  "created_at": "2025-12-04T09:58:08.537706Z",
+  "updated_at": "2025-12-04T13:04:42.932234Z",
+  "lead_time": 20.118
+},
+{
+  "text": "Який максимальний струм заряду у ІзіСолар24\/1600\/40?",
+  "id": 813,
+  "label": [
+    {
+      "start": 33,
+      "end": 51,
+      "text": "ІзіСолар24\/1600\/40",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 355,
+  "created_at": "2025-12-04T09:58:25.080517Z",
+  "updated_at": "2025-12-04T09:58:25.080539Z",
+  "lead_time": 9.355
+},
+{
+  "text": "Чи підтримує ИзиСолар 12\/1600\/70 роботу зі свинцево-кислотними АКБ?",
+  "id": 814,
+  "label": [
+    {
+      "start": 13,
+      "end": 32,
+      "text": "ИзиСолар 12\/1600\/70",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 356,
+  "created_at": "2025-12-04T09:58:32.531232Z",
+  "updated_at": "2025-12-04T09:58:32.531254Z",
+  "lead_time": 5.474
+},
+{
+  "text": "Яка мінімальна напруга старту MPPT у Изисолар-II 24\/3000\/70-32?",
+  "id": 815,
+  "label": [
+    {
+      "start": 37,
+      "end": 62,
+      "text": "Изисолар-II 24\/3000\/70-32",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 357,
+  "created_at": "2025-12-04T09:58:41.378766Z",
+  "updated_at": "2025-12-04T09:58:41.378788Z",
+  "lead_time": 7.118
+},
+{
+  "text": "Де знайти інструкцію для Изисолар-II48\/5000\/70-50+MPPT250\/100 GX?",
+  "id": 816,
+  "label": [
+    {
+      "start": 25,
+      "end": 64,
+      "text": "Изисолар-II48\/5000\/70-50+MPPT250\/100 GX",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 358,
+  "created_at": "2025-12-04T09:58:54.395067Z",
+  "updated_at": "2025-12-04T13:04:30.118229Z",
+  "lead_time": 18.432
+},
+{
+  "text": "Який рівень захисту корпусу у Тауро ECO 50-3-P?",
+  "id": 817,
+  "label": [
+    {
+      "start": 30,
+      "end": 46,
+      "text": "Тауро ECO 50-3-P",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 359,
+  "created_at": "2025-12-04T09:59:03.456976Z",
+  "updated_at": "2025-12-04T09:59:03.457009Z",
+  "lead_time": 7.302
+},
+{
+  "text": "Чи сумісний Тауро99-3-D із системою моніторингу Fronius?",
+  "id": 818,
+  "label": [
+    {
+      "start": 12,
+      "end": 23,
+      "text": "Тауро99-3-D",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 360,
+  "created_at": "2025-12-04T09:59:14.670687Z",
+  "updated_at": "2025-12-04T09:59:14.670708Z",
+  "lead_time": 9.532
+},
+{
+  "text": "Яка номінальна потужність по AC у Тауро50-3-D?",
+  "id": 819,
+  "label": [
+    {
+      "start": 34,
+      "end": 45,
+      "text": "Тауро50-3-D",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 361,
+  "created_at": "2025-12-04T09:59:27.564856Z",
+  "updated_at": "2025-12-04T09:59:27.564879Z",
+  "lead_time": 10.98
+},
+{
+  "text": "Чи можна підключати оптимізатори до Тауро ECO100-3-P?",
+  "id": 820,
+  "label": [
+    {
+      "start": 36,
+      "end": 52,
+      "text": "Тауро ECO100-3-P",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 362,
+  "created_at": "2025-12-04T09:59:35.372130Z",
+  "updated_at": "2025-12-04T09:59:35.372160Z",
+  "lead_time": 6.075
+},
+{
+  "text": "Чи є обмеження по температурі для Тауро 50-3-P?",
+  "id": 821,
+  "label": [
+    {
+      "start": 34,
+      "end": 46,
+      "text": "Тауро 50-3-P",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 363,
+  "created_at": "2025-12-04T09:59:46.324198Z",
+  "updated_at": "2025-12-04T09:59:46.324219Z",
+  "lead_time": 9.157
+},
+{
+  "text": "Чи можна замінити інвертор fronius Fronius Eco 27.0 на іншу модель?",
+  "id": 822,
+  "label": [
+    {
+      "start": 43,
+      "end": 51,
+      "text": "Eco 27.0",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 42,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 364,
+  "created_at": "2025-12-04T10:58:23.161253Z",
+  "updated_at": "2025-12-04T10:58:23.161278Z",
+  "lead_time": 16.809
+},
+{
+  "text": "Які технічні характеристики має інвертор sofar SOFAR 6000TLM-G2?",
+  "id": 823,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 46,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 52,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 63,
+      "text": "6000TLM-G2",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 365,
+  "created_at": "2025-12-04T10:58:39.392124Z",
+  "updated_at": "2025-12-04T10:58:39.392145Z",
+  "lead_time": 14.577
+},
+{
+  "text": "Чи можна замінити інвертор solis RHI-6K-48ES-5G на іншу модель?",
+  "id": 824,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 47,
+      "text": "RHI-6K-48ES-5G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 366,
+  "created_at": "2025-12-04T10:58:52.287570Z",
+  "updated_at": "2025-12-04T10:58:52.287591Z",
+  "lead_time": 11.287
+},
+{
+  "text": "Какие технические характеристики у інвертор sofar SOFAR 10K-20KTL?",
+  "id": 825,
+  "label": [
+    {
+      "start": 35,
+      "end": 43,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 49,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 55,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 56,
+      "end": 65,
+      "text": "10K-20KTL",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 367,
+  "created_at": "2025-12-04T10:59:06.542247Z",
+  "updated_at": "2025-12-04T10:59:06.542268Z",
+  "lead_time": 12.739
+},
+{
+  "text": "З якими системами сумісний інвертор victron MultiPlus-II24\/5000\/120-50?",
+  "id": 826,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 70,
+      "text": "MultiPlus-II24\/5000\/120-50",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 368,
+  "created_at": "2025-12-04T10:59:19.735890Z",
+  "updated_at": "2025-12-04T10:59:19.735912Z",
+  "lead_time": 11.757
+},
+{
+  "text": "Какие технические характеристики у інвертор victron MultiPlus24\/800\/16?",
+  "id": 827,
+  "label": [
+    {
+      "start": 35,
+      "end": 43,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 51,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 52,
+      "end": 70,
+      "text": "MultiPlus24\/800\/16",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 369,
+  "created_at": "2025-12-04T10:59:32.206359Z",
+  "updated_at": "2025-12-04T10:59:32.206382Z",
+  "lead_time": 11.014
+},
+{
+  "text": "Які технічні характеристики має інвертор fronius 3.7-3-M?",
+  "id": 828,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 56,
+      "text": "3.7-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 370,
+  "created_at": "2025-12-04T10:59:46.277002Z",
+  "updated_at": "2025-12-04T10:59:46.277028Z",
+  "lead_time": 10.576
+},
+{
+  "text": "Чи можна замінити інвертор fronius Fronius Symo 5.0-3-M на іншу модель?",
+  "id": 829,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 42,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 55,
+      "text": "Symo 5.0-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 371,
+  "created_at": "2025-12-04T11:00:01.754018Z",
+  "updated_at": "2025-12-04T11:00:01.754039Z",
+  "lead_time": 13.616
+},
+{
+  "text": "С какими устройствами совместим інвертор victron MultiPlus-II48\/15000\/200-100?",
+  "id": 830,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 77,
+      "text": "MultiPlus-II48\/15000\/200-100",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 372,
+  "created_at": "2025-12-04T11:00:17.358825Z",
+  "updated_at": "2025-12-04T11:00:17.358846Z",
+  "lead_time": 13.992
+},
+{
+  "text": "Які технічні характеристики має інвертор victron MultiPlus12\/3000\/120?",
+  "id": 831,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 69,
+      "text": "MultiPlus12\/3000\/120",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 373,
+  "created_at": "2025-12-04T11:00:29.009081Z",
+  "updated_at": "2025-12-04T11:00:29.009103Z",
+  "lead_time": 9.847
+},
+{
+  "text": "З якими системами сумісний інвертор sofar SOFAR 10K-20KTL?",
+  "id": 832,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 41,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 47,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 57,
+      "text": "10K-20KTL",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 374,
+  "created_at": "2025-12-04T11:00:44.043967Z",
+  "updated_at": "2025-12-04T11:00:44.043988Z",
+  "lead_time": 13.628
+},
+{
+  "text": "З якими системами сумісний інвертор solis Solis-30K-5G?",
+  "id": 833,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 41,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 47,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 54,
+      "text": "30K-5G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 375,
+  "created_at": "2025-12-04T11:06:58.629492Z",
+  "updated_at": "2025-12-04T11:06:58.629516Z",
+  "lead_time": 373.026
+},
+{
+  "text": "Які вимоги до підключення для інвертор victron Quattro 3kVA (12-48)V?",
+  "id": 834,
+  "label": [
+    {
+      "start": 39,
+      "end": 46,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 68,
+      "text": "Quattro 3kVA (12-48)V",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 376,
+  "created_at": "2025-12-04T11:07:14.447718Z",
+  "updated_at": "2025-12-04T11:07:14.447740Z",
+  "lead_time": 14.27
+},
+{
+  "text": "Які вимоги до підключення для інвертор fronius 3.7-3-M?",
+  "id": 835,
+  "label": [
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 46,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 54,
+      "text": "3.7-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 377,
+  "created_at": "2025-12-04T11:07:27.758944Z",
+  "updated_at": "2025-12-04T11:07:27.758967Z",
+  "lead_time": 11.756
+},
+{
+  "text": "Чи можна замінити інвертор fronius 7.0-3-M на іншу модель?",
+  "id": 836,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 42,
+      "text": "7.0-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 378,
+  "created_at": "2025-12-04T11:08:29.573034Z",
+  "updated_at": "2025-12-04T11:08:29.573059Z",
+  "lead_time": 8.304
+},
+{
+  "text": "Які вимоги до підключення для інвертор luxpower 6K Hybrid?",
+  "id": 837,
+  "label": [
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 47,
+      "text": "luxpower",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 57,
+      "text": "6K Hybrid",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 379,
+  "created_at": "2025-12-04T11:08:42.681980Z",
+  "updated_at": "2025-12-04T11:08:42.682000Z",
+  "lead_time": 11.361
+},
+{
+  "text": "Какие технические характеристики у інвертор victron InverterRSSmartSolar48\/6000?",
+  "id": 838,
+  "label": [
+    {
+      "start": 35,
+      "end": 43,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 51,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 60,
+      "end": 79,
+      "text": "RSSmartSolar48\/6000",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 60,
+      "text": "nverter",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 380,
+  "created_at": "2025-12-04T11:09:13.904465Z",
+  "updated_at": "2025-12-04T11:09:13.904488Z",
+  "lead_time": 29.574
+},
+{
+  "text": "Чи підходить інвертор sofar SOFAR 8.8KTLX-G3 для домашньої системи енергозабезпечення?",
+  "id": 839,
+  "label": [
+    {
+      "start": 13,
+      "end": 21,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 27,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 28,
+      "end": 33,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 34,
+      "end": 44,
+      "text": "8.8KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 381,
+  "created_at": "2025-12-04T11:09:27.016949Z",
+  "updated_at": "2025-12-04T11:09:27.016972Z",
+  "lead_time": 11.428
+},
+{
+  "text": "Можно ли заменить інвертор solis S5-GR3P13K на другую модель?",
+  "id": 840,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 43,
+      "text": "S5-GR3P13K",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 382,
+  "created_at": "2025-12-04T11:09:40.456145Z",
+  "updated_at": "2025-12-04T11:09:40.456183Z",
+  "lead_time": 11.724
+},
+{
+  "text": "Які технічні характеристики має інвертор solis Solis-3P10K-4G-LV?",
+  "id": 841,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 46,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 52,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 64,
+      "text": "3P10K-4G-LV",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 383,
+  "created_at": "2025-12-04T11:09:59.856328Z",
+  "updated_at": "2025-12-04T11:09:59.856359Z",
+  "lead_time": 17.739
+},
+{
+  "text": "Чи підходить інвертор sofar SH4.0RS для домашньої системи енергозабезпечення?",
+  "id": 842,
+  "label": [
+    {
+      "start": 13,
+      "end": 21,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 27,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 28,
+      "end": 35,
+      "text": "SH4.0RS",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 384,
+  "created_at": "2025-12-04T11:10:11.255048Z",
+  "updated_at": "2025-12-04T11:10:11.255069Z",
+  "lead_time": 10.006
+},
+{
+  "text": "Які технічні характеристики має інвертор solis RHI-5K-48ES-5G?",
+  "id": 843,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 46,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 61,
+      "text": "RHI-5K-48ES-5G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 385,
+  "created_at": "2025-12-04T11:10:23.009099Z",
+  "updated_at": "2025-12-04T11:10:23.009121Z",
+  "lead_time": 9.639
+},
+{
+  "text": "З якими системами сумісний інвертор fronius Verto 27.0?",
+  "id": 844,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 54,
+      "text": "Verto 27.0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 386,
+  "created_at": "2025-12-04T11:10:35.586702Z",
+  "updated_at": "2025-12-04T11:10:35.586723Z",
+  "lead_time": 9.423
+},
+{
+  "text": "С какими устройствами совместим інвертор victron MultiPlus24\/3000\/70?",
+  "id": 845,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 68,
+      "text": "MultiPlus24\/3000\/70",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 387,
+  "created_at": "2025-12-04T11:10:48.691012Z",
+  "updated_at": "2025-12-04T11:10:48.691033Z",
+  "lead_time": 11.469
+},
+{
+  "text": "Чи підходить інвертор victron EasySolar-II 5кВА для домашньої системи енергозабезпечення?",
+  "id": 846,
+  "label": [
+    {
+      "start": 13,
+      "end": 21,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 29,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 47,
+      "text": "EasySolar-II 5кВА",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 388,
+  "created_at": "2025-12-04T11:11:01.727195Z",
+  "updated_at": "2025-12-04T11:11:01.727216Z",
+  "lead_time": 11.245
+},
+{
+  "text": "Какие требования к подключению у інвертор victron C12\/2000\/80?",
+  "id": 847,
+  "label": [
+    {
+      "start": 33,
+      "end": 41,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 49,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 61,
+      "text": "C12\/2000\/80",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 389,
+  "created_at": "2025-12-04T11:11:14.038219Z",
+  "updated_at": "2025-12-04T11:11:14.038241Z",
+  "lead_time": 10.501
+},
+{
+  "text": "Можно ли заменить інвертор victron MultiPlus24\/2000\/50 на другую модель?",
+  "id": 848,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 54,
+      "text": "MultiPlus24\/2000\/50",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 390,
+  "created_at": "2025-12-04T11:11:26.702610Z",
+  "updated_at": "2025-12-04T11:11:26.702632Z",
+  "lead_time": 11.086
+},
+{
+  "text": "Можно ли заменить інвертор victron EasySolar 24\/1600\/40 на другую модель?",
+  "id": 849,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 55,
+      "text": "EasySolar 24\/1600\/40",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 391,
+  "created_at": "2025-12-04T11:11:38.226944Z",
+  "updated_at": "2025-12-04T11:11:38.226970Z",
+  "lead_time": 9.916
+},
+{
+  "text": "Чи підходить інвертор fronius Primo 4.0-1 для домашньої системи енергозабезпечення?",
+  "id": 850,
+  "label": [
+    {
+      "start": 13,
+      "end": 21,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 29,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 41,
+      "text": "Primo 4.0-1",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 392,
+  "created_at": "2025-12-04T11:11:49.926414Z",
+  "updated_at": "2025-12-04T11:11:49.926438Z",
+  "lead_time": 10.088
+},
+{
+  "text": "Які вимоги до підключення для інвертор solis S5-GC50K?",
+  "id": 851,
+  "label": [
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 44,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 45,
+      "end": 53,
+      "text": "S5-GC50K",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 393,
+  "created_at": "2025-12-04T11:12:02.291703Z",
+  "updated_at": "2025-12-04T11:12:02.291724Z",
+  "lead_time": 10.81
+},
+{
+  "text": "З якими системами сумісний інвертор sofar HYD 10KTL-3PH-A?",
+  "id": 852,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 41,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 57,
+      "text": "HYD 10KTL-3PH-A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 394,
+  "created_at": "2025-12-04T11:12:14.676263Z",
+  "updated_at": "2025-12-04T11:12:14.676284Z",
+  "lead_time": 10.162
+},
+{
+  "text": "Чи можна замінити інвертор sofar SOFAR 4600TLM-G2 на іншу модель?",
+  "id": 853,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 38,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 49,
+      "text": "4600TLM-G2",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 395,
+  "created_at": "2025-12-04T11:12:28.652379Z",
+  "updated_at": "2025-12-04T11:12:28.652400Z",
+  "lead_time": 11.831
+},
+{
+  "text": "Чи можна замінити інвертор sungrow SG30CX-P2 на іншу модель?",
+  "id": 854,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 44,
+      "text": "SG30CX-P2",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 396,
+  "created_at": "2025-12-04T11:12:40.733345Z",
+  "updated_at": "2025-12-04T11:12:40.733371Z",
+  "lead_time": 10.48
+},
+{
+  "text": "Які вимоги до підключення для інвертор sungrow SH8.0RT-20?",
+  "id": 855,
+  "label": [
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 46,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 57,
+      "text": "SH8.0RT-20",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 397,
+  "created_at": "2025-12-04T11:12:55.816237Z",
+  "updated_at": "2025-12-04T11:12:55.816258Z",
+  "lead_time": 9.339
+},
+{
+  "text": "Какие технические характеристики у інвертор fronius Fronius Symo 15.0-3-M?",
+  "id": 856,
+  "label": [
+    {
+      "start": 35,
+      "end": 43,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 51,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 52,
+      "end": 59,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 60,
+      "end": 73,
+      "text": "Symo 15.0-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 398,
+  "created_at": "2025-12-04T11:13:08.702519Z",
+  "updated_at": "2025-12-04T11:13:08.702540Z",
+  "lead_time": 11.272
+},
+{
+  "text": "С какими устройствами совместим інвертор sofar SOFAR 10000-Sx?",
+  "id": 857,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 46,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 52,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 61,
+      "text": "10000-Sx",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 399,
+  "created_at": "2025-12-04T11:13:28.966747Z",
+  "updated_at": "2025-12-04T11:13:28.966768Z",
+  "lead_time": 18.226
+},
+{
+  "text": "Чи можна замінити інвертор luxpower SNA4000 WPV на іншу модель?",
+  "id": 858,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 35,
+      "text": "luxpower",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 47,
+      "text": "SNA4000 WPV",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 400,
+  "created_at": "2025-12-04T11:13:40.634696Z",
+  "updated_at": "2025-12-04T11:13:40.634718Z",
+  "lead_time": 10.059
+},
+{
+  "text": "Які технічні характеристики має інвертор sofar SOFAR 4.6KTLM-G3?",
+  "id": 859,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 46,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 52,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 63,
+      "text": "4.6KTLM-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 401,
+  "created_at": "2025-12-04T11:13:53.595335Z",
+  "updated_at": "2025-12-04T11:13:53.595358Z",
+  "lead_time": 11.309
+},
+{
+  "text": "Можно ли заменить інвертор sofar SOFAR 5KTLM-G3-A на другую модель?",
+  "id": 860,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 38,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 49,
+      "text": "5KTLM-G3-A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 402,
+  "created_at": "2025-12-04T11:14:08.345980Z",
+  "updated_at": "2025-12-04T11:14:08.346001Z",
+  "lead_time": 12.994
+},
+{
+  "text": "З якими системами сумісний інвертор solis S5-GR3P9K?",
+  "id": 861,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 41,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 51,
+      "text": "S5-GR3P9K",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 403,
+  "created_at": "2025-12-04T11:14:21.331770Z",
+  "updated_at": "2025-12-04T11:14:21.331800Z",
+  "lead_time": 10.995
+},
+{
+  "text": "Які технічні характеристики має інвертор solis Solis-40K-5G?",
+  "id": 862,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 46,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 52,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 59,
+      "text": "40K-5G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 404,
+  "created_at": "2025-12-04T11:14:36.438333Z",
+  "updated_at": "2025-12-04T11:14:36.438357Z",
+  "lead_time": 13.505
+},
+{
+  "text": "З якими системами сумісний інвертор sungrow SH6.0RT?",
+  "id": 863,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 51,
+      "text": "SH6.0RT",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 405,
+  "created_at": "2025-12-04T11:15:01.671697Z",
+  "updated_at": "2025-12-04T11:15:01.671718Z",
+  "lead_time": 22.702
+},
+{
+  "text": "Які вимоги до підключення для інвертор luxpower 6K Hybrid?",
+  "id": 864,
+  "label": [
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 47,
+      "text": "luxpower",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 57,
+      "text": "6K Hybrid",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 406,
+  "created_at": "2025-12-04T11:15:14.230283Z",
+  "updated_at": "2025-12-04T11:15:14.230302Z",
+  "lead_time": 10.794
+},
+{
+  "text": "Чи можна замінити інвертор solis S5-GC100K на іншу модель?",
+  "id": 865,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 42,
+      "text": "S5-GC100K",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 407,
+  "created_at": "2025-12-04T11:15:35.234060Z",
+  "updated_at": "2025-12-04T11:15:35.234082Z",
+  "lead_time": 9.683
+},
+{
+  "text": "Які вимоги до підключення для інвертор victron MultiPlus12\/2000\/80?",
+  "id": 866,
+  "label": [
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 46,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 66,
+      "text": "MultiPlus12\/2000\/80",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 408,
+  "created_at": "2025-12-04T11:15:47.030083Z",
+  "updated_at": "2025-12-04T11:15:47.030103Z",
+  "lead_time": 9.969
+},
+{
+  "text": "Які технічні характеристики має інвертор solis Solis-25K-5G?",
+  "id": 867,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 46,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 52,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 59,
+      "text": "25K-5G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 409,
+  "created_at": "2025-12-04T11:16:00.649623Z",
+  "updated_at": "2025-12-04T11:16:00.649645Z",
+  "lead_time": 11.967
+},
+{
+  "text": "Какие технические характеристики у інвертор fronius Fronius Eco 27.0-3-S?",
+  "id": 868,
+  "label": [
+    {
+      "start": 35,
+      "end": 43,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 51,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 52,
+      "end": 59,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 60,
+      "end": 72,
+      "text": "Eco 27.0-3-S",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 410,
+  "created_at": "2025-12-04T11:16:15.980240Z",
+  "updated_at": "2025-12-04T11:16:15.980261Z",
+  "lead_time": 13.756
+},
+{
+  "text": "Чи можна замінити інвертор luxpower LXP-LB-EU-8 на іншу модель?",
+  "id": 869,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 35,
+      "text": "luxpower",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 47,
+      "text": "LXP-LB-EU-8",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 411,
+  "created_at": "2025-12-04T11:16:28.629152Z",
+  "updated_at": "2025-12-04T11:16:28.629173Z",
+  "lead_time": 10.918
+},
+{
+  "text": "З якими системами сумісний інвертор sungrow SH5T?",
+  "id": 870,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 48,
+      "text": "SH5T",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 412,
+  "created_at": "2025-12-04T11:16:40.435526Z",
+  "updated_at": "2025-12-04T11:16:40.435548Z",
+  "lead_time": 9.981
+},
+{
+  "text": "Можно ли заменить інвертор victron 48\/5000\/70 на другую модель?",
+  "id": 871,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 45,
+      "text": "48\/5000\/70",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 413,
+  "created_at": "2025-12-04T11:16:54.352947Z",
+  "updated_at": "2025-12-04T11:16:54.352968Z",
+  "lead_time": 12.026
+},
+{
+  "text": "З якими системами сумісний інвертор deye SUN-5\/6\/8\/10\/12K-SG04LP3-EU?",
+  "id": 872,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 40,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 414,
+  "created_at": "2025-12-04T11:17:23.518692Z",
+  "updated_at": "2025-12-04T11:17:23.518713Z",
+  "lead_time": 27.392
+},
+{
+  "text": "З якими системами сумісний інвертор solis S5-GR3P17K?",
+  "id": 873,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 41,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 52,
+      "text": "S5-GR3P17K",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 415,
+  "created_at": "2025-12-04T11:17:36.365322Z",
+  "updated_at": "2025-12-04T11:17:36.365345Z",
+  "lead_time": 9.989
+},
+{
+  "text": "З якими системами сумісний інвертор solis RHI-4.6K-48ES?",
+  "id": 874,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 41,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 55,
+      "text": "RHI-4.6K-48ES",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 416,
+  "created_at": "2025-12-04T11:17:49.235300Z",
+  "updated_at": "2025-12-04T11:17:49.235320Z",
+  "lead_time": 11.258
+},
+{
+  "text": "Які вимоги до підключення для інвертор victron Quattro-II?",
+  "id": 875,
+  "label": [
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 46,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 57,
+      "text": "Quattro-II",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 417,
+  "created_at": "2025-12-04T11:18:01.685748Z",
+  "updated_at": "2025-12-04T11:18:01.685772Z",
+  "lead_time": 10.795
+},
+{
+  "text": "Які технічні характеристики має інвертор deye SUN-5?",
+  "id": 876,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 45,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 46,
+      "end": 51,
+      "text": "SUN-5",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 418,
+  "created_at": "2025-12-04T11:18:13.779640Z",
+  "updated_at": "2025-12-04T11:18:13.779663Z",
+  "lead_time": 10.344
+},
+{
+  "text": "Які технічні характеристики має інвертор solis RHI-4.6K-48ES?",
+  "id": 877,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 46,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 60,
+      "text": "RHI-4.6K-48ES",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 419,
+  "created_at": "2025-12-04T11:18:25.727040Z",
+  "updated_at": "2025-12-04T11:18:25.727061Z",
+  "lead_time": 10.439
+},
+{
+  "text": "З якими системами сумісний інвертор sungrow SG3.0RS?",
+  "id": 878,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 51,
+      "text": "SG3.0RS",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 420,
+  "created_at": "2025-12-04T11:18:37.361647Z",
+  "updated_at": "2025-12-04T11:18:37.361669Z",
+  "lead_time": 9.619
+},
+{
+  "text": "Можно ли заменить інвертор sofar SOFAR 24KTLX-G3-A на другую модель?",
+  "id": 879,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 38,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 50,
+      "text": "24KTLX-G3-A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 421,
+  "created_at": "2025-12-04T11:18:52.178247Z",
+  "updated_at": "2025-12-04T11:18:52.178269Z",
+  "lead_time": 12.773
+},
+{
+  "text": "Які технічні характеристики має інвертор fronius Verto 15.0 208-240?",
+  "id": 880,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 67,
+      "text": "Verto 15.0 208-240",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 422,
+  "created_at": "2025-12-04T11:19:03.570656Z",
+  "updated_at": "2025-12-04T11:19:03.570678Z",
+  "lead_time": 9.735
+},
+{
+  "text": "Какие требования к подключению у інвертор victron MultiPlus24\/800\/16?",
+  "id": 881,
+  "label": [
+    {
+      "start": 33,
+      "end": 41,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 49,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 68,
+      "text": "MultiPlus24\/800\/16",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 423,
+  "created_at": "2025-12-04T11:19:15.908118Z",
+  "updated_at": "2025-12-04T11:19:15.908139Z",
+  "lead_time": 10.875
+},
+{
+  "text": "Чи підходить інвертор fronius Fronius Symo 3.7-3-S для домашньої системи енергозабезпечення?",
+  "id": 882,
+  "label": [
+    {
+      "start": 13,
+      "end": 21,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 29,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 37,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 50,
+      "text": "Symo 3.7-3-S",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 424,
+  "created_at": "2025-12-04T11:19:37.760799Z",
+  "updated_at": "2025-12-04T11:19:37.760821Z",
+  "lead_time": 19.988
+},
+{
+  "text": "Чи можна замінити інвертор fronius Fronius Symo 3.7-3-M на іншу модель?",
+  "id": 883,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 42,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 55,
+      "text": "Symo 3.7-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 425,
+  "created_at": "2025-12-04T11:19:53.656019Z",
+  "updated_at": "2025-12-04T11:19:53.656043Z",
+  "lead_time": 13.003
+},
+{
+  "text": "Які вимоги до підключення для інвертор sofar SOFAR 24KTLX-G3-A?",
+  "id": 884,
+  "label": [
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 44,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 45,
+      "end": 50,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 51,
+      "end": 62,
+      "text": "24KTLX-G3-A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 426,
+  "created_at": "2025-12-04T11:20:13.022387Z",
+  "updated_at": "2025-12-04T11:20:13.022413Z",
+  "lead_time": 13.001
+},
+{
+  "text": "Подходит ли інвертор sungrow SG6.0RT для домашней энергосистемы?",
+  "id": 885,
+  "label": [
+    {
+      "start": 12,
+      "end": 20,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 21,
+      "end": 28,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 36,
+      "text": "SG6.0RT",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 427,
+  "created_at": "2025-12-04T11:20:24.489472Z",
+  "updated_at": "2025-12-04T11:20:24.489492Z",
+  "lead_time": 9.685
+},
+{
+  "text": "С какими устройствами совместим інвертор sungrow SG4.0RS?",
+  "id": 886,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 56,
+      "text": "SG4.0RS",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 428,
+  "created_at": "2025-12-04T11:20:36.360000Z",
+  "updated_at": "2025-12-04T11:20:36.360021Z",
+  "lead_time": 9.838
+},
+{
+  "text": "Можно ли заменить інвертор fronius 12.5-3-M на другую модель?",
+  "id": 887,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 43,
+      "text": "12.5-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 429,
+  "created_at": "2025-12-04T11:20:53.190475Z",
+  "updated_at": "2025-12-04T11:20:53.190514Z",
+  "lead_time": 9.282
+},
+{
+  "text": "З якими системами сумісний інвертор victron MultiPlus24\/1600\/40?",
+  "id": 888,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 63,
+      "text": "MultiPlus24\/1600\/40",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 430,
+  "created_at": "2025-12-04T11:21:05.255011Z",
+  "updated_at": "2025-12-04T11:21:05.255035Z",
+  "lead_time": 10.354
+},
+{
+  "text": "С какими устройствами совместим інвертор victron C24\/1200\/25?",
+  "id": 889,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 60,
+      "text": "C24\/1200\/25",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 431,
+  "created_at": "2025-12-04T11:21:17.208816Z",
+  "updated_at": "2025-12-04T11:21:17.208837Z",
+  "lead_time": 10.183
+},
+{
+  "text": "Які технічні характеристики має інвертор luxpower LXP6K1HB?",
+  "id": 890,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 49,
+      "text": "luxpower",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 58,
+      "text": "LXP6K1HB",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 432,
+  "created_at": "2025-12-04T11:21:35.372862Z",
+  "updated_at": "2025-12-04T11:21:35.372884Z",
+  "lead_time": 13.811
+},
+{
+  "text": "Чи можна замінити інвертор solis Solis-3P15K-4G на іншу модель?",
+  "id": 891,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 38,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 47,
+      "text": "3P15K-4G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 433,
+  "created_at": "2025-12-04T11:21:48.870670Z",
+  "updated_at": "2025-12-04T11:21:48.870695Z",
+  "lead_time": 11.466
+},
+{
+  "text": "Які вимоги до підключення для інвертор fronius Fronius Eco 25.0?",
+  "id": 892,
+  "label": [
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 46,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 63,
+      "text": "Fronius Eco 25.0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 434,
+  "created_at": "2025-12-04T11:22:02.844762Z",
+  "updated_at": "2025-12-04T11:22:02.844785Z",
+  "lead_time": 12.353
+},
+{
+  "text": "С какими устройствами совместим інвертор victron EasySolar-II 3кВА?",
+  "id": 893,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 66,
+      "text": "EasySolar-II 3кВА",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 435,
+  "created_at": "2025-12-04T11:22:15.984587Z",
+  "updated_at": "2025-12-04T11:22:15.984608Z",
+  "lead_time": 10.721
+},
+{
+  "text": "Какие технические характеристики у інвертор solis Solis-3P6K-4G?",
+  "id": 894,
+  "label": [
+    {
+      "start": 35,
+      "end": 43,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 49,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 55,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 56,
+      "end": 63,
+      "text": "3P6K-4G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 436,
+  "created_at": "2025-12-04T11:22:42.386353Z",
+  "updated_at": "2025-12-04T11:22:42.386385Z",
+  "lead_time": 24.874
+},
+{
+  "text": "Подходит ли інвертор sofar SOFAR 10000-Sx для домашней энергосистемы?",
+  "id": 895,
+  "label": [
+    {
+      "start": 12,
+      "end": 20,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 21,
+      "end": 26,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 41,
+      "text": "10000-Sx",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 437,
+  "created_at": "2025-12-04T11:22:59.592048Z",
+  "updated_at": "2025-12-04T11:22:59.592072Z",
+  "lead_time": 14.829
+},
+{
+  "text": "Какие требования к подключению у інвертор solis Solis-3P10K-4G?",
+  "id": 896,
+  "label": [
+    {
+      "start": 33,
+      "end": 41,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 47,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 53,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 54,
+      "end": 62,
+      "text": "3P10K-4G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 438,
+  "created_at": "2025-12-04T11:23:14.648077Z",
+  "updated_at": "2025-12-04T11:23:14.648100Z",
+  "lead_time": 13.274
+},
+{
+  "text": "Чи підходить інвертор victron C12\/1200\/50 для домашньої системи енергозабезпечення?",
+  "id": 897,
+  "label": [
+    {
+      "start": 13,
+      "end": 21,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 29,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 41,
+      "text": "C12\/1200\/50",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 439,
+  "created_at": "2025-12-04T11:23:26.799952Z",
+  "updated_at": "2025-12-04T11:23:26.799975Z",
+  "lead_time": 10.299
+},
+{
+  "text": "Які технічні характеристики має інвертор fronius Primo 3.5-1?",
+  "id": 898,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 60,
+      "text": "Primo 3.5-1",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 440,
+  "created_at": "2025-12-04T11:23:38.830510Z",
+  "updated_at": "2025-12-04T11:23:38.830532Z",
+  "lead_time": 10.185
+},
+{
+  "text": "Подходит ли інвертор sofar ME 20KTL-3PH для домашней энергосистемы?",
+  "id": 899,
+  "label": [
+    {
+      "start": 21,
+      "end": 26,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 39,
+      "text": "ME 20KTL-3PH",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 441,
+  "created_at": "2025-12-04T11:23:52.880398Z",
+  "updated_at": "2025-12-04T11:23:52.880421Z",
+  "lead_time": 10.592
+},
+{
+  "text": "З якими системами сумісний інвертор sungrow SG3.6RS?",
+  "id": 900,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 51,
+      "text": "SG3.6RS",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 442,
+  "created_at": "2025-12-04T11:24:04.947259Z",
+  "updated_at": "2025-12-04T11:24:04.947280Z",
+  "lead_time": 10.548
+},
+{
+  "text": "Чи можна замінити інвертор sofar SOFAR 15~24KTLX-G3 на іншу модель?",
+  "id": 901,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 38,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 443,
+  "created_at": "2025-12-04T11:24:47.290873Z",
+  "updated_at": "2025-12-04T11:24:47.290900Z",
+  "lead_time": 32.296
+},
+{
+  "text": "Какие требования к подключению у інвертор deye SUN-10?",
+  "id": 902,
+  "label": [
+    {
+      "start": 33,
+      "end": 41,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 46,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 53,
+      "text": "SUN-10",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 444,
+  "created_at": "2025-12-04T11:24:59.384834Z",
+  "updated_at": "2025-12-04T11:24:59.384855Z",
+  "lead_time": 10.499
+},
+{
+  "text": "Які вимоги до підключення для інвертор solis S5-GC36K?",
+  "id": 903,
+  "label": [
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 44,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 45,
+      "end": 53,
+      "text": "S5-GC36K",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 445,
+  "created_at": "2025-12-04T11:25:15.010123Z",
+  "updated_at": "2025-12-04T11:25:15.010148Z",
+  "lead_time": 13.893
+},
+{
+  "text": "Подходит ли інвертор luxpower 3K Hybrid для домашней энергосистемы?",
+  "id": 904,
+  "label": [
+    {
+      "start": 12,
+      "end": 20,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 21,
+      "end": 29,
+      "text": "luxpower",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 39,
+      "text": "3K Hybrid",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 446,
+  "created_at": "2025-12-04T11:25:26.199701Z",
+  "updated_at": "2025-12-04T11:25:26.199722Z",
+  "lead_time": 9.447
+},
+{
+  "text": "С какими устройствами совместим інвертор victron MultiPlus12\/500\/20?",
+  "id": 905,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 67,
+      "text": "MultiPlus12\/500\/20",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 447,
+  "created_at": "2025-12-04T11:25:53.994017Z",
+  "updated_at": "2025-12-04T11:25:53.994039Z",
+  "lead_time": 25.501
+},
+{
+  "text": "З якими системами сумісний інвертор sungrow SG15RT?",
+  "id": 906,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 50,
+      "text": "SG15RT",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 448,
+  "created_at": "2025-12-04T11:26:05.723314Z",
+  "updated_at": "2025-12-04T11:26:05.723335Z",
+  "lead_time": 10.065
+},
+{
+  "text": "С какими устройствами совместим інвертор luxpower LXP4K1HB?",
+  "id": 907,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 49,
+      "text": "luxpower",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 58,
+      "text": "LXP4K1HB",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 449,
+  "created_at": "2025-12-04T11:26:18.792625Z",
+  "updated_at": "2025-12-04T11:26:18.792645Z",
+  "lead_time": 11.472
+},
+{
+  "text": "С какими устройствами совместим інвертор fronius Primo 3.0-1?",
+  "id": 908,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 60,
+      "text": "Primo 3.0-1",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 450,
+  "created_at": "2025-12-04T11:26:31.161583Z",
+  "updated_at": "2025-12-04T11:26:31.161605Z",
+  "lead_time": 10.284
+},
+{
+  "text": "Подходит ли інвертор sofar SH5.0RS для домашней энергосистемы?",
+  "id": 909,
+  "label": [
+    {
+      "start": 12,
+      "end": 20,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 21,
+      "end": 26,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "SH5.0RS",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 451,
+  "created_at": "2025-12-04T11:26:43.956973Z",
+  "updated_at": "2025-12-04T11:26:43.956994Z",
+  "lead_time": 10.857
+},
+{
+  "text": "Які технічні характеристики має інвертор victron MultiPlus-II12\/3000\/120-32?",
+  "id": 910,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 75,
+      "text": "MultiPlus-II12\/3000\/120-32",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 452,
+  "created_at": "2025-12-04T11:26:57.321153Z",
+  "updated_at": "2025-12-04T11:26:57.321185Z",
+  "lead_time": 9.322
+},
+{
+  "text": "С какими устройствами совместим інвертор sofar SOFAR 50KTLX-G3?",
+  "id": 945,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 46,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 52,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 62,
+      "text": "50KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 457,
+  "created_at": "2025-12-04T11:30:06.874211Z",
+  "updated_at": "2025-12-04T11:30:06.874232Z",
+  "lead_time": 18.394
+},
+{
+  "text": "Подходит ли інвертор sofar HYD 15KTL-3PH для домашней энергосистемы?",
+  "id": 948,
+  "label": [
+    {
+      "start": 12,
+      "end": 20,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 21,
+      "end": 26,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 40,
+      "text": "HYD 15KTL-3PH",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 453,
+  "created_at": "2025-12-04T11:28:46.537119Z",
+  "updated_at": "2025-12-04T11:28:46.537140Z",
+  "lead_time": 12.181
+},
+{
+  "text": "Чи можна замінити інвертор fronius Fronius Symo Advanced 17.5-3-M на іншу модель?",
+  "id": 951,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 42,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 65,
+      "text": "Symo Advanced 17.5-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 454,
+  "created_at": "2025-12-04T11:29:12.279436Z",
+  "updated_at": "2025-12-04T11:29:12.279470Z",
+  "lead_time": 20.645
+},
+{
+  "text": "Подходит ли інвертор victron 24\/3000\/70 для домашней энергосистемы?",
+  "id": 952,
+  "label": [
+    {
+      "start": 12,
+      "end": 20,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 21,
+      "end": 28,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 39,
+      "text": "24\/3000\/70",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 455,
+  "created_at": "2025-12-04T11:29:28.946345Z",
+  "updated_at": "2025-12-04T11:29:28.946364Z",
+  "lead_time": 14.109
+},
+{
+  "text": "Які вимоги до підключення для інвертор deye SUN-8?",
+  "id": 953,
+  "label": [
+    {
+      "start": 30,
+      "end": 38,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 43,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 49,
+      "text": "SUN-8",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 456,
+  "created_at": "2025-12-04T11:29:43.697184Z",
+  "updated_at": "2025-12-04T11:29:43.697205Z",
+  "lead_time": 12.133
+},
+{
+  "text": "Можно ли заменить інвертор sofar 22KTLX-G3 на другую модель?",
+  "id": 954,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 42,
+      "text": "22KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 458,
+  "created_at": "2025-12-04T11:30:29.919007Z",
+  "updated_at": "2025-12-04T11:30:29.919028Z",
+  "lead_time": 13.84
+},
+{
+  "text": "Чи можна замінити інвертор sungrow SG20RT на іншу модель?",
+  "id": 955,
+  "label": [
+    {
+      "start": 18,
+      "end": 26,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 34,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 41,
+      "text": "SG20RT",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 459,
+  "created_at": "2025-12-04T11:30:44.988804Z",
+  "updated_at": "2025-12-04T11:30:44.988830Z",
+  "lead_time": 12.795
+},
+{
+  "text": "Какие технические характеристики у інвертор luxpower LXP-LB-EU-8?",
+  "id": 956,
+  "label": [
+    {
+      "start": 35,
+      "end": 43,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 52,
+      "text": "luxpower",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 64,
+      "text": "LXP-LB-EU-8",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 460,
+  "created_at": "2025-12-04T11:31:02.697447Z",
+  "updated_at": "2025-12-04T11:31:02.697477Z",
+  "lead_time": 13.463
+},
+{
+  "text": "З якими системами сумісний інвертор sofar ME 6KTL-3PH?",
+  "id": 957,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 41,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 53,
+      "text": "ME 6KTL-3PH",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 461,
+  "created_at": "2025-12-04T11:31:15.645605Z",
+  "updated_at": "2025-12-04T11:31:15.645625Z",
+  "lead_time": 9.906
+},
+{
+  "text": "Які технічні характеристики має інвертор luxpower SNA5000 WPV?",
+  "id": 958,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 49,
+      "text": "luxpower",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 61,
+      "text": "SNA5000 WPV",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 462,
+  "created_at": "2025-12-04T11:31:29.671917Z",
+  "updated_at": "2025-12-04T11:31:29.671936Z",
+  "lead_time": 12.024
+},
+{
+  "text": "Чи підходить інвертор solis S5-GR3P5K для домашньої системи енергозабезпечення?",
+  "id": 959,
+  "label": [
+    {
+      "start": 13,
+      "end": 21,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 27,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 28,
+      "end": 37,
+      "text": "S5-GR3P5K",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 463,
+  "created_at": "2025-12-04T11:31:43.870232Z",
+  "updated_at": "2025-12-04T11:31:43.870253Z",
+  "lead_time": 11.826
+},
+{
+  "text": "Какие технические характеристики у інвертор sungrow SG7.0RT?",
+  "id": 960,
+  "label": [
+    {
+      "start": 35,
+      "end": 43,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 51,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 52,
+      "end": 59,
+      "text": "SG7.0RT",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 464,
+  "created_at": "2025-12-04T11:31:58.099918Z",
+  "updated_at": "2025-12-04T11:31:58.099939Z",
+  "lead_time": 11.976
+},
+{
+  "text": "Які технічні характеристики має інвертор deye SUN-29.9\/30\/35K-SG01HP3-EU-BM3?",
+  "id": 962,
+  "label": [
+    {
+      "start": 32,
+      "end": 40,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 45,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 46,
+      "end": 54,
+      "text": "SUN-29.9",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 465,
+  "created_at": "2025-12-04T11:32:16.334443Z",
+  "updated_at": "2025-12-04T11:32:16.334479Z",
+  "lead_time": 15.133
+},
+{
+  "text": "Чи можна замінити акумулятор pylontech SC1000-100 на іншу модель?",
+  "id": 982,
+  "label": [
+    {
+      "start": 18,
+      "end": 28,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 38,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 49,
+      "text": "SC1000-100",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 466,
+  "created_at": "2025-12-04T11:33:04.050082Z",
+  "updated_at": "2025-12-04T11:33:04.050101Z",
+  "lead_time": 10.326
+},
+{
+  "text": "Які технічні характеристики має акумулятор pylontech H48050-15S?",
+  "id": 983,
+  "label": [
+    {
+      "start": 32,
+      "end": 42,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 52,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 63,
+      "text": "H48050-15S",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 467,
+  "created_at": "2025-12-04T11:33:16.975809Z",
+  "updated_at": "2025-12-04T11:33:16.975831Z",
+  "lead_time": 11.351
+},
+{
+  "text": "Чи підходить акумулятор deye BOS-G30 для домашньої системи енергозабезпечення?",
+  "id": 984,
+  "label": [
+    {
+      "start": 13,
+      "end": 23,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 28,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 36,
+      "text": "BOS-G30",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 468,
+  "created_at": "2025-12-04T11:33:29.532192Z",
+  "updated_at": "2025-12-04T11:33:29.532220Z",
+  "lead_time": 10.834
+},
+{
+  "text": "Які вимоги до підключення для акумулятор huawei LUNA2000-5-E0?",
+  "id": 985,
+  "label": [
+    {
+      "start": 30,
+      "end": 40,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 47,
+      "text": "huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 61,
+      "text": "LUNA2000-5-E0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 469,
+  "created_at": "2025-12-04T11:33:42.392911Z",
+  "updated_at": "2025-12-04T11:33:42.392930Z",
+  "lead_time": 10.767
+},
+{
+  "text": "Які технічні характеристики має акумулятор pylontech POWERCUBE-H1 (720V50AH)?",
+  "id": 986,
+  "label": [
+    {
+      "start": 32,
+      "end": 42,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 52,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 65,
+      "text": "POWERCUBE-H1",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 470,
+  "created_at": "2025-12-04T11:33:56.043351Z",
+  "updated_at": "2025-12-04T11:33:56.043374Z",
+  "lead_time": 12.077
+},
+{
+  "text": "Чи підходить акумулятор sofar BTS E10-DS5 для домашньої системи енергозабезпечення?",
+  "id": 987,
+  "label": [
+    {
+      "start": 13,
+      "end": 23,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 29,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 41,
+      "text": "BTS E10-DS5",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 471,
+  "created_at": "2025-12-04T11:34:07.444842Z",
+  "updated_at": "2025-12-04T11:34:07.444864Z",
+  "lead_time": 9.898
+},
+{
+  "text": "З якими системами сумісний акумулятор pylontech US2000C?",
+  "id": 988,
+  "label": [
+    {
+      "start": 27,
+      "end": 37,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 47,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 55,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 472,
+  "created_at": "2025-12-04T11:34:22.990345Z",
+  "updated_at": "2025-12-04T11:34:22.990367Z",
+  "lead_time": 9.505
+},
+{
+  "text": "Чи можна замінити акумулятор deye BOS-G25 на іншу модель?",
+  "id": 989,
+  "label": [
+    {
+      "start": 18,
+      "end": 28,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 33,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 34,
+      "end": 41,
+      "text": "BOS-G25",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 473,
+  "created_at": "2025-12-04T11:34:34.747791Z",
+  "updated_at": "2025-12-04T11:34:34.747813Z",
+  "lead_time": 9.797
+},
+{
+  "text": "Какие технические характеристики у акумулятор deye BOS-G40?",
+  "id": 990,
+  "label": [
+    {
+      "start": 35,
+      "end": 45,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 46,
+      "end": 50,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 51,
+      "end": 58,
+      "text": "BOS-G40",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 474,
+  "created_at": "2025-12-04T11:34:47.472287Z",
+  "updated_at": "2025-12-04T11:34:47.472307Z",
+  "lead_time": 10.833
+},
+{
+  "text": "Чи підходить акумулятор deye BOS-G30 для домашньої системи енергозабезпечення?",
+  "id": 991,
+  "label": [
+    {
+      "start": 13,
+      "end": 23,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 28,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 36,
+      "text": "BOS-G30",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 475,
+  "created_at": "2025-12-04T11:34:58.221753Z",
+  "updated_at": "2025-12-04T11:34:58.221775Z",
+  "lead_time": 8.818
+},
+{
+  "text": "Какие требования к подключению у акумулятор pylontech SC1000-100S?",
+  "id": 992,
+  "label": [
+    {
+      "start": 33,
+      "end": 43,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 53,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 54,
+      "end": 65,
+      "text": "SC1000-100S",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 476,
+  "created_at": "2025-12-04T11:35:10.348405Z",
+  "updated_at": "2025-12-04T11:35:10.348434Z",
+  "lead_time": 10.374
+},
+{
+  "text": "Можно ли заменить акумулятор pylontech US3000 на другую модель?",
+  "id": 993,
+  "label": [
+    {
+      "start": 18,
+      "end": 28,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 38,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 46,
+      "text": "US3000 ",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 477,
+  "created_at": "2025-12-04T11:35:39.654038Z",
+  "updated_at": "2025-12-04T11:35:39.654060Z",
+  "lead_time": 27.741
+},
+{
+  "text": "Чи можна замінити акумулятор pylontech PowerCube-H1-48\/zzzV на іншу модель?",
+  "id": 994,
+  "label": [
+    {
+      "start": 18,
+      "end": 28,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 38,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 51,
+      "text": "PowerCube-H1",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 478,
+  "created_at": "2025-12-04T11:35:52.475404Z",
+  "updated_at": "2025-12-04T13:04:10.897195Z",
+  "lead_time": 25.982
+},
+{
+  "text": "С какими устройствами совместим акумулятор huawei LUNA2000-15-S0?",
+  "id": 996,
+  "label": [
+    {
+      "start": 32,
+      "end": 42,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 49,
+      "text": "huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 64,
+      "text": "LUNA2000-15-S0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 479,
+  "created_at": "2025-12-04T11:36:16.829445Z",
+  "updated_at": "2025-12-04T11:36:16.829519Z",
+  "lead_time": 10.847
+},
+{
+  "text": "З якими системами сумісний акумулятор pylontech LV-HUB?",
+  "id": 997,
+  "label": [
+    {
+      "start": 27,
+      "end": 37,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 47,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 54,
+      "text": "LV-HUB",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 480,
+  "created_at": "2025-12-04T11:36:29.164066Z",
+  "updated_at": "2025-12-04T11:36:29.164090Z",
+  "lead_time": 10.578
+},
+{
+  "text": "С какими устройствами совместим акумулятор pylontech SC1000-100S-V2?",
+  "id": 998,
+  "label": [
+    {
+      "start": 32,
+      "end": 42,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 52,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 67,
+      "text": "SC1000-100S-V2",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 481,
+  "created_at": "2025-12-04T11:36:44.966933Z",
+  "updated_at": "2025-12-04T11:36:44.966970Z",
+  "lead_time": 13.915
+},
+{
+  "text": "Чи підходить акумулятор huawei LUNA2000-5-E0 для домашньої системи енергозабезпечення?",
+  "id": 999,
+  "label": [
+    {
+      "start": 13,
+      "end": 23,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 30,
+      "text": "huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 44,
+      "text": "LUNA2000-5-E0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 482,
+  "created_at": "2025-12-04T11:37:09.968966Z",
+  "updated_at": "2025-12-04T11:37:09.968992Z",
+  "lead_time": 22.392
+},
+{
+  "text": "Чи підходить акумулятор pylontech SC1000-200E для домашньої системи енергозабезпечення?",
+  "id": 1000,
+  "label": [
+    {
+      "start": 13,
+      "end": 23,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 33,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 34,
+      "end": 45,
+      "text": "SC1000-200E",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 483,
+  "created_at": "2025-12-04T11:37:21.662406Z",
+  "updated_at": "2025-12-04T11:37:21.662428Z",
+  "lead_time": 9.708
+},
+{
+  "text": "Які вимоги до підключення для акумулятор pylontech US3000?",
+  "id": 1001,
+  "label": [
+    {
+      "start": 30,
+      "end": 40,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 50,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 51,
+      "end": 57,
+      "text": "US3000",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 484,
+  "created_at": "2025-12-04T11:37:34.772546Z",
+  "updated_at": "2025-12-04T11:37:34.772568Z",
+  "lead_time": 11.153
+},
+{
+  "text": "Чи можна замінити акумулятор pylontech US3000 на іншу модель?",
+  "id": 1002,
+  "label": [
+    {
+      "start": 18,
+      "end": 28,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 38,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 45,
+      "text": "US3000",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 485,
+  "created_at": "2025-12-04T11:37:45.930954Z",
+  "updated_at": "2025-12-04T11:37:45.930976Z",
+  "lead_time": 9.249
+},
+{
+  "text": "Какие требования к подключению у акумулятор sofar BTS E20-DS5?",
+  "id": 1003,
+  "label": [
+    {
+      "start": 33,
+      "end": 43,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 49,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 61,
+      "text": "BTS E20-DS5",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 486,
+  "created_at": "2025-12-04T11:37:59.454478Z",
+  "updated_at": "2025-12-04T11:37:59.454501Z",
+  "lead_time": 11.739
+},
+{
+  "text": "З якими системами сумісний акумулятор sofar BTS E15-DS5?",
+  "id": 1004,
+  "label": [
+    {
+      "start": 27,
+      "end": 37,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 43,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 55,
+      "text": "BTS E15-DS5",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 487,
+  "created_at": "2025-12-04T11:38:10.382910Z",
+  "updated_at": "2025-12-04T11:38:10.382930Z",
+  "lead_time": 9.198
+},
+{
+  "text": "Чи підходить акумулятор pylontech POWERCUBE-H1 (720V50AH) для домашньої системи енергозабезпечення?",
+  "id": 1005,
+  "label": [
+    {
+      "start": 13,
+      "end": 23,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 33,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 34,
+      "end": 46,
+      "text": "POWERCUBE-H1",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 488,
+  "created_at": "2025-12-04T11:38:21.720048Z",
+  "updated_at": "2025-12-04T11:38:21.720078Z",
+  "lead_time": 9.603
+},
+{
+  "text": "З якими системами сумісний акумулятор pylontech SC0500-100S?",
+  "id": 1006,
+  "label": [
+    {
+      "start": 27,
+      "end": 37,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 47,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 59,
+      "text": "SC0500-100S",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 489,
+  "created_at": "2025-12-04T11:38:33.886053Z",
+  "updated_at": "2025-12-04T11:38:33.886075Z",
+  "lead_time": 10.646
+},
+{
+  "text": "Какие требования к подключению у акумулятор dyness B4850-BOX?",
+  "id": 1007,
+  "label": [
+    {
+      "start": 33,
+      "end": 43,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 50,
+      "text": "dyness",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 51,
+      "end": 60,
+      "text": "B4850-BOX",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 490,
+  "created_at": "2025-12-04T11:38:50.304253Z",
+  "updated_at": "2025-12-04T11:38:50.304274Z",
+  "lead_time": 12.148
+},
+{
+  "text": "С какими устройствами совместим акумулятор pylontech SC1000-200E?",
+  "id": 1012,
+  "label": [
+    {
+      "start": 32,
+      "end": 42,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 52,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 64,
+      "text": "SC1000-200E",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 491,
+  "created_at": "2025-12-04T11:39:15.092908Z",
+  "updated_at": "2025-12-04T11:39:15.092929Z",
+  "lead_time": 13.035
+},
+{
+  "text": "Чи підходить акумулятор huawei LUNA2000-5-E0 для домашньої системи енергозабезпечення?",
+  "id": 1013,
+  "label": [
+    {
+      "start": 13,
+      "end": 23,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 30,
+      "text": "huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 44,
+      "text": "LUNA2000-5-E0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 492,
+  "created_at": "2025-12-04T11:39:27.171445Z",
+  "updated_at": "2025-12-04T11:39:27.171489Z",
+  "lead_time": 10.351
+},
+{
+  "text": "З якими системами сумісний акумулятор pylontech PowerCube-H2-48\/zzzV?",
+  "id": 1014,
+  "label": [
+    {
+      "start": 27,
+      "end": 37,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 47,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 60,
+      "text": "PowerCube-H2",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 493,
+  "created_at": "2025-12-04T11:39:41.532608Z",
+  "updated_at": "2025-12-04T13:03:54.662336Z",
+  "lead_time": 26.409999999999997
+},
+{
+  "text": "Какие требования к подключению у акумулятор deye BOS-G60?",
+  "id": 1015,
+  "label": [
+    {
+      "start": 33,
+      "end": 43,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 48,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 56,
+      "text": "BOS-G60",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 494,
+  "created_at": "2025-12-04T11:40:01.687434Z",
+  "updated_at": "2025-12-04T11:40:01.687491Z",
+  "lead_time": 10.387
+},
+{
+  "text": "Чи можна замінити акумулятор pylontech H32148 на іншу модель?",
+  "id": 1019,
+  "label": [
+    {
+      "start": 18,
+      "end": 28,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 38,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 45,
+      "text": "H32148",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 495,
+  "created_at": "2025-12-04T11:40:17.821684Z",
+  "updated_at": "2025-12-04T11:40:17.821706Z",
+  "lead_time": 9.843
+},
+{
+  "text": "С какими устройствами совместим акумулятор huawei LUNA2000-10-S0?",
+  "id": 1020,
+  "label": [
+    {
+      "start": 32,
+      "end": 42,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 49,
+      "text": "huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 64,
+      "text": "LUNA2000-10-S0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 496,
+  "created_at": "2025-12-04T11:40:31.151552Z",
+  "updated_at": "2025-12-04T11:40:31.151574Z",
+  "lead_time": 10.745
+},
+{
+  "text": "Чи підходить акумулятор pylontech LV-HUB для домашньої системи енергозабезпечення?",
+  "id": 1021,
+  "label": [
+    {
+      "start": 13,
+      "end": 23,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 33,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 34,
+      "end": 40,
+      "text": "LV-HUB",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 497,
+  "created_at": "2025-12-04T11:40:43.290473Z",
+  "updated_at": "2025-12-04T11:40:43.290495Z",
+  "lead_time": 10.525
+},
+{
+  "text": "Чи можна замінити акумулятор pylontech H32148 на іншу модель?",
+  "id": 1022,
+  "label": [
+    {
+      "start": 18,
+      "end": 28,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 38,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 45,
+      "text": "H32148",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 498,
+  "created_at": "2025-12-04T11:40:54.021134Z",
+  "updated_at": "2025-12-04T11:40:54.021157Z",
+  "lead_time": 8.906
+},
+{
+  "text": "Які технічні характеристики має акумулятор huawei LUNA2000-7-S1?",
+  "id": 1023,
+  "label": [
+    {
+      "start": 32,
+      "end": 42,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 49,
+      "text": "huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 63,
+      "text": "LUNA2000-7-S1",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 499,
+  "created_at": "2025-12-04T11:41:08.275115Z",
+  "updated_at": "2025-12-04T11:41:08.275151Z",
+  "lead_time": 9.874
+},
+{
+  "text": "З якими системами сумісний акумулятор sofar BTS E10-DS5?",
+  "id": 1025,
+  "label": [
+    {
+      "start": 27,
+      "end": 37,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 43,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 55,
+      "text": "BTS E10-DS5",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 500,
+  "created_at": "2025-12-04T11:41:22.842154Z",
+  "updated_at": "2025-12-04T11:41:22.842179Z",
+  "lead_time": 10.944
+},
+{
+  "text": "Які вимоги до підключення для лічильник fronius Fronius Symo Hybrid?",
+  "id": 1032,
+  "label": [
+    {
+      "start": 30,
+      "end": 39,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 40,
+      "end": 47,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 56,
+      "end": 67,
+      "text": "Symo Hybrid",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 501,
+  "created_at": "2025-12-04T11:41:46.853226Z",
+  "updated_at": "2025-12-04T11:41:46.853249Z",
+  "lead_time": 12.787
+},
+{
+  "text": "Какие технические характеристики у solar_energy_system victron Easy Solar-II 5кВт MPPT 250\/100 GX?",
+  "id": 1034,
+  "label": [
+    {
+      "start": 55,
+      "end": 62,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 63,
+      "end": 97,
+      "text": "Easy Solar-II 5кВт MPPT 250\/100 GX",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 502,
+  "created_at": "2025-12-04T11:42:57.765525Z",
+  "updated_at": "2025-12-04T11:42:57.765548Z",
+  "lead_time": 25.677
+},
+{
+  "text": "Які технічні характеристики має лічильник sungrow DTSD1352-C\/1(6)A?",
+  "id": 1035,
+  "label": [
+    {
+      "start": 32,
+      "end": 41,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 49,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 66,
+      "text": "DTSD1352-C\/1(6)A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 503,
+  "created_at": "2025-12-04T11:43:11.689785Z",
+  "updated_at": "2025-12-04T11:43:11.689808Z",
+  "lead_time": 11.874
+},
+{
+  "text": "Какие технические характеристики у логер victron BPP900450110?",
+  "id": 1037,
+  "label": [
+    {
+      "start": 35,
+      "end": 40,
+      "text": "логер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 61,
+      "text": "BPP900450110",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 504,
+  "created_at": "2025-12-04T11:43:30.222894Z",
+  "updated_at": "2025-12-04T11:43:30.222917Z",
+  "lead_time": 14.018
+},
+{
+  "text": "Чи підходить лічильник solis Solis-1P(2.5-6)K-4G для домашньої системи енергозабезпечення?",
+  "id": 1038,
+  "label": [
+    {
+      "start": 13,
+      "end": 22,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 23,
+      "end": 28,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 34,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 48,
+      "text": "1P(2.5-6)K-4G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 505,
+  "created_at": "2025-12-04T11:43:45.786950Z",
+  "updated_at": "2025-12-04T11:43:45.786971Z",
+  "lead_time": 13.502
+},
+{
+  "text": "Які вимоги до підключення для лічильник fronius Fronius Primo?",
+  "id": 1039,
+  "label": [
+    {
+      "start": 30,
+      "end": 39,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 40,
+      "end": 47,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 56,
+      "end": 61,
+      "text": "Primo",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 55,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 506,
+  "created_at": "2025-12-04T11:44:00.304793Z",
+  "updated_at": "2025-12-04T11:44:00.304815Z",
+  "lead_time": 12.363
+},
+{
+  "text": "Чи підходить логер victron Cerbo GX для домашньої системи енергозабезпечення?",
+  "id": 1040,
+  "label": [
+    {
+      "start": 13,
+      "end": 18,
+      "text": "логер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 19,
+      "end": 26,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 35,
+      "text": "Cerbo GX",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 517,
+  "created_at": "2025-12-04T11:49:59.420350Z",
+  "updated_at": "2025-12-04T11:49:59.420371Z",
+  "lead_time": 10.013
+},
+{
+  "text": "Чи можна замінити логер sungrow Logger1000A на іншу модель?",
+  "id": 1041,
+  "label": [
+    {
+      "start": 18,
+      "end": 23,
+      "text": "логер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 32,
+      "end": 43,
+      "text": "Logger1000A",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 31,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 518,
+  "created_at": "2025-12-04T11:50:31.675053Z",
+  "updated_at": "2025-12-04T11:50:31.675074Z",
+  "lead_time": 30.376
+},
+{
+  "text": "Чи можна замінити лічильник fronius Fronius Smart Meter на іншу модель?",
+  "id": 1043,
+  "label": [
+    {
+      "start": 18,
+      "end": 27,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 28,
+      "end": 35,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 55,
+      "text": "Smart Meter",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 519,
+  "created_at": "2025-12-04T11:50:56.646507Z",
+  "updated_at": "2025-12-04T11:50:56.646529Z",
+  "lead_time": 19.123
+},
+{
+  "text": "Чи можна замінити логер sungrow Logger3000 на іншу модель?",
+  "id": 1044,
+  "label": [
+    {
+      "start": 18,
+      "end": 23,
+      "text": "логер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 31,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 32,
+      "end": 42,
+      "text": "Logger3000",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 520,
+  "created_at": "2025-12-04T11:51:09.515627Z",
+  "updated_at": "2025-12-04T11:51:09.515653Z",
+  "lead_time": 11.014
+},
+{
+  "text": "Які технічні характеристики має лічильник sungrow DTSD1352-C\/1 (6)A?",
+  "id": 1045,
+  "label": [
+    {
+      "start": 32,
+      "end": 41,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 49,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 67,
+      "text": "DTSD1352-C\/1 (6)A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 521,
+  "created_at": "2025-12-04T11:51:32.564604Z",
+  "updated_at": "2025-12-04T11:51:32.564629Z",
+  "lead_time": 21.16
+},
+{
+  "text": "З якими системами сумісний anti_reflex_box sofar SAR-100-1D?",
+  "id": 1046,
+  "label": [
+    {
+      "start": 49,
+      "end": 59,
+      "text": "SAR-100-1D",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 32,
+      "end": 42,
+      "text": "reflex_box",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 48,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 522,
+  "created_at": "2025-12-04T11:52:01.169793Z",
+  "updated_at": "2025-12-04T11:52:01.169816Z",
+  "lead_time": 26.622
+},
+{
+  "text": "Какие требования к подключению у лічильник fronius Fronius Primo?",
+  "id": 1047,
+  "label": [
+    {
+      "start": 33,
+      "end": 42,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 50,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 51,
+      "end": 58,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 59,
+      "end": 64,
+      "text": "Primo",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 523,
+  "created_at": "2025-12-04T11:52:20.256152Z",
+  "updated_at": "2025-12-04T11:52:20.256176Z",
+  "lead_time": 16.866
+},
+{
+  "text": "Які технічні характеристики має контролер потужності solis Solis-EPM1-2G?",
+  "id": 1048,
+  "label": [
+    {
+      "start": 32,
+      "end": 52,
+      "text": "контролер потужності",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 58,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 59,
+      "end": 64,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 65,
+      "end": 72,
+      "text": "EPM1-2G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 524,
+  "created_at": "2025-12-04T11:52:39.187799Z",
+  "updated_at": "2025-12-04T11:52:39.187824Z",
+  "lead_time": 16.999
+},
+{
+  "text": "Чи можна замінити логер sungrow Logger1000A на іншу модель?",
+  "id": 1050,
+  "label": [
+    {
+      "start": 18,
+      "end": 23,
+      "text": "логер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 31,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 32,
+      "end": 43,
+      "text": "Logger1000A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 525,
+  "created_at": "2025-12-04T11:52:55.330334Z",
+  "updated_at": "2025-12-04T11:52:55.330363Z",
+  "lead_time": 10.328
+},
+{
+  "text": "З якими системами сумісний логер victron BPP900450100?",
+  "id": 1051,
+  "label": [
+    {
+      "start": 27,
+      "end": 32,
+      "text": "логер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 40,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 53,
+      "text": "BPP900450100",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 526,
+  "created_at": "2025-12-04T11:53:09.296027Z",
+  "updated_at": "2025-12-04T11:53:09.296053Z",
+  "lead_time": 12.182
+},
+{
+  "text": "Подходит ли лічильник sungrow DTSD1352-C\/1(6)A для домашней энергосистемы?",
+  "id": 1052,
+  "label": [
+    {
+      "start": 12,
+      "end": 21,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 29,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 46,
+      "text": "DTSD1352-C\/1(6)A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 527,
+  "created_at": "2025-12-04T11:53:22.299284Z",
+  "updated_at": "2025-12-04T11:53:22.299310Z",
+  "lead_time": 11.018
+},
+{
+  "text": "Чи підходить логер victron Cerbo GX для домашньої системи енергозабезпечення?",
+  "id": 1053,
+  "label": [
+    {
+      "start": 13,
+      "end": 18,
+      "text": "логер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 19,
+      "end": 26,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 35,
+      "text": "Cerbo GX",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 528,
+  "created_at": "2025-12-04T11:53:34.273585Z",
+  "updated_at": "2025-12-04T11:53:34.273611Z",
+  "lead_time": 10.046
+},
+{
+  "text": "З якими системами сумісний логер victron BPP900451100?",
+  "id": 1055,
+  "label": [
+    {
+      "start": 27,
+      "end": 32,
+      "text": "логер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 40,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 53,
+      "text": "BPP900451100",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 529,
+  "created_at": "2025-12-04T11:53:47.069198Z",
+  "updated_at": "2025-12-04T11:53:47.069220Z",
+  "lead_time": 10.703
+},
+{
+  "text": "Які технічні характеристики має лічильник sungrow DTSD1352-C\/1(6)A?",
+  "id": 1056,
+  "label": [
+    {
+      "start": 32,
+      "end": 41,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 49,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 66,
+      "text": "DTSD1352-C\/1(6)A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 530,
+  "created_at": "2025-12-04T11:54:04.109371Z",
+  "updated_at": "2025-12-04T11:54:04.109392Z",
+  "lead_time": 12.928
+},
+{
+  "text": "Які технічні характеристики має логер sungrow Logger1000A?",
+  "id": 1057,
+  "label": [
+    {
+      "start": 32,
+      "end": 37,
+      "text": "логер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 45,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 46,
+      "end": 57,
+      "text": "Logger1000A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 531,
+  "created_at": "2025-12-04T11:54:15.833122Z",
+  "updated_at": "2025-12-04T11:54:15.833145Z",
+  "lead_time": 9.871
+},
+{
+  "text": "Які вимоги до підключення для лічильник fronius Fronius Galvo?",
+  "id": 1058,
+  "label": [
+    {
+      "start": 30,
+      "end": 39,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 40,
+      "end": 47,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 55,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 56,
+      "end": 61,
+      "text": "Galvo",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 532,
+  "created_at": "2025-12-04T11:54:35.081966Z",
+  "updated_at": "2025-12-04T11:54:35.081990Z",
+  "lead_time": 17.372
+},
+{
+  "text": "Какие требования к подключению у лічильник sungrow DTSD1352-C\/10(80)A?",
+  "id": 1060,
+  "label": [
+    {
+      "start": 33,
+      "end": 42,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 50,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 51,
+      "end": 69,
+      "text": "DTSD1352-C\/10(80)A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 533,
+  "created_at": "2025-12-04T11:55:01.556004Z",
+  "updated_at": "2025-12-04T11:55:01.556025Z",
+  "lead_time": 12.575
+},
+{
+  "text": "Які вимоги до підключення для контролер потужності solis Solis-EPM3-5G-PLUS?",
+  "id": 1061,
+  "label": [
+    {
+      "start": 30,
+      "end": 50,
+      "text": "контролер потужності",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 51,
+      "end": 56,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 57,
+      "end": 62,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 63,
+      "end": 75,
+      "text": "EPM3-5G-PLUS",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 534,
+  "created_at": "2025-12-04T11:55:19.182813Z",
+  "updated_at": "2025-12-04T11:55:19.182835Z",
+  "lead_time": 15.74
+},
+{
+  "text": "С какими устройствами совместим лічильник sungrow DTSD1352-C\/1 (6)A?",
+  "id": 1062,
+  "label": [
+    {
+      "start": 32,
+      "end": 41,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 49,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 67,
+      "text": "DTSD1352-C\/1 (6)A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 535,
+  "created_at": "2025-12-04T11:55:31.845327Z",
+  "updated_at": "2025-12-04T11:55:31.845349Z",
+  "lead_time": 10.81
+},
+{
+  "text": "Подходит ли логер victron BPP900451100 для домашней энергосистемы?",
+  "id": 1070,
+  "label": [
+    {
+      "start": 12,
+      "end": 17,
+      "text": "логер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 18,
+      "end": 25,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 26,
+      "end": 38,
+      "text": "BPP900451100",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 536,
+  "created_at": "2025-12-04T11:55:50.334351Z",
+  "updated_at": "2025-12-04T11:55:50.334382Z",
+  "lead_time": 10.482
+},
+{
+  "text": "Какие требования к подключению у лічильник acrel ACR10RH?",
+  "id": 1072,
+  "label": [
+    {
+      "start": 33,
+      "end": 42,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 48,
+      "text": "acrel",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 49,
+      "end": 56,
+      "text": "ACR10RH",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 537,
+  "created_at": "2025-12-04T11:56:04.910674Z",
+  "updated_at": "2025-12-04T11:56:04.910695Z",
+  "lead_time": 11.115
+},
+{
+  "text": "Чи можна замінити лічильник solis Solis-1P(2.5-6)K-4G на іншу модель?",
+  "id": 1073,
+  "label": [
+    {
+      "start": 18,
+      "end": 27,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 28,
+      "end": 33,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 34,
+      "end": 39,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 40,
+      "end": 53,
+      "text": "1P(2.5-6)K-4G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 538,
+  "created_at": "2025-12-04T11:56:24.007598Z",
+  "updated_at": "2025-12-04T11:56:24.007623Z",
+  "lead_time": 14.495
+},
+{
+  "text": "Подходит ли лічильник fronius Fronius Eco для домашней энергосистемы?",
+  "id": 1076,
+  "label": [
+    {
+      "start": 12,
+      "end": 21,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 29,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 37,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 41,
+      "text": "Eco",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 539,
+  "created_at": "2025-12-04T11:56:39.547627Z",
+  "updated_at": "2025-12-04T11:56:39.547652Z",
+  "lead_time": 12.695
+},
+{
+  "text": "Чи підходить комунікаційний модуль sungrow COM100E для домашньої системи енергозабезпечення?",
+  "id": 1081,
+  "label": [
+    {
+      "start": 13,
+      "end": 34,
+      "text": "комунікаційний модуль",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 42,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 50,
+      "text": "COM100E",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 540,
+  "created_at": "2025-12-04T11:56:57.025313Z",
+  "updated_at": "2025-12-04T11:56:57.025334Z",
+  "lead_time": 11.772
+},
+{
+  "text": "Якщо під’єднати інвертор deye SUN-40\/50K-SG01HP3-EU-BM4 разом із інвертор sungrow SH6.0RT-20, які параметри необхідно налаштувати для коректної роботи системи?",
+  "id": 1082,
+  "label": [
+    {
+      "start": 16,
+      "end": 24,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 25,
+      "end": 29,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 55,
+      "text": "SUN-40\/50K-SG01HP3-EU-BM4",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 65,
+      "end": 73,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 74,
+      "end": 81,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 82,
+      "end": 92,
+      "text": "SH6.0RT-20",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 541,
+  "created_at": "2025-12-04T11:57:20.121141Z",
+  "updated_at": "2025-12-04T11:57:20.121165Z",
+  "lead_time": 21.208
+},
+{
+  "text": "Если подключить інвертор fronius Fronius Symo 3.7-3-M вместе с інвертор sofar SOFAR 3300TL, какие параметры необходимо настроить для корректной работы системы?",
+  "id": 1083,
+  "label": [
+    {
+      "start": 16,
+      "end": 24,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 25,
+      "end": 32,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 40,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 53,
+      "text": "Symo 3.7-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 72,
+      "end": 77,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 78,
+      "end": 83,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 84,
+      "end": 90,
+      "text": "3300TL",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 542,
+  "created_at": "2025-12-04T11:58:04.605430Z",
+  "updated_at": "2025-12-04T13:02:13.966261Z",
+  "lead_time": 97.507
+},
+{
+  "text": "Якщо під’єднати інвертор victron MultiPlus Compact 12\/1600\/70 разом із лічильник fronius Fronius Datamanager 2.0, які параметри необхідно налаштувати для коректної роботи системи?",
+  "id": 1085,
+  "label": [
+    {
+      "start": 16,
+      "end": 24,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 25,
+      "end": 32,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 61,
+      "text": "MultiPlus Compact 12\/1600\/70",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 71,
+      "end": 80,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 81,
+      "end": 88,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 97,
+      "end": 112,
+      "text": "Datamanager 2.0",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 89,
+      "end": 96,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 543,
+  "created_at": "2025-12-04T11:58:41.719775Z",
+  "updated_at": "2025-12-04T11:58:41.719798Z",
+  "lead_time": 30.047
+},
+{
+  "text": "Якщо під’єднати інвертор solis S5-EH1P3.6K-L разом із лічильник fronius Fronius Smart Meter, які параметри необхідно налаштувати для коректної роботи системи?",
+  "id": 1086,
+  "label": [
+    {
+      "start": 16,
+      "end": 24,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 25,
+      "end": 30,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 44,
+      "text": "S5-EH1P3.6K-L",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 54,
+      "end": 63,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 64,
+      "end": 71,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 72,
+      "end": 79,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 80,
+      "end": 91,
+      "text": "Smart Meter",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 544,
+  "created_at": "2025-12-04T11:59:08.724595Z",
+  "updated_at": "2025-12-04T11:59:08.724617Z",
+  "lead_time": 24.929
+},
+{
+  "text": "Якщо під’єднати інвертор victron MultiPlus-II24\/5000\/120-50 разом із інвертор sofar SOFAR 4.4KTLX-G3, які параметри необхідно налаштувати для коректної роботи системи?",
+  "id": 1087,
+  "label": [
+    {
+      "start": 25,
+      "end": 32,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 59,
+      "text": "MultiPlus-II24\/5000\/120-50",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 69,
+      "end": 77,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 78,
+      "end": 83,
+      "text": "sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 84,
+      "end": 89,
+      "text": "SOFAR",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 90,
+      "end": 100,
+      "text": "4.4KTLX-G3",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 545,
+  "created_at": "2025-12-04T11:59:42.049645Z",
+  "updated_at": "2025-12-04T13:02:33.342265Z",
+  "lead_time": 36.257999999999996
+},
+{
+  "text": "Как изменится работа акумулятор deye BOS-G55, если в систему добавить інвертор fronius Fronius Symo 6.0-3-M, и какие параметры нужно учесть при масштабировании?",
+  "id": 1111,
+  "label": [
+    {
+      "start": 21,
+      "end": 31,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 32,
+      "end": 36,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 37,
+      "end": 44,
+      "text": "BOS-G55",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 70,
+      "end": 78,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 79,
+      "end": 86,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 87,
+      "end": 94,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 95,
+      "end": 107,
+      "text": "Symo 6.0-3-M",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 546,
+  "created_at": "2025-12-04T12:00:20.418828Z",
+  "updated_at": "2025-12-04T12:00:20.418849Z",
+  "lead_time": 26.205
+},
+{
+  "text": "Як зміниться робота акумулятор deye BOS-G20, якщо до системи додати інвертор solis Solis-3P5K-4G, і які параметри потрібно врахувати під час масштабування?",
+  "id": 1112,
+  "label": [
+    {
+      "start": 20,
+      "end": 30,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 35,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "BOS-G20",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 68,
+      "end": 76,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 77,
+      "end": 82,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 83,
+      "end": 88,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 89,
+      "end": 96,
+      "text": "3P5K-4G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 516,
+  "created_at": "2025-12-04T11:49:37.857326Z",
+  "updated_at": "2025-12-04T11:49:37.857346Z",
+  "lead_time": 36.435
+},
+{
+  "text": "Як зміниться робота акумулятор pylontech US3000C, якщо до системи додати інвертор sungrow SG4.0RT, і які параметри потрібно врахувати під час масштабування?",
+  "id": 1113,
+  "label": [
+    {
+      "start": 20,
+      "end": 30,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 40,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 48,
+      "text": "US3000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 73,
+      "end": 81,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 82,
+      "end": 89,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 90,
+      "end": 97,
+      "text": "SG4.0RT",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 515,
+  "created_at": "2025-12-04T11:48:59.702848Z",
+  "updated_at": "2025-12-04T11:48:59.702869Z",
+  "lead_time": 19.692
+},
+{
+  "text": "Як зміниться робота акумулятор huawei LUNA2000-7-S1, якщо до системи додати інвертор solis RHI-3K-48ES-5G, і які параметри потрібно врахувати під час масштабування?",
+  "id": 1114,
+  "label": [
+    {
+      "start": 20,
+      "end": 30,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 37,
+      "text": "huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 51,
+      "text": "LUNA2000-7-S1",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 76,
+      "end": 84,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 85,
+      "end": 90,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 91,
+      "end": 105,
+      "text": "RHI-3K-48ES-5G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 514,
+  "created_at": "2025-12-04T11:48:37.467795Z",
+  "updated_at": "2025-12-04T11:48:37.467816Z",
+  "lead_time": 22.878
+},
+{
+  "text": "Як зміниться робота акумулятор huawei LUNA2000-10-S0, якщо до системи додати інвертор victron EasySolar-II 5кВА, і які параметри потрібно врахувати під час масштабування?",
+  "id": 1115,
+  "label": [
+    {
+      "start": 20,
+      "end": 30,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 37,
+      "text": "huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 52,
+      "text": "LUNA2000-10-S0",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 77,
+      "end": 85,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 86,
+      "end": 93,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 94,
+      "end": 111,
+      "text": "EasySolar-II 5кВА",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 513,
+  "created_at": "2025-12-04T11:48:12.643071Z",
+  "updated_at": "2025-12-04T11:48:12.643091Z",
+  "lead_time": 22.944
+},
+{
+  "text": "Як зміниться робота акумулятор huawei LUNA2000-5-S0, якщо до системи додати інвертор sungrow SG6.0RS, і які параметри потрібно врахувати під час масштабування?",
+  "id": 1116,
+  "label": [
+    {
+      "start": 20,
+      "end": 30,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 37,
+      "text": "huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 51,
+      "text": "LUNA2000-5-S0",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 76,
+      "end": 84,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 85,
+      "end": 92,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 93,
+      "end": 100,
+      "text": "SG6.0RS",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 512,
+  "created_at": "2025-12-04T11:47:47.218607Z",
+  "updated_at": "2025-12-04T11:47:47.218631Z",
+  "lead_time": 23.278
+},
+{
+  "text": "Как изменится работа акумулятор huawei LUNA2000-5-S0, если в систему добавить інвертор victron 24\/5000\/120, и какие параметры нужно учесть при масштабировании?",
+  "id": 1117,
+  "label": [
+    {
+      "start": 21,
+      "end": 31,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 32,
+      "end": 38,
+      "text": "huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 52,
+      "text": "LUNA2000-5-S0",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 78,
+      "end": 86,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 87,
+      "end": 94,
+      "text": "victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 95,
+      "end": 106,
+      "text": "24\/5000\/120",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 511,
+  "created_at": "2025-12-04T11:46:42.343476Z",
+  "updated_at": "2025-12-04T11:46:42.343497Z",
+  "lead_time": 27.865
+},
+{
+  "text": "Як зміниться робота акумулятор deye BOS-G25, якщо до системи додати інвертор sungrow SG3.0RS-S, і які параметри потрібно врахувати під час масштабування?",
+  "id": 1118,
+  "label": [
+    {
+      "start": 20,
+      "end": 30,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 35,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "BOS-G25",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 68,
+      "end": 76,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 77,
+      "end": 84,
+      "text": "sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 85,
+      "end": 94,
+      "text": "SG3.0RS-S",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 510,
+  "created_at": "2025-12-04T11:46:12.006615Z",
+  "updated_at": "2025-12-04T11:46:12.006636Z",
+  "lead_time": 22.164
+},
+{
+  "text": "Як зміниться робота акумулятор deye BOS-G60, якщо до системи додати інвертор solis RHI-3P6K-HVES-5G, і які параметри потрібно врахувати під час масштабування?",
+  "id": 1119,
+  "label": [
+    {
+      "start": 20,
+      "end": 30,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 35,
+      "text": "deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "BOS-G60",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 77,
+      "end": 82,
+      "text": "solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 68,
+      "end": 76,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 83,
+      "end": 99,
+      "text": "RHI-3P6K-HVES-5G",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 509,
+  "created_at": "2025-12-04T11:45:47.697990Z",
+  "updated_at": "2025-12-04T11:45:47.698016Z",
+  "lead_time": 36.094
+},
+{
+  "text": "Как изменится работа акумулятор pylontech LV-HUB, если в систему добавить акумулятор pylontech H48074, и какие параметры нужно учесть при масштабировании?",
+  "id": 1120,
+  "label": [
+    {
+      "start": 32,
+      "end": 41,
+      "text": "pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 42,
+      "end": 48,
+      "text": "LV-HUB",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 74,
+      "end": 84,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 95,
+      "end": 101,
+      "text": "H48074",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 508,
+  "created_at": "2025-12-04T11:45:09.748435Z",
+  "updated_at": "2025-12-04T13:02:54.536481Z",
+  "lead_time": 31.953000000000003
+},
+{
+  "text": "Как изменится работа акумулятор huawei LUNA2000-15-S0, если в систему добавить лічильник fronius Fronius Datamanager 2.0, и какие параметры нужно учесть при масштабировании?",
+  "id": 1121,
+  "label": [
+    {
+      "start": 21,
+      "end": 31,
+      "text": "акумулятор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 32,
+      "end": 38,
+      "text": "huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 79,
+      "end": 88,
+      "text": "лічильник",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 89,
+      "end": 96,
+      "text": "fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 53,
+      "text": "LUNA2000-15-S0",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 105,
+      "end": 120,
+      "text": "Datamanager 2.0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 507,
+  "created_at": "2025-12-04T11:44:46.516888Z",
+  "updated_at": "2025-12-04T11:44:46.516918Z",
+  "lead_time": 39.017
+},
+{
+  "text": "Чи підтримує гібридний інвертор Дейе SUN-10K-SG03LP1-EU паралельну роботу?",
+  "id": 1122,
+  "label": [
+    {
+      "start": 13,
+      "end": 31,
+      "text": "гібридний інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 32,
+      "end": 36,
+      "text": "Дейе",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 37,
+      "end": 55,
+      "text": "SUN-10K-SG03LP1-EU",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 570,
+  "created_at": "2025-12-04T12:17:34.902357Z",
+  "updated_at": "2025-12-04T12:17:34.902378Z",
+  "lead_time": 11.143
+},
+{
+  "text": "Який MPPT діапазон у сонячного інвертора Дейе SUN-8K-SG01LP1-EU?",
+  "id": 1123,
+  "label": [
+    {
+      "start": 21,
+      "end": 40,
+      "text": "сонячного інвертора",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 45,
+      "text": "Дейе",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 46,
+      "end": 63,
+      "text": "SUN-8K-SG01LP1-EU",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 571,
+  "created_at": "2025-12-04T12:17:47.805470Z",
+  "updated_at": "2025-12-04T12:17:47.805493Z",
+  "lead_time": 11.026
+},
+{
+  "text": "Чи працює інвертор Дейе SUN-12K-SG04LP3-EU без акумуляторів?",
+  "id": 1124,
+  "label": [
+    {
+      "start": 10,
+      "end": 18,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 19,
+      "end": 23,
+      "text": "Дейе",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 42,
+      "text": "SUN-12K-SG04LP3-EU",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 572,
+  "created_at": "2025-12-04T12:18:01.194254Z",
+  "updated_at": "2025-12-04T12:18:01.194275Z",
+  "lead_time": 11.567
+},
+{
+  "text": "Який максимальний струм заряду у гібридного інвертора Дейе SUN-5K-SG05LP1-EU?",
+  "id": 1125,
+  "label": [
+    {
+      "start": 33,
+      "end": 53,
+      "text": "гібридного інвертора",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 54,
+      "end": 58,
+      "text": "Дейе",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 59,
+      "end": 76,
+      "text": "SUN-5K-SG05LP1-EU",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 573,
+  "created_at": "2025-12-04T12:18:16.905202Z",
+  "updated_at": "2025-12-04T12:18:16.905224Z",
+  "lead_time": 13.684
+},
+{
+  "text": "Який клас захисту IP у сонячного інвертора Дейе SUN-7.6K-SG01LP1-EU?",
+  "id": 1126,
+  "label": [
+    {
+      "start": 23,
+      "end": 42,
+      "text": "сонячного інвертора",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 47,
+      "text": "Дейе",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 48,
+      "end": 67,
+      "text": "SUN-7.6K-SG01LP1-EU",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 574,
+  "created_at": "2025-12-04T12:18:31.253473Z",
+  "updated_at": "2025-12-04T12:18:31.253507Z",
+  "lead_time": 12.698
+},
+{
+  "text": "Чи сумісний сонячний інвертор Дейе SUN-25K-SG01HP3-EU-AM2 з батареями Pylontech?",
+  "id": 1129,
+  "label": [
+    {
+      "start": 12,
+      "end": 29,
+      "text": "сонячний інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 34,
+      "text": "Дейе",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 57,
+      "text": "SUN-25K-SG01HP3-EU-AM2",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 60,
+      "end": 69,
+      "text": "батареями",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 70,
+      "end": 79,
+      "text": "Pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 575,
+  "created_at": "2025-12-04T12:19:02.147611Z",
+  "updated_at": "2025-12-04T12:19:02.147633Z",
+  "lead_time": 18.77
+},
+{
+  "text": "Чи сумісний гібридний інвертор ЛюксПавер LXP5K-SW з батареєю US2000C?",
+  "id": 1132,
+  "label": [
+    {
+      "start": 12,
+      "end": 30,
+      "text": "гібридний інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 40,
+      "text": "ЛюксПавер",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 49,
+      "text": "LXP5K-SW",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 52,
+      "end": 60,
+      "text": "батареєю",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 61,
+      "end": 68,
+      "text": "US2000C",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 576,
+  "created_at": "2025-12-04T12:19:28.855082Z",
+  "updated_at": "2025-12-04T12:19:28.855111Z",
+  "lead_time": 20.934
+},
+{
+  "text": "Який MPPT діапазон у інвертора ЛаксПауер LXP10K-SW?",
+  "id": 1133,
+  "label": [
+    {
+      "start": 21,
+      "end": 30,
+      "text": "інвертора",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 31,
+      "end": 40,
+      "text": "ЛаксПауер",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 41,
+      "end": 50,
+      "text": "LXP10K-SW",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 569,
+  "created_at": "2025-12-04T12:17:18.857227Z",
+  "updated_at": "2025-12-04T12:17:18.857251Z",
+  "lead_time": 11.22
+},
+{
+  "text": "Як налаштувати паралельний режим у сонячного інвертора Люкспауер LXP8K-HB?",
+  "id": 1134,
+  "label": [
+    {
+      "start": 35,
+      "end": 54,
+      "text": "сонячного інвертора",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 55,
+      "end": 64,
+      "text": "Люкспауер",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 65,
+      "end": 73,
+      "text": "LXP8K-HB",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 568,
+  "created_at": "2025-12-04T12:17:05.701178Z",
+  "updated_at": "2025-12-04T12:17:05.701199Z",
+  "lead_time": 13.978
+},
+{
+  "text": "Чи підтримує інвертор ЛюксПавер LXP6K-SW роботу без мережі?",
+  "id": 1135,
+  "label": [
+    {
+      "start": 13,
+      "end": 21,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 22,
+      "end": 31,
+      "text": "ЛюксПавер",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 32,
+      "end": 40,
+      "text": "LXP6K-SW",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 567,
+  "created_at": "2025-12-04T12:16:49.992482Z",
+  "updated_at": "2025-12-04T12:16:49.992503Z",
+  "lead_time": 12.185
+},
+{
+  "text": "Яка потужність PV масиву для гібридного інвертора ЛюксПавер LXP4K-SW?",
+  "id": 1136,
+  "label": [
+    {
+      "start": 29,
+      "end": 49,
+      "text": "гібридного інвертора",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 59,
+      "text": "ЛюксПавер",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 60,
+      "end": 68,
+      "text": "LXP4K-SW",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 566,
+  "created_at": "2025-12-04T12:16:36.033818Z",
+  "updated_at": "2025-12-04T12:16:36.033837Z",
+  "lead_time": 15.671
+},
+{
+  "text": "Які порти підтримує комунікаційний хаб Growatt ShineLink-X?",
+  "id": 1137,
+  "label": [
+    {
+      "start": 19,
+      "end": 38,
+      "text": " комунікаційний хаб",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 39,
+      "end": 46,
+      "text": "Growatt",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 58,
+      "text": "ShineLink-X",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 565,
+  "created_at": "2025-12-04T12:16:18.361371Z",
+  "updated_at": "2025-12-04T12:16:18.361396Z",
+  "lead_time": 14.256
+},
+{
+  "text": "Чи сумісний Smart Communication Box Sungrow COM100D із інверторами серії SG?",
+  "id": 1138,
+  "label": [
+    {
+      "start": 12,
+      "end": 35,
+      "text": "Smart Communication Box",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "Sungrow",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 44,
+      "end": 51,
+      "text": "COM100D",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 55,
+      "end": 66,
+      "text": "інверторами",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 564,
+  "created_at": "2025-12-04T12:16:02.241076Z",
+  "updated_at": "2025-12-04T12:16:02.241098Z",
+  "lead_time": 18.157
+},
+{
+  "text": "Який протокол використовує комунікаційний хаб Huawei SmartLogger3000A?",
+  "id": 1139,
+  "label": [
+    {
+      "start": 27,
+      "end": 45,
+      "text": "комунікаційний хаб",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 46,
+      "end": 52,
+      "text": "Huawei",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 69,
+      "text": "SmartLogger3000A",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 563,
+  "created_at": "2025-12-04T12:15:42.093976Z",
+  "updated_at": "2025-12-04T12:15:42.093999Z",
+  "lead_time": 11.353
+},
+{
+  "text": "Які параметри моніторингу підтримує логгер Fronius Datamanager 2.0?",
+  "id": 1140,
+  "label": [
+    {
+      "start": 36,
+      "end": 42,
+      "text": "логгер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 43,
+      "end": 50,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 51,
+      "end": 66,
+      "text": "Datamanager 2.0",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 562,
+  "created_at": "2025-12-04T12:15:27.539233Z",
+  "updated_at": "2025-12-04T12:15:27.539254Z",
+  "lead_time": 9.983
+},
+{
+  "text": "Чи працює мережевий логгер Sofar Logger3000 з інверторами серії KTLX?",
+  "id": 1141,
+  "label": [
+    {
+      "start": 10,
+      "end": 26,
+      "text": "мережевий логгер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 46,
+      "end": 57,
+      "text": "інверторами",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 64,
+      "end": 68,
+      "text": "KTLX",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 43,
+      "text": "Logger3000",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "text": "Sofar",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 561,
+  "created_at": "2025-12-04T12:15:15.484062Z",
+  "updated_at": "2025-12-04T12:15:15.484084Z",
+  "lead_time": 20.199
+},
+{
+  "text": "Який інтерфейс зв’язку у логгера Deye Logger1000B?",
+  "id": 1142,
+  "label": [
+    {
+      "start": 25,
+      "end": 32,
+      "text": "логгера",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 37,
+      "text": "Deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 49,
+      "text": "Logger1000B",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 560,
+  "created_at": "2025-12-04T12:14:53.397157Z",
+  "updated_at": "2025-12-04T12:14:53.397183Z",
+  "lead_time": 11.347
+},
+{
+  "text": "Які функції керування навантаженням підтримує EMS Solis S1-EMS-100A?",
+  "id": 1143,
+  "label": [
+    {
+      "start": 50,
+      "end": 55,
+      "text": "Solis",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 56,
+      "end": 67,
+      "text": "S1-EMS-100A",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 46,
+      "end": 49,
+      "text": "EMS",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 559,
+  "created_at": "2025-12-04T12:14:40.288298Z",
+  "updated_at": "2025-12-04T12:14:40.288330Z",
+  "lead_time": 12.469
+},
+{
+  "text": "Чи сумісна система зберігання енергії BYD HVS 10.2 з інверторами Fronius?",
+  "id": 1144,
+  "label": [
+    {
+      "start": 11,
+      "end": 37,
+      "text": "система зберігання енергії",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 38,
+      "end": 50,
+      "text": "BYD HVS 10.2",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 65,
+      "end": 72,
+      "text": "Fronius",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 64,
+      "text": "інверторами",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 558,
+  "created_at": "2025-12-04T12:14:23.267523Z",
+  "updated_at": "2025-12-04T12:14:23.267549Z",
+  "lead_time": 29.492
+},
+{
+  "text": "Які протоколи підтримує енергетичний контролер Victron Cerbo GX?",
+  "id": 1145,
+  "label": [
+    {
+      "start": 24,
+      "end": 46,
+      "text": "енергетичний контролер",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 54,
+      "text": "Victron",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 55,
+      "end": 63,
+      "text": "Cerbo GX",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 557,
+  "created_at": "2025-12-04T12:13:49.959784Z",
+  "updated_at": "2025-12-04T12:13:49.959809Z",
+  "lead_time": 13.351
+},
+{
+  "text": "Чи сумісний інвертор Deye SUN-10K-SG03LP1-EU з батареєю Pylontech US3000C?",
+  "id": 1146,
+  "label": [
+    {
+      "start": 12,
+      "end": 20,
+      "text": "інвертор",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 55,
+      "text": "батареєю",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 21,
+      "end": 25,
+      "text": "Deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 26,
+      "end": 44,
+      "text": "SUN-10K-SG03LP1-EU",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 66,
+      "end": 73,
+      "text": "US3000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 56,
+      "end": 65,
+      "text": "Pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 556,
+  "created_at": "2025-12-04T12:13:34.038730Z",
+  "updated_at": "2025-12-04T12:13:34.038779Z",
+  "lead_time": 21.005
+},
+{
+  "text": "Чи можна підключати Пілонтек US2000C до інвертора Дейе SUN-5K-SG05LP1-EU?",
+  "id": 1147,
+  "label": [
+    {
+      "start": 40,
+      "end": 49,
+      "text": "інвертора",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 20,
+      "end": 28,
+      "text": "Пілонтек",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 50,
+      "end": 54,
+      "text": "Дейе",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 29,
+      "end": 36,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 55,
+      "end": 72,
+      "text": "SUN-5K-SG05LP1-EU",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 555,
+  "created_at": "2025-12-04T12:13:10.982753Z",
+  "updated_at": "2025-12-04T12:13:10.982774Z",
+  "lead_time": 24.883
+},
+{
+  "text": "Який максимальний струм розряду на Pylontech US5000 у зв'язці з Deye SUN-12K-SG04LP3-EU?",
+  "id": 1148,
+  "label": [
+    {
+      "start": 35,
+      "end": 44,
+      "text": "Pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 45,
+      "end": 51,
+      "text": "US5000",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 64,
+      "end": 68,
+      "text": "Deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 69,
+      "end": 87,
+      "text": "SUN-12K-SG04LP3-EU",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 554,
+  "created_at": "2025-12-04T12:12:44.341132Z",
+  "updated_at": "2025-12-04T12:12:44.341153Z",
+  "lead_time": 18.134
+},
+{
+  "text": "Чи підтримує Пайлонтек US3000C роботу з інвертором Deye SUN-6K-SG03LP1-EU?",
+  "id": 1149,
+  "label": [
+    {
+      "start": 40,
+      "end": 50,
+      "text": "інвертором",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 13,
+      "end": 22,
+      "text": "Пайлонтек",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 23,
+      "end": 30,
+      "text": "US3000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 56,
+      "end": 73,
+      "text": "SUN-6K-SG03LP1-EU",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 51,
+      "end": 55,
+      "text": "Deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 553,
+  "created_at": "2025-12-04T12:12:24.289179Z",
+  "updated_at": "2025-12-04T12:12:24.289199Z",
+  "lead_time": 19.182
+},
+{
+  "text": "Який тип BMS краще для Pylontech US2000C у системі з інвертором Дейе SUN-8K-SG01LP1-EU?",
+  "id": 1150,
+  "label": [
+    {
+      "start": 9,
+      "end": 12,
+      "text": "BMS",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 23,
+      "end": 32,
+      "text": "Pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 33,
+      "end": 40,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 53,
+      "end": 63,
+      "text": "інвертором",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 64,
+      "end": 68,
+      "text": "Дейе",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 69,
+      "end": 86,
+      "text": "SUN-8K-SG01LP1-EU",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 552,
+  "created_at": "2025-12-04T12:12:03.267747Z",
+  "updated_at": "2025-12-04T12:12:03.267769Z",
+  "lead_time": 20.26
+},
+{
+  "text": "Потрібна схема підключення Pylontech US5000 до Deye SUN-20K-SG01HP3-EU-AM2.",
+  "id": 1151,
+  "label": [
+    {
+      "start": 27,
+      "end": 36,
+      "text": "Pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 37,
+      "end": 43,
+      "text": "US5000",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 52,
+      "end": 73,
+      "text": "SUN-20K-SG01HP3-EU-AM",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 47,
+      "end": 51,
+      "text": "Deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 551,
+  "created_at": "2025-12-04T12:11:41.079210Z",
+  "updated_at": "2025-12-04T12:11:41.079231Z",
+  "lead_time": 18.301
+},
+{
+  "text": "Чи є обмеження по струму у Пілонтек US3000C при роботі з SUN-3.6K-SG05LP1-EU?",
+  "id": 1152,
+  "label": [
+    {
+      "start": 27,
+      "end": 35,
+      "text": "Пілонтек",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 36,
+      "end": 43,
+      "text": "US3000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 57,
+      "end": 76,
+      "text": "SUN-3.6K-SG05LP1-EU",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 550,
+  "created_at": "2025-12-04T12:11:21.096128Z",
+  "updated_at": "2025-12-04T12:11:21.096148Z",
+  "lead_time": 12.462
+},
+{
+  "text": "Чи можна паралелити Pylontech US2000C при роботі з інвертором Deye SUN-7K-SG01LP1-EU?",
+  "id": 1153,
+  "label": [
+    {
+      "start": 20,
+      "end": 29,
+      "text": "Pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 37,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 51,
+      "end": 61,
+      "text": "інвертором",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 62,
+      "end": 66,
+      "text": "Deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 67,
+      "end": 84,
+      "text": "SUN-7K-SG01LP1-EU",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 549,
+  "created_at": "2025-12-04T12:11:06.886078Z",
+  "updated_at": "2025-12-04T12:11:06.886099Z",
+  "lead_time": 22.192
+},
+{
+  "text": "Як налаштувати протокол обміну для Пайлонтек US5000 у системі з Дейе SUN-25K-SG01HP3-EU-AM2?",
+  "id": 1154,
+  "label": [
+    {
+      "start": 35,
+      "end": 44,
+      "text": "Пайлонтек",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 45,
+      "end": 51,
+      "text": "US5000",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 64,
+      "end": 68,
+      "text": "Дейе",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 69,
+      "end": 91,
+      "text": "SUN-25K-SG01HP3-EU-AM2",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 548,
+  "created_at": "2025-12-04T12:10:42.931739Z",
+  "updated_at": "2025-12-04T12:10:42.931765Z",
+  "lead_time": 25.82
+},
+{
+  "text": "Чи можлива змішана батарейна група Pylontech US2000C + US3000C з інвертором Deye SUN-12K-SG01HP3-EU-AM2?",
+  "id": 1155,
+  "label": [
+    {
+      "start": 19,
+      "end": 34,
+      "text": "батарейна група",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 35,
+      "end": 44,
+      "text": "Pylontech",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 45,
+      "end": 52,
+      "text": "US2000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 55,
+      "end": 62,
+      "text": "US3000C",
+      "labels": [
+        "MODEL"
+      ]
+    },
+    {
+      "start": 65,
+      "end": 75,
+      "text": "інвертором",
+      "labels": [
+        "EQ_TYPE"
+      ]
+    },
+    {
+      "start": 76,
+      "end": 80,
+      "text": "Deye",
+      "labels": [
+        "MANUFACTURER"
+      ]
+    },
+    {
+      "start": 81,
+      "end": 103,
+      "text": "SUN-12K-SG01HP3-EU-AM2",
+      "labels": [
+        "MODEL"
+      ]
+    }
+  ],
+  "annotator": 1,
+  "annotation_id": 547,
+  "created_at": "2025-12-04T12:10:15.378105Z",
+  "updated_at": "2025-12-04T12:10:15.378126Z",
+  "lead_time": 30.291
+}
+]

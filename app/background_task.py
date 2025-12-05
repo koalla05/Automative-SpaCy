@@ -3,7 +3,7 @@ import os
 import csv
 from typing import Dict, List
 from openai import OpenAI  
-from app.entity_extractor import extract_entities_spacy
+from pipeline.exctractors.ner_extractor import extract_entities_spacy
 from datetime import datetime
 
 client = OpenAI()
