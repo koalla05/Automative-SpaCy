@@ -468,7 +468,7 @@ DEFAULT_PARAM_GLOSSARY = {
   ],
   "max_discharge_current_a": [
     "max discharge current",
-    "Максимальний струм розряджання акумулятора",
+    "Максимальний струм розряджання",
     "max_discharge_current",
     "максимальный ток разряда АКБ",
 " максимальний розрядний струм",

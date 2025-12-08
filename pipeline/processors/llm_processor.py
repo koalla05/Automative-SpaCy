@@ -138,6 +138,7 @@ def build_param_bindings_logic(extracted_entities: Dict[str, Any]) -> list:
     # Convert to list format
     param_bindings = []
     for model, params in bindings_dict.items():
+        if not model: continue
         param_bindings.append({
             "model": model,
             "parameters": params

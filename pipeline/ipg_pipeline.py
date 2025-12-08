@@ -185,7 +185,7 @@ if __name__ == "__main__":
         # Compat query
         "Чи сумісний Pylontech US5000 з Victron MultiPlus?",
 
-        # Complex query - multi-model with parameters
+        # simple query - multi-model with parameters
         "Вага Dyness A48100 та максимальний струм для Pylontech US5000",
 
         # Complex query - no parameters
