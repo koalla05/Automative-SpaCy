@@ -18,6 +18,7 @@ FUZZY_MATCH_THRESHOLD = 80
 EXACT_MATCH_THRESHOLD = 95
 MIN_WORD_LENGTH_FOR_FUZZY = 4  # LOWERED from 5
 MIN_SYNONYM_LENGTH_FOR_FUZZY = 4  # LOWERED from 5
+BORDER_TOLERANCE = 2
 
 CURRENT_FILE_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = CURRENT_FILE_DIR.parent.parent
@@ -162,9 +163,10 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
     synonym_to_key = {}
     normalized_synonyms = {}
 
+    # Build synonym maps (strip syns to avoid leading/trailing spaces)
     for key, syns in param_glossary.items():
         for syn in syns:
-            syn_lower = syn.lower()
+            syn_lower = syn.lower().strip()
             synonym_to_key[syn_lower] = key
             normalized_syn = normalize_for_matching(syn_lower)
             if normalized_syn not in normalized_synonyms:
@@ -175,7 +177,10 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
 
     sorted_synonyms = sorted(synonym_to_key.items(), key=lambda x: len(x[0]), reverse=True)
 
+    # Exact matches (use the actual matched substring indices)
     for syn, key in sorted_synonyms:
+        if not syn:
+            continue
         start = 0
         while True:
             idx = lower.find(syn, start)
@@ -195,32 +200,30 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 start = idx + len(syn)
                 continue
 
-            phrase_start = max(0, text.rfind(' ', 0, idx))
-            phrase_end = text.find('.', idx + len(syn))
-            if phrase_end == -1:
-                phrase_end = min(len(text), idx + len(syn) + 100)
-            phrase = text[phrase_start:phrase_end].strip()
+            phrase = syn  # the matched synonym itself
+            phrase_start = idx
+            phrase_end = idx + len(syn)
 
             results.append({
                 "key": key,
                 "synonym_matched": syn,
                 "confidence": 0.95,
-                "position": pos,
-                "end_position": pos + len(syn),
-                "extracted_value": phrase,
+                "position": phrase_start,
+                "end_position": phrase_end,
+                "extracted_value": text[phrase_start:phrase_end].strip(),
                 "match_type": "exact"
             })
 
             found_positions.add(pos)
             start = idx + len(syn)
 
+    # Build fuzzy candidates (words and n-grams)
     candidates = []
-
     words = re.findall(r'\b[\w\-]+\b', text, re.UNICODE)
     word_positions = [m.start() for m in re.finditer(r'\b[\w\-]+\b', text, re.UNICODE)]
 
     for i in range(len(words)):
-        for length in range(5, 1, -1):  # 5, 4, 3, 2 words
+        for length in range(5, 1, -1):  # 5,4,3,2 words
             if i + length <= len(words):
                 phrase = ' '.join(words[i:i + length])
                 if len(phrase) >= MIN_WORD_LENGTH_FOR_FUZZY:
@@ -242,6 +245,7 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 "word_count": 1
             })
 
+    # Fuzzy matching: pick best synonym, then find the real occurrence in original text
     for candidate in candidates:
         text_chunk = candidate["text"]
         pos = candidate["position"]
@@ -264,9 +268,7 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 continue
 
             syn_word_count = len(syn_normalized.split())
-
             word_count_diff = abs(word_count - syn_word_count)
-
             if syn_word_count > 1 and word_count_diff > 3:
                 continue
 
@@ -294,6 +296,7 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 best_match_type = "fuzzy"
 
         if best_match and best_key:
+            # Avoid duplicate-like entries (keeps using actual match positions below)
             already_found = any(
                 r["key"] == best_key and
                 abs(r["position"] - pos) < 50 and
@@ -303,11 +306,29 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
             if already_found:
                 continue
 
-            phrase_start = max(0, text.rfind(' ', 0, pos))
-            phrase_end = text.find('.', candidate["end_position"])
-            if phrase_end == -1:
-                phrase_end = min(len(text), candidate["end_position"] + 100)
-            phrase = text[phrase_start:phrase_end].strip()
+            # Find all occurrences of the chosen synonym in the original text (lowercased),
+            # choose the one closest to the candidate position.
+            syn_l = best_match.lower().strip()
+            occurrences = [m.start() for m in re.finditer(re.escape(syn_l), lower)]
+            if occurrences:
+                # pick occurrence closest to candidate position
+                match_start = min(occurrences, key=lambda o: abs(o - pos))
+                match_end = match_start + len(syn_l)
+            else:
+                # fallback: try to find within a small window around pos
+                window_start = max(0, pos - 20)
+                window_end = min(len(lower), pos + 20)
+                found = lower.find(syn_l, window_start, window_end)
+                if found != -1:
+                    match_start = found
+                    match_end = found + len(syn_l)
+                else:
+                    # last-resort fallback: use candidate bounds (but this should be rare)
+                    match_start = pos
+                    match_end = candidate["end_position"]
+
+            # Extract exact substring from original text for extracted_value
+            extracted_substring = text[match_start:match_end].strip()
 
             confidence = best_score / 100.0
 
@@ -315,15 +336,16 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 "key": best_key,
                 "synonym_matched": best_match,
                 "confidence": confidence,
-                "position": pos,
-                "end_position": candidate["end_position"],
-                "extracted_value": phrase,
+                "position": match_start,
+                "end_position": match_end,
+                "extracted_value": extracted_substring,
                 "match_type": best_match_type,
                 "fuzzy_score": best_score
             })
 
-            found_positions.add(pos)
+            found_positions.add(match_start)
 
+    # Sort and de-duplicate overlapping/conflicting results (preserve your original logic)
     results.sort(key=lambda r: r["position"])
 
     final_results = []
@@ -411,28 +433,14 @@ def map_parameters_to_models(parameters, models, manufacturers, eq_types, text):
     for i, seg in enumerate(segments):
         print(f"  Segment {i + 1}: '{seg['text']}' (pos {seg['start']}-{seg['end']})")
 
-    # Helper function to check if entity overlaps with segment
-    def overlaps_with_segment(entity_start, entity_end, seg_start, seg_end):
-        """
-        Check if entity overlaps with segment.
-        Returns True if ANY part of the entity is within the segment.
-        """
-        # Entity overlaps if:
-        # - Entity starts within segment, OR
-        # - Entity ends within segment, OR
-        # - Entity completely contains segment
-        return (
-                (seg_start <= entity_start < seg_end) or  # starts in segment
-                (seg_start < entity_end <= seg_end) or  # ends in segment
-                (entity_start <= seg_start and entity_end >= seg_end)  # contains segment
-        )
+    def overlaps_with_segment(ent_start, ent_end, seg_start, seg_end):
+        return not (ent_end < seg_start - BORDER_TOLERANCE or
+                    ent_start > seg_end + BORDER_TOLERANCE)
 
-    # Assign entities to segments using overlap detection
     for segment in segments:
         seg_start = segment["start"]
         seg_end = segment["end"]
 
-        # For models, use simple position check
         segment["models"] = [
             m for m in valid_models
             if seg_start <= m.get("position", 0) < seg_end
