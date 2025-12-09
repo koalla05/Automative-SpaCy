@@ -25,14 +25,6 @@ SPACY_MODEL_PATH = PROJECT_ROOT / "models" / "full_ner_model"
 
 nlp = spacy.load(SPACY_MODEL_PATH)
 
-_embed_model = None
-
-
-def get_embed_model():
-    global _embed_model
-    if _embed_model is None:
-        _embed_model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
-    return _embed_model
 
 
 SPLIT_PATTERNS = [
@@ -41,10 +33,6 @@ SPLIT_PATTERNS = [
 ]
 
 CONJUNCTION_REGEX = re.compile('|'.join(SPLIT_PATTERNS), re.IGNORECASE)
-
-
-def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
-    return util.cos_sim(a, b).item()
 
 
 def normalize_for_matching(text: str) -> str:
@@ -161,6 +149,7 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
             grouped[label].append(entity_dict)
 
     return grouped
+
 
 def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PARAM_GLOSSARY) -> List[Dict[str, Any]]:
     """
@@ -387,75 +376,194 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
 
 def map_parameters_to_models(parameters, models, manufacturers, eq_types, text):
     """
-    Map each parameter to closest model/manufacturer/eq_type.
-    Ensures all parameters are included in sub-queries.
+    Map each parameter to closest model using segment-aware logic.
+    Fixed to properly handle parameters that span across segment boundaries.
     """
+    # Normalize models - add canonical field
     for m in models:
         m["canonical"] = normalize_model(m.get("original_value", ""))
 
+    # Filter valid models (canonical != None)
+    valid_models = [m for m in models if m.get("canonical")]
+
+    if not valid_models:
+        # No valid models - return parameters with ALL_LISTED
+        sub_queries = []
+        for param in parameters:
+            manufacturer_value = manufacturers[0]["value"] if manufacturers else ""
+            eq_type_value = eq_types[0]["value"] if eq_types else None
+
+            sub_queries.append({
+                "manufacturer": manufacturer_value,
+                "model": "ALL_LISTED",
+                "equipment_type": eq_type_value,
+                "parameter": param["key"],
+                "original_part": param.get("extracted_value", ""),
+                "confidence": param.get("confidence", 0.0),
+                "match_type": param.get("match_type", "unknown")
+            })
+        return sub_queries
+
+    # Split text into segments by conjunctions
+    segments = split_into_segments(text)
+
+    print(f"\n🔍 DEBUG: Found {len(segments)} segments")
+    for i, seg in enumerate(segments):
+        print(f"  Segment {i + 1}: '{seg['text']}' (pos {seg['start']}-{seg['end']})")
+
+    # Helper function to check if entity overlaps with segment
+    def overlaps_with_segment(entity_start, entity_end, seg_start, seg_end):
+        """
+        Check if entity overlaps with segment.
+        Returns True if ANY part of the entity is within the segment.
+        """
+        # Entity overlaps if:
+        # - Entity starts within segment, OR
+        # - Entity ends within segment, OR
+        # - Entity completely contains segment
+        return (
+                (seg_start <= entity_start < seg_end) or  # starts in segment
+                (seg_start < entity_end <= seg_end) or  # ends in segment
+                (entity_start <= seg_start and entity_end >= seg_end)  # contains segment
+        )
+
+    # Assign entities to segments using overlap detection
+    for segment in segments:
+        seg_start = segment["start"]
+        seg_end = segment["end"]
+
+        # For models, use simple position check
+        segment["models"] = [
+            m for m in valid_models
+            if seg_start <= m.get("position", 0) < seg_end
+        ]
+
+        # For parameters, use overlap detection (they can span multiple words)
+        segment["parameters"] = [
+            p for p in parameters
+            if overlaps_with_segment(
+                p.get("position", 0),
+                p.get("end_position", p.get("position", 0)),
+                seg_start,
+                seg_end
+            )
+        ]
+
+        segment["manufacturers"] = [
+            m for m in manufacturers
+            if seg_start <= m.get("position", 0) < seg_end
+        ]
+
+        segment["eq_types"] = [
+            e for e in eq_types
+            if seg_start <= e.get("position", 0) < seg_end
+        ]
+
+        print(f"\n  Segment {segments.index(segment) + 1} entities:")
+        print(f"    Models: {[m['canonical'] for m in segment['models']]}")
+        print(f"    Params: {[p['key'] for p in segment['parameters']]}")
+        print(f"    Param positions: {[(p['key'], p['position'], p['end_position']) for p in segment['parameters']]}")
+
     sub_queries = []
 
-    for param in parameters:
-        if models:
-            closest_model = min(models, key=lambda m: abs(param["position"] - m["position"]))
+    for seg_idx, segment in enumerate(segments):
+        seg_models = segment.get("models", [])
+        seg_params = segment.get("parameters", [])
+        seg_manufacturers = segment.get("manufacturers", [])
+        seg_eq_types = segment.get("eq_types", [])
+
+        if not seg_params:
+            print(f"\n  ⚠️ Segment {seg_idx + 1}: No parameters, skipping")
+            continue  # Skip segments without parameters
+
+        print(f"\n  ✅ Segment {seg_idx + 1}: Processing {len(seg_params)} parameter(s)")
+
+        for param in seg_params:
+            if seg_models:
+                closest_model = min(seg_models,
+                                    key=lambda m: abs(m.get("position", 0) - param.get("position", 0)))
+                print(f"    - {param['key']} → {closest_model['canonical']} (same segment)")
+            else:
+                closest_model = min(valid_models,
+                                    key=lambda m: abs(m.get("position", 0) - param.get("position", 0)))
+                print(f"    - {param['key']} → {closest_model['canonical']} (closest overall)")
+
             model_value = closest_model["canonical"]
-        else:
-            model_value = "ALL_LISTED"
 
-        # Closest manufacturer
-        if manufacturers:
-            closest_manuf = min(manufacturers, key=lambda m: abs(param["position"] - m["position"]))
-            manufacturer_value = closest_manuf["value"]
-        else:
-            manufacturer_value = ""
+            if seg_manufacturers:
+                closest_manuf = min(seg_manufacturers,
+                                    key=lambda m: abs(m.get("position", 0) - param.get("position", 0)))
+                manufacturer_value = closest_manuf["value"]
+            else:
+                model_metadata = closest_model.get("metadata", {})
+                manufacturer_value = model_metadata.get("manufacturer", "")
+                if not manufacturer_value and manufacturers:
+                    manufacturer_value = manufacturers[0]["value"]
 
-        if eq_types:
-            closest_eq = min(eq_types, key=lambda e: abs(param["position"] - e["position"]))
-            eq_type_value = closest_eq["value"]
-        else:
-            eq_type_value = None
+            if seg_eq_types:
+                eq_type_value = seg_eq_types[0]["value"]
+            else:
+                model_metadata = closest_model.get("metadata", {})
+                eq_type_value = model_metadata.get("equipment_type")
+                if not eq_type_value and eq_types:
+                    eq_type_value = eq_types[0]["value"]
 
-        sub_queries.append({
-            "manufacturer": manufacturer_value,
-            "model": model_value,
-            "equipment_type": eq_type_value,
-            "parameter": param["key"],
-            "original_part": param.get("extracted_value", ""),
-            "confidence": param.get("confidence", 0.0),
-            "match_type": param.get("match_type", "unknown")
-        })
+            sub_queries.append({
+                "manufacturer": manufacturer_value,
+                "model": model_value,
+                "equipment_type": eq_type_value,
+                "parameter": param["key"],
+                "original_part": param.get("extracted_value", ""),
+                "confidence": param.get("confidence", 0.0),
+                "match_type": param.get("match_type", "unknown")
+            })
 
+    print(f"\n✅ Total sub-queries created: {len(sub_queries)}\n")
     return sub_queries
 
 
 def build_routing(ner_entities, parameters, text):
+    """
+    Build routing structure from entities.
+    Fixed to properly distinguish single vs multi query.
+    """
     manufacturers = ner_entities.get("MANUFACTURER", [])
     models = ner_entities.get("MODEL", [])
     eq_types = ner_entities.get("EQ_TYPE", [])
 
     if not manufacturers and not models and not parameters:
-        return {"recommended_strategy": "noEntities", "message": "No entities detected", "options": []}
+        return {
+            "recommended_strategy": "noEntities",
+            "message": "No entities detected",
+            "options": []
+        }
 
     sub_queries = map_parameters_to_models(parameters, models, manufacturers, eq_types, text)
 
-    if len(sub_queries) == 1:
-        return {"recommended_strategy": "single_query", "sub_query": sub_queries[0]}
+    if len(sub_queries) == 0:
+        return {
+            "recommended_strategy": "noEntities",
+            "message": "No valid parameter-model bindings",
+            "options": []
+        }
+    elif len(sub_queries) == 1:
+        return {
+            "recommended_strategy": "single_query",
+            "sub_query": sub_queries[0]
+        }
     else:
-        return {"recommended_strategy": "multi_query", "sub_queries": sub_queries}
+        return {
+            "recommended_strategy": "multi_query",
+            "sub_queries": sub_queries
+        }
 
 
 def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PARAM_GLOSSARY) -> Dict[str, Any]:
-    """
-    Main function to process a question and return complete JSON structure.
-    Now automatically enriches manufacturer and equipment_type from CSV metadata.
-    """
     question_raw = text
 
     ner_entities = extract_entities_with_metadata(text)
-
     params_extracted = find_parameters(text, param_glossary)
 
-    # Extract models with normalization
     models = []
     for m in ner_entities.get("MODEL", []):
         model_dict = {
@@ -464,43 +572,34 @@ def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_P
             "position": m["position"],
             "original_value": m["original_value"]
         }
-
-        # Add metadata if available
         if "metadata" in m:
             model_dict["metadata"] = m["metadata"]
-
         models.append(model_dict)
 
-    # Get manufacturers and equipment types from NER
     manufacturers_ner = ner_entities.get("MANUFACTURER", [])
     eq_types_ner = ner_entities.get("EQ_TYPE", [])
 
-    # Enrich manufacturers from model metadata if missing
-    manufacturers = list(manufacturers_ner)  # Copy NER results
-    eq_types = list(eq_types_ner)  # Copy NER results
+    manufacturers = list(manufacturers_ner)
+    eq_types = list(eq_types_ner)
 
     for model in models:
         if model.get("value") and "metadata" in model:
             metadata = model["metadata"]
-
-            # Add manufacturer if not found by NER
             if not manufacturers and metadata.get("manufacturer"):
                 manufacturers.append({
                     "value": metadata["manufacturer"],
                     "confidence": 0.95,
                     "position": model["position"],
                     "end_position": model["position"],
-                    "source": "metadata"  # Mark as coming from CSV
+                    "source": "metadata"
                 })
-
-            # Add equipment type if not found by NER
             if not eq_types and metadata.get("equipment_type"):
                 eq_types.append({
                     "value": metadata["equipment_type"],
                     "confidence": 0.95,
                     "position": model["position"],
                     "end_position": model["position"],
-                    "source": "metadata"  # Mark as coming from CSV
+                    "source": "metadata"
                 })
 
     extracted_entities = {
@@ -510,7 +609,11 @@ def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_P
         "parameters": params_extracted
     }
 
-    routing = build_routing(ner_entities, params_extracted, text)
+    routing = build_routing(
+        {"MANUFACTURER": manufacturers, "MODEL": models, "EQ_TYPE": eq_types},
+        params_extracted,
+        text
+    )
 
     return {
         "$schema": "http://json-schema.org/draft-07/schema#",

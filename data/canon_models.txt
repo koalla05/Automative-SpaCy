@@ -163,7 +163,7 @@ multiplusii488000110100 -> multiplus_ii_48_8000_110_100
 multiplusiigx2430007032 -> multiplus_ii_24_3000_70_32
 multiplusiigx4830003532 -> multiplus_ii_48_3000_35_32
 multiplusiigx4850007050 -> multiplus_ii_48_5000_70_50
-primo301 -> primo_3.0_1
+primoC -> primo_3.0_1
 primo351 -> primo_3.5_1
 primo361 -> primo_3.6_1
 primo401 -> primo_4.0_1
