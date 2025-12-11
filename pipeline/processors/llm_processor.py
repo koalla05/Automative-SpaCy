@@ -5,29 +5,23 @@ from typing import Dict, Any
 
 
 def detect_compatibility_query(text: str) -> bool:
-    """
-    Detect if query is asking about compatibility.
-
-    Returns:
-        True if compatibility question, False otherwise
-    """
     text_lower = text.lower()
 
     compat_patterns = [
         # Ukrainian
-        r'\b(сумісн|сумісний|сумісна|сумісне|сумісності|сумісність)\b',
+        r'\bсумісн\w*\b',
         r'\bчи можна (підключити|з\'єднати|використати)\b',
         r'\bв одну систему\b',
-        r'\bчи працює (з|разом)\b',
+        r'\bчи працю\w* (з|разом)\b',
 
-        # Russian
-        r'\b(совмест|совместим|совместима|совместимо|совместимости|совместимость)\b',
+        # гівно
+        r'\bсовмест\w*\b',
         r'\bможно ли (подключить|соединить|использовать)\b',
         r'\bв одну систему\b',
-        r'\bработает ли (с|вместе)\b',
+        r'\bработа\w* (с|вместе)\b',
 
         # English
-        r'\b(compat|compatible|compatibility)\b',
+        r'\bcompat\w*\b',
         r'\bcan (i|we) (connect|use|combine)\b',
         r'\bwork (with|together)\b',
         r'\bac[- ]?coupling\b',
