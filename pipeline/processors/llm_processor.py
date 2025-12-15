@@ -4,6 +4,60 @@ import re
 from typing import Dict, Any
 
 
+def detect_parallel_query(text: str) -> bool:
+    text_lower = text.lower()
+
+    parallel_patterns = [
+
+        # =========================
+        # Explicit parallel / stack
+        # =========================
+
+        # Ukrainian
+        r'\bпаралел\w*\b',
+        r'\bпаралельн\w*\b',
+        r'\bстек\w*\b',
+
+        # гівно
+        r'\bпараллел\w*\b',
+        r'\bпараллельн\w*\b',
+        r'\bстек\w*\b',
+
+        # English
+        r'\bparallel\w*\b',
+        r'\bstack\w*\b',
+        r'\bstacking\b',
+
+        # =========================
+        # Action + 3-phase (KEY PART)
+        # =========================
+
+        # Ukrainian: дія + 3-фазна
+        r'\b(чи\s+можна\s+)?'
+        r'(зібрат|зробит|побудуват|реалізуват|створит|підключит|використат)\w*\b'
+        r'.{0,30}'
+        r'\b(3|три)[-\s]?(фаз|фазн)\w*\b',
+
+        # Ukrainian: 3-фазна + дія
+        r'\b(3|три)[-\s]?(фаз|фазн)\w*\b'
+        r'.{0,30}'
+        r'\b(підключат|зєднуват|збирати|використовуват)\w*\b',
+
+        # гівно
+        r'\b(можно\s+)?'
+        r'(собрат|сделат|построит|реализоват|создат|подключит|использоват)\w*\b'
+        r'.{0,30}'
+        r'\b(3|три)[-\s]?фаз\w*\b',
+
+        # English
+        r'\b(can\s+i\s+)?'
+        r'(build|make|connect|configure|create|use)\w*\b'
+        r'.{0,30}'
+        r'\b(3|three)[-\s]?phase\b',
+    ]
+
+    return any(re.search(p, text_lower) for p in parallel_patterns)
+
 def detect_compatibility_query(text: str) -> bool:
     text_lower = text.lower()
 
@@ -39,6 +93,7 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
     Determine query status based on extracted entities and text analysis.
 
     STATUS logic:
+    - "parallel": Parallel questions (detected by keywords)
     - "compat": Compatibility questions (detected by keywords)
     - "simple": Direct parameter lookup from SQL/YAML
       * Has at least 1 VALID CANONICAL model (value != null)
@@ -53,36 +108,26 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
         original_text: Original query text
 
     Returns:
-        Status: "compat", "simple", or "complex"
+        Status: "parallel", "compat", "simple", or "complex"
     """
-    # Check for compatibility query first
+    if detect_parallel_query(original_text):
+        return "parallel"
+
     if detect_compatibility_query(original_text):
         return "compat"
 
     models = extracted_entities.get("model", [])
     parameters = extracted_entities.get("parameters", [])
 
-    # Filter out invalid models (where value is None/null)
     valid_models = [m for m in models if m.get("value") is not None]
 
-    # Count valid entities
     num_valid_models = len(valid_models)
     num_params = len(parameters)
 
-    # SIMPLE criteria:
-    # - At least 1 VALID canonical model
-    # - Has parameters
-    # - 1-2 valid models AND 1-2 parameters
     if num_valid_models >= 1 and num_params >= 1:
         if num_valid_models <= 2 and num_params <= 2:
             return "simple"
 
-    # All other cases -> complex
-    # - No valid canonical models
-    # - No parameters
-    # - More than 2 models
-    # - More than 2 parameters
-    # - Vague queries
     return "complex"
 
 
