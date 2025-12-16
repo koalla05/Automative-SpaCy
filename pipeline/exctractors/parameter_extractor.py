@@ -26,8 +26,6 @@ SPACY_MODEL_PATH = PROJECT_ROOT / "models" / "full_ner_model"
 
 nlp = spacy.load(SPACY_MODEL_PATH)
 
-
-
 SPLIT_PATTERNS = [
     r'\s+(?:і|та|и|а|й|,|;)\s+',  # Ukrainian/гівно conjunctions
     r'\s+(?:and|or|,|;)\s+',  # English conjunctions
@@ -152,10 +150,65 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
     return grouped
 
 
+def calculate_enhanced_score(text_normalized: str, syn_normalized: str,
+                             word_count: int, syn_word_count: int,
+                             ratio: float, partial_ratio: float,
+                             token_sort_ratio: float, token_set_ratio: float) -> float:
+    """
+    Calculate enhanced fuzzy score that prioritizes word overlap and longer matches.
+
+    Args:
+        text_normalized: normalized query text
+        syn_normalized: normalized synonym text
+        word_count: number of words in query text
+        syn_word_count: number of words in synonym
+        ratio: basic fuzzy ratio score
+        partial_ratio: partial fuzzy ratio score
+        token_sort_ratio: token sort fuzzy ratio score
+        token_set_ratio: token set fuzzy ratio score
+
+    Returns:
+        Enhanced score (0-100)
+    """
+    # Base fuzzy score calculation
+    if syn_word_count > 1:
+        base_score = max(token_sort_ratio, token_set_ratio)
+        if word_count == syn_word_count:
+            base_score = min(100, base_score + 5)
+        if partial_ratio > base_score:
+            base_score = (base_score + partial_ratio) / 2
+    else:
+        base_score = max(ratio, partial_ratio)
+
+    # Calculate word overlap
+    query_words = set(text_normalized.split())
+    syn_words = set(syn_normalized.split())
+    overlap_count = len(query_words & syn_words)
+
+    # Calculate overlap ratio (what % of synonym words appear in query)
+    overlap_ratio = overlap_count / len(syn_words) if syn_words else 0
+
+    # Bonus for word overlap
+    # Give more weight to matches where ALL synonym words are present in query
+    overlap_bonus = overlap_ratio * 20  # Up to 20 points for perfect overlap
+
+    # Bonus for longer, more specific matches
+    # Prefer multi-word synonyms as they're more specific
+    length_bonus = min(15, syn_word_count * 3) if syn_word_count > 1 else 0
+
+    # Combine scores with weighted approach
+    # 70% base fuzzy score, 20% overlap, 10% length bonus
+    final_score = (base_score * 0.7) + (overlap_bonus * 1.0) + (length_bonus * 0.5)
+
+    # Cap at 100
+    return min(100, final_score)
+
+
 def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PARAM_GLOSSARY) -> List[Dict[str, Any]]:
     """
     Detect parameters in text using exact and fuzzy matching.
     Handles plurals and variations.
+    Enhanced to prioritize matches with more overlapping words.
     """
     lower = text.lower()
     results = []
@@ -245,7 +298,7 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 "word_count": 1
             })
 
-    # Fuzzy matching: pick best synonym, then find the real occurrence in original text
+    # Fuzzy matching with enhanced scoring
     for candidate in candidates:
         text_chunk = candidate["text"]
         pos = candidate["position"]
@@ -275,19 +328,19 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
             if len(text_normalized) < len(syn_normalized) * 0.3:
                 continue
 
+            # Calculate base fuzzy scores
             ratio = fuzz.ratio(text_normalized, syn_normalized)
             partial_ratio = fuzz.partial_ratio(text_normalized, syn_normalized)
             token_sort_ratio = fuzz.token_sort_ratio(text_normalized, syn_normalized)
             token_set_ratio = fuzz.token_set_ratio(text_normalized, syn_normalized)
 
-            if syn_word_count > 1:
-                score = max(token_sort_ratio, token_set_ratio)
-                if word_count == syn_word_count:
-                    score = min(100, score + 5)
-                if partial_ratio > score:
-                    score = (score + partial_ratio) / 2
-            else:
-                score = max(ratio, partial_ratio)
+            # Use enhanced scoring that considers word overlap
+            score = calculate_enhanced_score(
+                text_normalized, syn_normalized,
+                word_count, syn_word_count,
+                ratio, partial_ratio,
+                token_sort_ratio, token_set_ratio
+            )
 
             if score > best_score and score >= FUZZY_MATCH_THRESHOLD:
                 best_score = score
@@ -296,7 +349,7 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 best_match_type = "fuzzy"
 
         if best_match and best_key:
-            # Avoid duplicate-like entries (keeps using actual match positions below)
+            # Avoid duplicate-like entries
             already_found = any(
                 r["key"] == best_key and
                 abs(r["position"] - pos) < 50 and
@@ -323,7 +376,7 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                     match_start = found
                     match_end = found + len(syn_l)
                 else:
-                    # last-resort fallback: use candidate bounds (but this should be rare)
+                    # last-resort fallback: use candidate bounds
                     match_start = pos
                     match_end = candidate["end_position"]
 
@@ -345,7 +398,7 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
 
             found_positions.add(match_start)
 
-    # Sort and de-duplicate overlapping/conflicting results (preserve your original logic)
+    # Sort and de-duplicate overlapping/conflicting results
     results.sort(key=lambda r: r["position"])
 
     final_results = []
@@ -632,114 +685,21 @@ def process_question(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_P
 
 
 if __name__ == "__main__":
-    if __name__ == "__main__":
-        test_queries = [
-            "Який максимальний струм заряджання/розряджання АКБ на інверторі LuxPwer LXP-LB-EU 10k?",
-            "Скільки MPPT трекерів та входів у інвертора Fronius Verto?",
-            "напруга запуску на інверторі uawei SUN2000-15KTL-M2 та вага  SUN2000-15KTL-M2 ?"
-            # "Який діапазон постійної вхідної напруги на інверторі Victron MultiPlus-II 48/3000/35-32 и 48/5000/70-50?",
-            # # # === BASIC SINGLE PARAMETER QUERIES ===
-            # "Яка ємність Dyness A48100?",
-            # "Weight of Pylontech US5000",
-            # "Максимальний струм заряджання для Growatt SPF 5000",
-            # "What is the max charge current for Tesla Powerwall 2?",
-            #
-            # # === MULTIPLE PARAMETERS, SINGLE MODEL ===
-            # "Які технічні характеристики Dyness A48100? який максимальний струм заряду і ємність в Ah?",
-            # "Вага, ємність та максимальний струм розряду для BYD Battery-Box Premium HVS 10.2",
-            # "Give me weight, capacity and voltage range for Pylontech US3000C",
-            # "Максимальна потужність заряду, напруга абсорбції і float voltage для Victron MultiPlus II 48/5000",
-            # #
-            # # === MULTIPLE MODELS WITH DIFFERENT PARAMETERS ===
-            # "Яка ємність у Deye BOS-G25 та вага у Sofar HYD 10KTL?",
-            # "Максимальний струм заряджання для Pylontech US5000 і ємність для Dyness A48100",
-            # "Compare weight of Growatt SPF 5000 and max AC power of Victron MultiPlus 48/3000",
-            # "Вага Huawei LUNA2000-5-S0 та максимальна потужність Solax X3-Hybrid-8.0",
-            #
-            # # === COMPLEX MULTI-MODEL, MULTI-PARAMETER ===
-            # "Ємність та вага для Dyness A48100, максимальний струм для Pylontech US5000 і напруга для BYD HVS 7.7",
-            # "Які MPPT trackers у Fronius Symo Hybrid, efficiency для SolarEdge SE7600H та nominal AC power for Huawei SUN2000-5KTL",
-            #
-            # # === INVERTER-SPECIFIC QUERIES ===
-            # "Скільки MPPT трекерів у інвертора Fronius Primo 8.2?",
-            # "What is the max PV input power for SolarEdge SE10K?",
-            # "Nominal AC voltage and frequency range for Growatt MIN 6000TL-XH",
-            # "Максимальна вхідна напруга з панелей та кількість стрінгів на MPPT для Huawei SUN2000-10KTL-M1",
-            # "Efficiency and max AC output power of Victron MultiPlus II 48/5000/70-50",
-            #
-            # # === BATTERY-SPECIFIC QUERIES ===
-            # "Тип батареї та діапазон напруги для інвертора Deye SUN-12K-SG04LP3",
-            # "Battery voltage range and charging strategy for Sofar HYD 6000-ES",
-            # "Чи є захист від зворотної полярності у Pylontech US5000?",
-            # "Does LuxPower SNA 5000 support battery temperature sensor?",
-            #
-            # # === PROTECTION FEATURES ===
-            # "Які захисти є у інвертора Growatt SPF 5000 ES?",
-            # "Anti-islanding protection and ground fault monitoring for SolarEdge SE7600H",
-            # "Чи є PID recovery та string monitoring у Fronius Symo 10.0-3-M?",
-            # "Arc fault protection and surge protection in Huawei SUN2000-8KTL-M1",
-            #
-            # # === PHYSICAL SPECIFICATIONS ===
-            # "Габарити та вага Victron MultiPlus 48/5000",
-            # "IP rating, dimensions and cooling type for Growatt MIN 11400TL-XH",
-            # "Рівень шуму, робочий температурний діапазон та клас захисту для SMA Sunny Tripower 10.0",
-            #
-            # # === MIXED LANGUAGE QUERIES ===
-            # "Яка capacity у Pylontech та weight для Dyness?",
-            # "Max charge current для BYD HVS 10.2 і efficiency of Victron MultiPlus",
-            # "Ємність в Ah for Tesla Powerwall and вага у кг для Sonnen Eco 10",
-            #
-            # # === QUERIES WITH TYPOS (testing fuzzy matching) ===
-            # "Макимальний стурм зарядки для Pylontech US5000",  # typos
-            # "Вага та емность для Dyness A48100",  # емность instead of ємність
-            # "Waight and capasity of BYD Battery-Box",  # English typos
-            #
-            # # === QUERIES WITH PLURALS ===
-            # "Які ємності у Pylontech US5000 та Dyness A48100?",  # plural form
-            # "Weights of Pylontech US5000, BYD HVS 7.7 and Dyness A48100",
-            # "Максимальні струми заряджання для інверторів Growatt та Victron",
-            #
-            # # === EDGE CASES ===
-            # "Порівняти характеристики Dyness A48100 та BYD HVS 10.2",  # "compare specs"
-            # "Що краще - Pylontech US5000 чи Dyness A48100?",  # opinion question
-            # "Скільки коштує Victron MultiPlus 48/5000?",  # price question (not in glossary)
-            # "Де купити Growatt SPF 5000?",  # "where to buy" (OTHER intent)
-            # "Як налаштувати Fronius Symo 10.0?",  # configuration question (OTHER intent)
-            #
-            # # === NO ENTITIES ===
-            # "Які бувають типи інверторів?",  # general question, no specific model
-            # "Що таке MPPT?",  # definition question
-            # "Hello, how are you?",  # irrelevant query
-            #
-            # # === EQUIPMENT TYPE QUERIES ===
-            # "Максимальна потужність для гібридного інвертора Deye SUN-12K",
-            # "Battery capacity for energy storage system Pylontech US5000",
-            # "Вага для АКБ Dyness A48100 та інвертора Growatt SPF 5000",
-            #
-            # # === NUMERIC VALUES IN QUERY ===
-            # "Чи підтримує Victron MultiPlus 48V батареї?",
-            # "Can Fronius Primo handle 600V input voltage?",
-            # "Чи може Growatt MIN 11400 працювати з 250A струмом?",
-            #
-            # # === LONG COMPLEX QUERIES ===
-            # "Мені потрібно порівняти технічні характеристики трьох інверторів: Fronius Symo Hybrid 5.0 (цікавить максимальна потужність та ККД), SolarEdge SE7600H (хочу знати кількість MPPT та максимальну вхідну напругу) і Huawei SUN2000-8KTL (потрібна інформація про nominal AC power та захист від перенапруги)",
-            #
-            # # === ABBREVIATIONS AND TECHNICAL TERMS ===
-            # "Max Isc per MPPT for Fronius Primo 8.2",
-            # "THD and power factor range for Victron MultiPlus",
-            # "ККД Euro та MPPT efficiency для SolarEdge SE10K",
-            # "Voc max and MPP voltage range for Growatt MIN 6000TL-XH",
-        ]
+    test_queries = [
+        "Яка максимальна вхідна потужність по фем на LuxPwer LXP-LB-EU 10k?",
+        "Скільки MPPT трекерів та входів у інвертора Fronius Verto?",
+        "напруга запуску на інверторі Huawei SUN2000-15KTL-M2 та вага  SUN2000-15KTL-M2 ?"
+    ]
 
-        import json
+    import json
 
-        print(f"\n{'#' * 80}")
-        print(f"# RUNNING {len(test_queries)} TEST QUERIES")
-        print(f"{'#' * 80}\n")
+    print(f"\n{'#' * 80}")
+    print(f"# RUNNING {len(test_queries)} TEST QUERIES")
+    print(f"{'#' * 80}\n")
 
-        for idx, q in enumerate(test_queries, 1):
-            print(f"\n{'=' * 80}")
-            print(f"Test {idx}/{len(test_queries)}: {q}")
-            print('=' * 80)
-            out = process_question(q)
-            print(json.dumps(out, ensure_ascii=False, indent=2))
+    for idx, q in enumerate(test_queries, 1):
+        print(f"\n{'=' * 80}")
+        print(f"Test {idx}/{len(test_queries)}: {q}")
+        print('=' * 80)
+        out = process_question(q)
+        print(json.dumps(out, ensure_ascii=False, indent=2))

@@ -56,26 +56,13 @@ if __name__ == "__main__":
     pipeline = IPGPipeline()
 
     test_queries = [
-        # Simple query - single model + parameter
-        "Який максимальний струм заряджання на інверторі LuxPower LXP-LB-EU 10k?",
-
-        # Compat query
-        "Чи сумісний Pylontech US5000 з Victron MultiPlus?",
-
-        # simple query - multi-model with parameters
-        "Вага Dyness A48100 та максимальний струм для Pylontech US5000",
-
-        # Complex query - no parameters
-        "Які є інвертори Victron?",
-
-        # Simple query - single model, single param
-        "Вага Pylontech US5000",
-
-        # Compat with "can I connect"
-        "Can I connect Huawei LUNA2000 with Fronius Primo?",
-
-        # Complex - invalid model (should show "No valid canonical model names")
-        "Максимальний струм на Unknown Model XYZ-123",
+        "Яка максимальна вхідна потужність по фем на LuxPwer LXP-LB-EU 10k?",
+        "гранична напруга зарядки Pylontech US5000?",
+        "Який максимальний розрядний струм на інверторі Deye SUN-6K-SG05LP1-EU",
+        "Яка номінальна вихідна частота на інверторі Sofar 12KTLX-G3?", # ??
+        "Яка номінальна вихідна потужність на інверторі Sofar 110KTLX-G4?",
+        "Яка кількість входів постійного струму на інверторі Sofar 110KTLX-G4?", # ?
+        "Яка максимальна напруга заряду на інверторі LuxPower SNA 5000?"
     ]
 
     for idx, query in enumerate(test_queries, 1):
