@@ -382,6 +382,11 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
 
             # Extract exact substring from original text for extracted_value
             extracted_substring = text[match_start:match_end].strip()
+            extracted_word_count = len(extracted_substring.split())
+            synonym_word_count = len(best_match.split())
+
+            if extracted_word_count < synonym_word_count:
+                continue
 
             confidence = best_score / 100.0
 
