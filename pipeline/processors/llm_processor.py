@@ -4,6 +4,97 @@ import re
 from typing import Dict, Any
 
 
+def detect_lifestyle_query(text: str) -> bool:
+    text = text.lower().strip()
+
+    lifestyle_patterns = [
+        # === GREETINGS (UA + гівно + EN) ===
+        r'\bпривіт(ик|ки)?\b',
+        r'\bдобр(ий|ого)\s+д(ень|ня)\b',
+        r'\bдобр(ий|ого)\s+веч(ір|ора)\b',
+        r'\bдобр(ий|ого)\s+ран(ок|ку)\b',
+        r'\bвітаю( вас)?\b',
+        r'\bздоров(енькі)?\b',
+        r'\bал(ло|ьо)\b',
+        r'\bна\s+зв[ʼ’`]?язку\b',
+        r'\bє\s+хто\b',
+
+        r'\bпривет\b',
+        r'\bдобр(ый|ого)\s+(день|вечер|утро)\b',
+        r'\bздравств(уй|уйте)\b',
+        r'\bна\s+связи\b',
+        r'\bесть\s+кто\b',
+
+        r'\bhi\b', r'\bhello\b', r'\bhey\b', r'\bgood\s+(morning|evening|afternoon)\b',
+
+        # === FAREWELLS ===
+        r'\bбувай(те)?\b',
+        r'\bдо\s+побачення\b',
+        r'\bна\s+все\s+добре\b',
+        r'\bгарн(ого|ий)\s+(дня|вечора)\b',
+        r'\bдо\s+зв[ʼ’`]?язку\b',
+        r'\bпочуємось\b',
+
+        r'\bпока\b',
+        r'\bдо\s+свидания\b',
+        r'\bвсего\s+доброго\b',
+
+        r'\bbye\b', r'\bgoodbye\b', r'\bsee\s+you\b',
+
+        # === GRATITUDE ===
+        r'\bдякую\b',
+        r'\bщиро\s+дякую\b',
+        r'\bвдячн(ий|а)\b',
+        r'\bспасибі\b',
+        r'\bдякс\b',
+
+        r'\bспасибо\b',
+        r'\bблагодарю\b',
+
+        r'\bthanks\b', r'\bthank\s+you\b', r'\bthx\b',
+
+        # === META / IDENTITY ===
+        r'\b(ти|ви)\s+(хто|що)\b',
+        r'\bхто\s+ти\b',
+        r'\bти\s+бот\b',
+        r'\bти\s+людин(а|и)\b',
+        r'\bяк\s+тебе\s+звати\b',
+        r'\bщо\s+ти\s+вмієш\b',
+        r'\bяк\s+ти\s+працюєш\b',
+
+        r'\bты\s+кто\b',
+        r'\bкто\s+ты\b',
+        r'\bты\s+бот\b',
+
+        r'\bwho\s+are\s+you\b',
+        r'\bare\s+you\s+a\s+bot\b',
+
+        # === SMALL TALK ===
+        r'\bяк\s+справи\b',
+        r'\bяк\s+ти\b',
+        r'\bщо\s+нового\b',
+        r'\bяк\s+життя\b',
+        r'\bяк\s+настрій\b',
+
+        r'\bкак\s+дела\b',
+        r'\bкак\s+ты\b',
+
+        r'\bhow\s+are\s+you\b',
+        r'\bwhat[’\']?s\s+up\b',
+
+        # === SHORT REACTIONS ONLY ===
+        r'^\s*(ок|окей|норм|нормально|топ|супер|клас|ok|okay)\s*$'
+    ]
+
+    # === EMOJI-ONLY ===
+    emoji_only = re.fullmatch(r'[👍👌🙂😂✅❤️🔥\s]+', text)
+    if emoji_only:
+        return True
+
+    combined_pattern = re.compile('|'.join(lifestyle_patterns), re.IGNORECASE)
+    return bool(combined_pattern.search(text))
+
+
 def detect_parallel_query(text: str) -> bool:
     text_lower = text.lower()
 
@@ -58,6 +149,7 @@ def detect_parallel_query(text: str) -> bool:
 
     return any(re.search(p, text_lower) for p in parallel_patterns)
 
+
 def detect_compatibility_query(text: str) -> bool:
     text_lower = text.lower()
 
@@ -92,7 +184,7 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
     """
     Determine query status based on extracted entities and text analysis.
 
-    STATUS logic:
+    STATUS logic (checked in order of priority):
     - "parallel": Parallel questions (detected by keywords)
     - "compat": Compatibility questions (detected by keywords)
     - "simple": Direct parameter lookup from SQL/YAML
@@ -102,13 +194,15 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
       * Allowed: 1-2 params + 1-2 models
       * Meaning: "Give me parameter value(s) for model(s)"
     - "complex": Everything else (calculations, >2 models, >2 params, no entities, invalid models, etc.)
+    - "lifestyle": Social/meta queries (greetings, farewells, gratitude, small talk, reactions)
+      * LOWEST PRIORITY - checked last
 
     Args:
         extracted_entities: Dict with manufacturer, model, equipment_type, parameters
         original_text: Original query text
 
     Returns:
-        Status: "parallel", "compat", "simple", or "complex"
+        Status: "parallel", "compat", "simple", "complex", or "lifestyle"
     """
     if detect_parallel_query(original_text):
         return "parallel"
@@ -127,6 +221,14 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
     if num_valid_models >= 1 and num_params >= 1:
         if num_valid_models <= 2 and num_params <= 2:
             return "simple"
+
+    # Lifestyle is the lowest priority - only if NO technical entities at all
+    if num_params > 0 or len(models) > 0:
+        # Has parameters or models  = technical query
+        return "complex"
+
+    if detect_lifestyle_query(original_text):
+        return "lifestyle"
 
     return "complex"
 
@@ -203,7 +305,9 @@ def determine_intent_logic(status: str, extracted_entities: Dict[str, Any]) -> s
     if status == "simple":
         return "sql_query"
 
-    # Complex status
+    if status == "lifestyle":
+        return "lifestyle_query"
+
     if extracted_entities.get("parameters"):
         return "multi_model_query"
 
