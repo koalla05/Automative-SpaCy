@@ -2,15 +2,20 @@
 from typing import List, Dict, Any
 from pathlib import Path
 import re
+import logging
+import time
 import numpy as np
 from sentence_transformers import SentenceTransformer, util
 from rapidfuzz import fuzz
 from core.normalization.model_normalization import normalize_model
-import spacy
+from pipeline.models import ModelManager
 
 from core.normalization.entity_normalization import clean_word, normalize_entity
 from core.normalization.model_metadata import get_model_metadata
 from core.config import DEFAULT_PARAM_GLOSSARY
+
+# Setup logging
+logger = logging.getLogger("ipg_pipeline")
 
 # Thresholds
 PARAMETER_CONFIDENCE_THRESHOLD = 0.75
@@ -19,12 +24,6 @@ EXACT_MATCH_THRESHOLD = 95
 MIN_WORD_LENGTH_FOR_FUZZY = 4  # LOWERED from 5
 MIN_SYNONYM_LENGTH_FOR_FUZZY = 4  # LOWERED from 5
 BORDER_TOLERANCE = 2
-
-CURRENT_FILE_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = CURRENT_FILE_DIR.parent.parent
-SPACY_MODEL_PATH = PROJECT_ROOT / "models" / "full_ner_model"
-
-nlp = spacy.load(SPACY_MODEL_PATH)
 
 SPLIT_PATTERNS = [
     r'\s+(?:і|та|и|а|й|,|;)\s+',  # Ukrainian/гівно conjunctions
@@ -107,45 +106,79 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
     Extract entities with confidence scores and positions.
     Now uses improved model normalization with cleaning.
     Also enriches with metadata from CSV if canonical model is found.
+    
+    Args:
+        text: Input text to extract entities from
+        
+    Returns:
+        Dictionary with extracted entities and metadata
+        
+    Raises:
+        ValueError: If input text is invalid
     """
-    doc = nlp(text)
+    # Input validation
+    if not text or not isinstance(text, str):
+        logger.warning("Invalid input text: not a string or empty")
+        return {}
+    
+    if len(text) > 10000:
+        logger.warning(f"Text exceeds maximum length (10000 chars): {len(text)}")
+        raise ValueError("Text exceeds maximum length (10000 characters)")
+    
+    try:
+        nlp = ModelManager.get_nlp()
+        doc = nlp(text)
+        logger.debug(f"NER extraction found {len(doc.ents)} entities")
+    except Exception as e:
+        logger.error(f"NER extraction failed: {e}")
+        raise RuntimeError(f"Failed to extract entities: {e}")
+    
     grouped: Dict[str, List[Dict[str, Any]]] = {}
 
-    for ent in doc.ents:
-        label = ent.label_
-        cleaned = clean_word(ent.text)
-        normalized = normalize_entity(cleaned, label)
+    try:
+        for ent in doc.ents:
+            label = ent.label_
+            cleaned = clean_word(ent.text)
+            normalized = normalize_entity(cleaned, label)
 
-        if label == "MANUFACTURER" and is_stopword_or_common(normalized):
-            continue
+            if label == "MANUFACTURER" and is_stopword_or_common(normalized):
+                continue
 
-        confidence = min(0.95, 0.7 + (len(ent.text) / 50))
+            confidence = min(0.95, 0.7 + (len(ent.text) / 50))
 
-        entity_dict = {
-            "value": normalized,
-            "confidence": confidence,
-            "position": ent.start_char,
-            "end_position": ent.end_char
-        }
+            entity_dict = {
+                "value": normalized,
+                "confidence": confidence,
+                "position": ent.start_char,
+                "end_position": ent.end_char
+            }
 
-        if label == "MODEL":
-            entity_dict["original_value"] = ent.text
-            # Use improved normalization with cleaning
-            canonical = normalize_model(ent.text)
-            entity_dict["value"] = canonical  # Will be None if not in canon
+            if label == "MODEL":
+                entity_dict["original_value"] = ent.text
+                # Use improved normalization with cleaning
+                canonical = normalize_model(ent.text)
+                entity_dict["value"] = canonical  # Will be None if not in canon
 
-            # If canonical model found, get metadata from CSV
-            if canonical:
-                metadata = get_model_metadata(canonical)
-                if metadata:
-                    entity_dict["metadata"] = metadata
+                # If canonical model found, get metadata from CSV
+                if canonical:
+                    try:
+                        metadata = get_model_metadata(canonical)
+                        if metadata:
+                            entity_dict["metadata"] = metadata
+                    except Exception as e:
+                        logger.warning(f"Failed to get metadata for model {canonical}: {e}")
 
-        if label not in grouped:
-            grouped[label] = []
+            if label not in grouped:
+                grouped[label] = []
 
-        # Avoid duplicates
-        if not any(e["value"] == entity_dict["value"] for e in grouped[label]):
-            grouped[label].append(entity_dict)
+            # Avoid duplicates
+            if not any(e["value"] == entity_dict["value"] for e in grouped[label]):
+                grouped[label].append(entity_dict)
+    
+    except Exception as e:
+        logger.error(f"Error processing extracted entities: {e}")
+        # Return partial results even if processing fails
+        pass
 
     return grouped
 
@@ -209,249 +242,266 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
     Detect parameters in text using exact and fuzzy matching.
     Handles plurals and variations.
     Enhanced to prioritize matches with more overlapping words.
+    
+    Args:
+        text: Input text to search for parameters
+        param_glossary: Dictionary of parameter keys and their synonyms
+        
+    Returns:
+        List of found parameters with confidence scores
     """
-    lower = text.lower()
-    results = []
+    if not text or not isinstance(text, str):
+        logger.warning("Invalid input for find_parameters")
+        return []
+    
+    try:
+        lower = text.lower()
+        results = []
 
-    synonym_to_key = {}
-    normalized_synonyms = {}
+        synonym_to_key = {}
+        normalized_synonyms = {}
 
-    # Build synonym maps (strip syns to avoid leading/trailing spaces)
-    for key, syns in param_glossary.items():
-        for syn in syns:
-            syn_lower = syn.lower().strip()
-            synonym_to_key[syn_lower] = key
-            normalized_syn = normalize_for_matching(syn_lower)
-            if normalized_syn not in normalized_synonyms:
-                normalized_synonyms[normalized_syn] = []
-            normalized_synonyms[normalized_syn].append((syn_lower, key))
+        # Build synonym maps (strip syns to avoid leading/trailing spaces)
+        for key, syns in param_glossary.items():
+            for syn in syns:
+                syn_lower = syn.lower().strip()
+                synonym_to_key[syn_lower] = key
+                normalized_syn = normalize_for_matching(syn_lower)
+                if normalized_syn not in normalized_synonyms:
+                    normalized_synonyms[normalized_syn] = []
+                normalized_synonyms[normalized_syn].append((syn_lower, key))
 
-    found_positions = set()
+        found_positions = set()
 
-    sorted_synonyms = sorted(synonym_to_key.items(), key=lambda x: len(x[0]), reverse=True)
+        sorted_synonyms = sorted(synonym_to_key.items(), key=lambda x: len(x[0]), reverse=True)
 
-    # Exact matches (use the actual matched substring indices)
-    for syn, key in sorted_synonyms:
-        if not syn:
-            continue
-        start = 0
-        while True:
-            idx = lower.find(syn, start)
-            if idx == -1:
-                break
+        # Exact matches (use the actual matched substring indices)
+        for syn, key in sorted_synonyms:
+            if not syn:
+                continue
+            start = 0
+            while True:
+                idx = lower.find(syn, start)
+                if idx == -1:
+                    break
 
-            pos = idx
+                pos = idx
+
+                if any(abs(p - pos) < 5 for p in found_positions):
+                    start = idx + len(syn)
+                    continue
+
+                before_ok = idx == 0 or not text[idx - 1].isalnum()
+                after_ok = (idx + len(syn) >= len(text)) or not text[idx + len(syn)].isalnum()
+
+                if not (before_ok and after_ok):
+                    start = idx + len(syn)
+                    continue
+
+                phrase = syn  # the matched synonym itself
+                phrase_start = idx
+                phrase_end = idx + len(syn)
+
+                results.append({
+                    "key": key,
+                    "synonym_matched": syn,
+                    "confidence": 0.95,
+                    "position": phrase_start,
+                    "end_position": phrase_end,
+                    "extracted_value": text[phrase_start:phrase_end].strip(),
+                    "match_type": "exact"
+                })
+
+                found_positions.add(pos)
+                start = idx + len(syn)
+
+        # Build fuzzy candidates (words and n-grams)
+        candidates = []
+        words = re.findall(r'\b[\w\-]+\b', text, re.UNICODE)
+        word_positions = [m.start() for m in re.finditer(r'\b[\w\-]+\b', text, re.UNICODE)]
+
+        for i in range(len(words)):
+            for length in range(5, 1, -1):  # 5,4,3,2 words
+                if i + length <= len(words):
+                    phrase = ' '.join(words[i:i + length])
+                    if len(phrase) >= MIN_WORD_LENGTH_FOR_FUZZY:
+                        phrase_start = word_positions[i]
+                        phrase_end = word_positions[i + length - 1] + len(words[i + length - 1])
+                        candidates.append({
+                            "text": phrase,
+                            "position": phrase_start,
+                            "end_position": phrase_end,
+                            "word_count": length
+                        })
+
+            word = words[i]
+            if len(word) >= MIN_WORD_LENGTH_FOR_FUZZY and not is_stopword_or_common(word):
+                candidates.append({
+                    "text": word,
+                    "position": word_positions[i],
+                    "end_position": word_positions[i] + len(word),
+                    "word_count": 1
+                })
+
+        # Fuzzy matching with enhanced scoring
+        for candidate in candidates:
+            text_chunk = candidate["text"]
+            pos = candidate["position"]
+            word_count = candidate["word_count"]
 
             if any(abs(p - pos) < 5 for p in found_positions):
-                start = idx + len(syn)
                 continue
 
-            before_ok = idx == 0 or not text[idx - 1].isalnum()
-            after_ok = (idx + len(syn) >= len(text)) or not text[idx + len(syn)].isalnum()
+            text_normalized = normalize_for_matching(text_chunk)
 
-            if not (before_ok and after_ok):
-                start = idx + len(syn)
-                continue
+            best_match = None
+            best_score = 0
+            best_key = None
+            best_match_type = None
 
-            phrase = syn  # the matched synonym itself
-            phrase_start = idx
-            phrase_end = idx + len(syn)
+            for syn, key in synonym_to_key.items():
+                syn_normalized = normalize_for_matching(syn)
 
-            results.append({
-                "key": key,
-                "synonym_matched": syn,
-                "confidence": 0.95,
-                "position": phrase_start,
-                "end_position": phrase_end,
-                "extracted_value": text[phrase_start:phrase_end].strip(),
-                "match_type": "exact"
-            })
+                if len(syn_normalized) < MIN_SYNONYM_LENGTH_FOR_FUZZY:
+                    continue
 
-            found_positions.add(pos)
-            start = idx + len(syn)
+                syn_word_count = len(syn_normalized.split())
+                word_count_diff = abs(word_count - syn_word_count)
+                if syn_word_count > 1 and word_count_diff > 3:
+                    continue
 
-    # Build fuzzy candidates (words and n-grams)
-    candidates = []
-    words = re.findall(r'\b[\w\-]+\b', text, re.UNICODE)
-    word_positions = [m.start() for m in re.finditer(r'\b[\w\-]+\b', text, re.UNICODE)]
+                if len(text_normalized) < len(syn_normalized) * 0.3:
+                    continue
 
-    for i in range(len(words)):
-        for length in range(5, 1, -1):  # 5,4,3,2 words
-            if i + length <= len(words):
-                phrase = ' '.join(words[i:i + length])
-                if len(phrase) >= MIN_WORD_LENGTH_FOR_FUZZY:
-                    phrase_start = word_positions[i]
-                    phrase_end = word_positions[i + length - 1] + len(words[i + length - 1])
-                    candidates.append({
-                        "text": phrase,
-                        "position": phrase_start,
-                        "end_position": phrase_end,
-                        "word_count": length
-                    })
+                # Calculate base fuzzy scores
+                ratio = fuzz.ratio(text_normalized, syn_normalized)
+                partial_ratio = fuzz.partial_ratio(text_normalized, syn_normalized)
+                token_sort_ratio = fuzz.token_sort_ratio(text_normalized, syn_normalized)
+                token_set_ratio = fuzz.token_set_ratio(text_normalized, syn_normalized)
 
-        word = words[i]
-        if len(word) >= MIN_WORD_LENGTH_FOR_FUZZY and not is_stopword_or_common(word):
-            candidates.append({
-                "text": word,
-                "position": word_positions[i],
-                "end_position": word_positions[i] + len(word),
-                "word_count": 1
-            })
+                # Use enhanced scoring that considers word overlap
+                score = calculate_enhanced_score(
+                    text_normalized, syn_normalized,
+                    word_count, syn_word_count,
+                    ratio, partial_ratio,
+                    token_sort_ratio, token_set_ratio
+                )
 
-    # Fuzzy matching with enhanced scoring
-    for candidate in candidates:
-        text_chunk = candidate["text"]
-        pos = candidate["position"]
-        word_count = candidate["word_count"]
+                if score > best_score and score >= FUZZY_MATCH_THRESHOLD:
+                    best_score = score
+                    best_match = syn
+                    best_key = key
+                    best_match_type = "fuzzy"
 
-        if any(abs(p - pos) < 5 for p in found_positions):
-            continue
+            if best_match and best_key:
+                # Avoid duplicate-like entries
+                already_found = any(
+                    r["key"] == best_key and
+                    abs(r["position"] - pos) < 50 and
+                    r["confidence"] > best_score / 100.0
+                    for r in results
+                )
+                if already_found:
+                    continue
 
-        text_normalized = normalize_for_matching(text_chunk)
-
-        best_match = None
-        best_score = 0
-        best_key = None
-        best_match_type = None
-
-        for syn, key in synonym_to_key.items():
-            syn_normalized = normalize_for_matching(syn)
-
-            if len(syn_normalized) < MIN_SYNONYM_LENGTH_FOR_FUZZY:
-                continue
-
-            syn_word_count = len(syn_normalized.split())
-            word_count_diff = abs(word_count - syn_word_count)
-            if syn_word_count > 1 and word_count_diff > 3:
-                continue
-
-            if len(text_normalized) < len(syn_normalized) * 0.3:
-                continue
-
-            # Calculate base fuzzy scores
-            ratio = fuzz.ratio(text_normalized, syn_normalized)
-            partial_ratio = fuzz.partial_ratio(text_normalized, syn_normalized)
-            token_sort_ratio = fuzz.token_sort_ratio(text_normalized, syn_normalized)
-            token_set_ratio = fuzz.token_set_ratio(text_normalized, syn_normalized)
-
-            # Use enhanced scoring that considers word overlap
-            score = calculate_enhanced_score(
-                text_normalized, syn_normalized,
-                word_count, syn_word_count,
-                ratio, partial_ratio,
-                token_sort_ratio, token_set_ratio
-            )
-
-            if score > best_score and score >= FUZZY_MATCH_THRESHOLD:
-                best_score = score
-                best_match = syn
-                best_key = key
-                best_match_type = "fuzzy"
-
-        if best_match and best_key:
-            # Avoid duplicate-like entries
-            already_found = any(
-                r["key"] == best_key and
-                abs(r["position"] - pos) < 50 and
-                r["confidence"] > best_score / 100.0
-                for r in results
-            )
-            if already_found:
-                continue
-
-            # Find all occurrences of the chosen synonym in the original text (lowercased),
-            # choose the one closest to the candidate position.
-            syn_l = best_match.lower().strip()
-            occurrences = [m.start() for m in re.finditer(re.escape(syn_l), lower)]
-            if occurrences:
-                # pick occurrence closest to candidate position
-                match_start = min(occurrences, key=lambda o: abs(o - pos))
-                match_end = match_start + len(syn_l)
-            else:
-                # fallback: try to find within a small window around pos
-                window_start = max(0, pos - 20)
-                window_end = min(len(lower), pos + 20)
-                found = lower.find(syn_l, window_start, window_end)
-                if found != -1:
-                    match_start = found
-                    match_end = found + len(syn_l)
+                # Find all occurrences of the chosen synonym in the original text (lowercased),
+                # choose the one closest to the candidate position.
+                syn_l = best_match.lower().strip()
+                occurrences = [m.start() for m in re.finditer(re.escape(syn_l), lower)]
+                if occurrences:
+                    # pick occurrence closest to candidate position
+                    match_start = min(occurrences, key=lambda o: abs(o - pos))
+                    match_end = match_start + len(syn_l)
                 else:
-                    # last-resort fallback: use candidate bounds
-                    match_start = pos
-                    match_end = candidate["end_position"]
+                    # fallback: try to find within a small window around pos
+                    window_start = max(0, pos - 20)
+                    window_end = min(len(lower), pos + 20)
+                    found = lower.find(syn_l, window_start, window_end)
+                    if found != -1:
+                        match_start = found
+                        match_end = found + len(syn_l)
+                    else:
+                        # last-resort fallback: use candidate bounds
+                        match_start = pos
+                        match_end = candidate["end_position"]
 
-            # Extract exact substring from original text for extracted_value
-            extracted_substring = text[match_start:match_end].strip()
-            extracted_word_count = len(extracted_substring.split())
-            synonym_word_count = len(best_match.split())
+                # Extract exact substring from original text for extracted_value
+                extracted_substring = text[match_start:match_end].strip()
+                extracted_word_count = len(extracted_substring.split())
+                synonym_word_count = len(best_match.split())
 
-            if extracted_word_count < synonym_word_count:
+                if extracted_word_count < synonym_word_count:
+                    continue
+
+                confidence = best_score / 100.0
+
+                results.append({
+                    "key": best_key,
+                    "synonym_matched": best_match,
+                    "confidence": confidence,
+                    "position": match_start,
+                    "end_position": match_end,
+                    "extracted_value": extracted_substring,
+                    "match_type": best_match_type,
+                    "fuzzy_score": best_score
+                })
+
+                found_positions.add(match_start)
+
+        # Sort and de-duplicate overlapping/conflicting results
+        results.sort(key=lambda r: r["position"])
+
+        final_results = []
+        seen_keys = {}
+
+        for r in results:
+            key = r["key"]
+            pos = r["position"]
+            end_pos = r["end_position"]
+
+            is_overlapping = False
+            for existing in final_results:
+                existing_start = existing["position"]
+                existing_end = existing["end_position"]
+
+                if (existing_start <= pos < existing_end or
+                        existing_start < end_pos <= existing_end or
+                        (pos <= existing_start and end_pos >= existing_end)):
+
+                    is_overlapping = True
+
+                    if r["confidence"] > existing["confidence"]:
+                        final_results.remove(existing)
+                        if existing["key"] in seen_keys and seen_keys[existing["key"]] == existing:
+                            del seen_keys[existing["key"]]
+                        is_overlapping = False
+                    break
+
+            if is_overlapping:
                 continue
 
-            confidence = best_score / 100.0
+            if key in seen_keys:
+                existing = seen_keys[key]
+                distance = abs(pos - existing["position"])
 
-            results.append({
-                "key": best_key,
-                "synonym_matched": best_match,
-                "confidence": confidence,
-                "position": match_start,
-                "end_position": match_end,
-                "extracted_value": extracted_substring,
-                "match_type": best_match_type,
-                "fuzzy_score": best_score
-            })
-
-            found_positions.add(match_start)
-
-    # Sort and de-duplicate overlapping/conflicting results
-    results.sort(key=lambda r: r["position"])
-
-    final_results = []
-    seen_keys = {}
-
-    for r in results:
-        key = r["key"]
-        pos = r["position"]
-        end_pos = r["end_position"]
-
-        is_overlapping = False
-        for existing in final_results:
-            existing_start = existing["position"]
-            existing_end = existing["end_position"]
-
-            if (existing_start <= pos < existing_end or
-                    existing_start < end_pos <= existing_end or
-                    (pos <= existing_start and end_pos >= existing_end)):
-
-                is_overlapping = True
-
-                if r["confidence"] > existing["confidence"]:
+                if distance > 50:
+                    final_results.append(r)
+                elif r["confidence"] > existing["confidence"]:
                     final_results.remove(existing)
-                    if existing["key"] in seen_keys and seen_keys[existing["key"]] == existing:
-                        del seen_keys[existing["key"]]
-                    is_overlapping = False
-                break
-
-        if is_overlapping:
-            continue
-
-        if key in seen_keys:
-            existing = seen_keys[key]
-            distance = abs(pos - existing["position"])
-
-            if distance > 50:
-                final_results.append(r)
-            elif r["confidence"] > existing["confidence"]:
-                final_results.remove(existing)
+                    seen_keys[key] = r
+                    final_results.append(r)
+            else:
                 seen_keys[key] = r
                 final_results.append(r)
-        else:
-            seen_keys[key] = r
-            final_results.append(r)
 
-    final_results.sort(key=lambda r: r["position"])
-
-    return final_results
+        final_results.sort(key=lambda r: r["position"])
+        
+        logger.debug(f"Found {len(final_results)} parameters")
+        return final_results
+    
+    except Exception as e:
+        logger.error(f"Error finding parameters: {e}")
+        return []
 
 
 def map_parameters_to_models(parameters, models, manufacturers, eq_types, text):
@@ -487,9 +537,9 @@ def map_parameters_to_models(parameters, models, manufacturers, eq_types, text):
     # Split text into segments by conjunctions
     segments = split_into_segments(text)
 
-    print(f"\n🔍 DEBUG: Found {len(segments)} segments")
+    logger.debug(f"Found {len(segments)} segments")
     for i, seg in enumerate(segments):
-        print(f"  Segment {i + 1}: '{seg['text']}' (pos {seg['start']}-{seg['end']})")
+        logger.debug(f"  Segment {i + 1}: '{seg['text']}' (pos {seg['start']}-{seg['end']})")
 
     def overlaps_with_segment(ent_start, ent_end, seg_start, seg_end):
         return not (ent_end < seg_start - BORDER_TOLERANCE or
@@ -525,10 +575,9 @@ def map_parameters_to_models(parameters, models, manufacturers, eq_types, text):
             if seg_start <= e.get("position", 0) < seg_end
         ]
 
-        print(f"\n  Segment {segments.index(segment) + 1} entities:")
-        print(f"    Models: {[m['canonical'] for m in segment['models']]}")
-        print(f"    Params: {[p['key'] for p in segment['parameters']]}")
-        print(f"    Param positions: {[(p['key'], p['position'], p['end_position']) for p in segment['parameters']]}")
+        logger.debug(f"Segment {segments.index(segment) + 1} entities:")
+        logger.debug(f"  Models: {[m['canonical'] for m in segment['models']]}")
+        logger.debug(f"  Params: {[p['key'] for p in segment['parameters']]}")
 
     sub_queries = []
 
@@ -539,20 +588,20 @@ def map_parameters_to_models(parameters, models, manufacturers, eq_types, text):
         seg_eq_types = segment.get("eq_types", [])
 
         if not seg_params:
-            print(f"\n  ⚠️ Segment {seg_idx + 1}: No parameters, skipping")
+            logger.debug(f"Segment {seg_idx + 1}: No parameters, skipping")
             continue  # Skip segments without parameters
 
-        print(f"\n  ✅ Segment {seg_idx + 1}: Processing {len(seg_params)} parameter(s)")
+        logger.debug(f"Segment {seg_idx + 1}: Processing {len(seg_params)} parameter(s)")
 
         for param in seg_params:
             if seg_models:
                 closest_model = min(seg_models,
                                     key=lambda m: abs(m.get("position", 0) - param.get("position", 0)))
-                print(f"    - {param['key']} → {closest_model['canonical']} (same segment)")
+                logger.debug(f"  {param['key']} → {closest_model['canonical']} (same segment)")
             else:
                 closest_model = min(valid_models,
                                     key=lambda m: abs(m.get("position", 0) - param.get("position", 0)))
-                print(f"    - {param['key']} → {closest_model['canonical']} (closest overall)")
+                logger.debug(f"  {param['key']} → {closest_model['canonical']} (closest overall)")
 
             model_value = closest_model["canonical"]
 
@@ -584,7 +633,7 @@ def map_parameters_to_models(parameters, models, manufacturers, eq_types, text):
                 "match_type": param.get("match_type", "unknown")
             })
 
-    print(f"\n✅ Total sub-queries created: {len(sub_queries)}\n")
+    logger.debug(f"Total sub-queries created: {len(sub_queries)}")
     return sub_queries
 
 

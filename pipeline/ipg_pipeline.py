@@ -1,4 +1,6 @@
 # file: ipg_pipeline.py
+import logging
+import time
 from pipeline.exctractors.parameter_extractor import process_question as extract_entities
 from pipeline.processors.llm_processor import (
     determine_status,
@@ -6,47 +8,74 @@ from pipeline.processors.llm_processor import (
     determine_intent_logic
 )
 
+logger = logging.getLogger("ipg_pipeline")
+
 
 class IPGPipeline:
     def __init__(self):
         """Initialize pipeline without LLM."""
+        logger.info("IPGPipeline initialized")
         pass
 
-
     def process(self, text: str):
-        extraction_result = extract_entities(text)
-        extracted_entities = extraction_result["extracted_entities"]
+        """
+        Process a user query through the entire pipeline.
+        
+        Args:
+            text: User query text
+            
+        Returns:
+            Dictionary with processing results
+        """
+        start_time = time.time()
+        logger.info(f"Processing query: {text[:100]}..." if len(text) > 100 else f"Processing query: {text}")
+        
+        try:
+            extraction_result = extract_entities(text)
+            extracted_entities = extraction_result["extracted_entities"]
 
-        routing = extraction_result.get("routing")
+            routing = extraction_result.get("routing")
 
-        status = determine_status(extracted_entities, text)
+            status = determine_status(extracted_entities, text)
+            logger.debug(f"Determined status: {status}")
 
-        if status in ["simple", "complex"]:
-            param_bindings = build_param_bindings_logic(extracted_entities)
-        else:
-            param_bindings = []
+            if status in ["simple", "complex"]:
+                param_bindings = build_param_bindings_logic(extracted_entities)
+            else:
+                param_bindings = []
 
-        question_intent = determine_intent_logic(status, extracted_entities)
+            question_intent = determine_intent_logic(status, extracted_entities)
+            logger.debug(f"Determined intent: {question_intent}")
 
-        if status == "compat":
-            routing = {
-                "recommended_strategy": "compatibility_check",
-                "message": "Compatibility query detected",
-                "entities": {
-                    "manufacturers": [m["value"] for m in extracted_entities.get("manufacturer", [])],
-                    "models": [m["value"] for m in extracted_entities.get("model", [])],
-                    "equipment_types": [e["value"] for e in extracted_entities.get("equipment_type", [])]
+            if status == "compat":
+                routing = {
+                    "recommended_strategy": "compatibility_check",
+                    "message": "Compatibility query detected",
+                    "entities": {
+                        "manufacturers": [m["value"] for m in extracted_entities.get("manufacturer", [])],
+                        "models": [m["value"] for m in extracted_entities.get("model", [])],
+                        "equipment_types": [e["value"] for e in extracted_entities.get("equipment_type", [])]
+                    }
                 }
-            }
 
-        return {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "question_raw": text,
-            "status": status,
-            "question_intent": question_intent,
-            "extracted_entities": extracted_entities,
-            "routing": routing
-        }
+            result = {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "question_raw": text,
+                "status": status,
+                "question_intent": question_intent,
+                "extracted_entities": extracted_entities,
+                "routing": routing
+            }
+            
+            elapsed = time.time() - start_time
+            logger.info(f"Query processed successfully in {elapsed:.2f}s - Status: {status}")
+            
+            return result
+        
+        except Exception as e:
+            elapsed = time.time() - start_time
+            logger.error(f"Error processing query: {e} (elapsed: {elapsed:.2f}s)")
+            raise
 
 
 # -------- Example usage --------

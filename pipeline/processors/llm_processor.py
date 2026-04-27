@@ -1,7 +1,10 @@
 # llm_processor.py
 
 import re
+import logging
 from typing import Dict, Any
+
+logger = logging.getLogger("ipg_pipeline")
 
 
 def detect_lifestyle_query(text: str) -> bool:
@@ -205,9 +208,11 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
         Status: "parallel", "compat", "simple", "complex", or "lifestyle"
     """
     if detect_parallel_query(original_text):
+        logger.debug("Detected parallel query")
         return "parallel"
 
     if detect_compatibility_query(original_text):
+        logger.debug("Detected compatibility query")
         return "compat"
 
     models = extracted_entities.get("model", [])
@@ -218,25 +223,31 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
     num_valid_models = len(valid_models)
     num_params = len(parameters)
 
+    logger.debug(f"Query entities: {num_valid_models} valid models, {num_params} parameters")
+
     if num_valid_models >= 1 and num_params >= 1:
         if num_valid_models <= 2 and num_params <= 2:
+            logger.debug("Query classified as simple")
             return "simple"
 
     # Lifestyle is the lowest priority - only if NO technical entities at all
     if num_params > 0 or len(models) > 0:
         # Has parameters or models  = technical query
+        logger.debug("Query classified as complex (has technical entities)")
         return "complex"
 
     if detect_lifestyle_query(original_text):
+        logger.debug("Detected lifestyle query")
         return "lifestyle"
 
+    logger.debug("Query classified as complex (default)")
     return "complex"
 
 
 def build_param_bindings_logic(extracted_entities: Dict[str, Any]) -> list:
     """
     Build parameter bindings using direct logic.
-    Maps parameters to closest models by position in text.
+    Maps parameters to the closest models by position in text.
 
     Only includes VALID canonical models (value != None).
 
@@ -255,13 +266,13 @@ def build_param_bindings_logic(extracted_entities: Dict[str, Any]) -> list:
     if not valid_models or not parameters:
         return []
 
-    # Map each parameter to closest valid model by position
+    # Map each parameter to the closest valid model by position
     bindings_dict = {}  # model_value -> [param_keys]
 
     for param in parameters:
         param_pos = param.get("position", 0)
 
-        # Find closest valid model
+        # Find the closest valid model
         closest_model = min(
             valid_models,
             key=lambda m: abs(m.get("position", 0) - param_pos)
