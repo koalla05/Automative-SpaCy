@@ -42,7 +42,8 @@ def test_model_loading():
     assert nlp1 is nlp2, "❌ Model instances should be the same!"
     logger.info(f"✅ Same model instance verified")
     
-    logger.info(f"✅ TEST PASSED: Model loaded only once, ~{(time1/time2):.0f}x faster on second call\n")
+    speedup = (time1/time2) if time2 > 0 else float('inf')
+    logger.info(f"✅ TEST PASSED: Model loaded only once, ~{speedup:.0f}x faster on second call\n")
 
 
 def test_pipeline_processing():

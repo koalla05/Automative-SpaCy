@@ -7,12 +7,12 @@ import time
 import numpy as np
 from sentence_transformers import SentenceTransformer, util
 from rapidfuzz import fuzz
-from core.normalization.model_normalization import normalize_model
+from config.normalization.model_normalization import normalize_model
 from pipeline.models import ModelManager
 
-from core.normalization.entity_normalization import clean_word, normalize_entity
-from core.normalization.model_metadata import get_model_metadata
-from core.config import DEFAULT_PARAM_GLOSSARY
+from config.normalization.entity_normalization import clean_word, normalize_entity
+from config.normalization.model_metadata import get_model_metadata
+from config.glossaries.parameters import DEFAULT_PARAM_GLOSSARY
 
 # Setup logging
 logger = logging.getLogger("ipg_pipeline")

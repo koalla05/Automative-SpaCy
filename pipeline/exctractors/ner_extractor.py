@@ -1,7 +1,7 @@
 import logging
 import spacy
 from typing import Dict, List
-from core.normalization.entity_normalization import clean_word, normalize_entity
+from config.normalization.entity_normalization import clean_word, normalize_entity
 from pipeline.models import ModelManager
 
 logger = logging.getLogger("ipg_pipeline")
