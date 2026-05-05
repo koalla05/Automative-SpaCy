@@ -183,6 +183,152 @@ def detect_compatibility_query(text: str) -> bool:
     return False
 
 
+def detect_error_code_query(text: str) -> bool:
+    text_lower = text.lower()
+
+    error_patterns = [
+        # === Ukrainian ===
+        r'\bкод\w*\s+помилк\w*\b',
+        r'\bпомилк\w*\s+код\w*\b',
+        r'\bпомилк\w*\b',
+        r'\bпомилк\w*\s+на\s+екран\w*\b',
+        r'\bщо\s+(означа\w*|значить)\s+(ця|цей|це|той|та)\s+(помилка|код|статус)\b',
+        r'\bщо\s+робити\s+(якщо|коли|якшо)\b',
+        r'\bчому\s+(блимає|моргає|горить|світиться|показує)\b',
+        r'\b(з[`\'ʼ]явилась?|з[`\'ʼ]явився|виникл\w*)\s+(помилка|код|статус)\b',
+        r'\b(інвертор|батарея|зарядний)\s+показу\w*\s+(помилку|код|статус)\b',
+        r'\bяк(ий|а|е)?\s+статус\b',
+        r'\bстатус\s+помилк\w*\b',
+        r'\bE\d{2,4}\b',
+        r'\bErr\w*\b',
+        r'\bFault\b',
+
+        # === Russian ===
+        r'\bкод\w*\s+ошибк\w*\b',
+        r'\bошибк\w*\s+код\w*\b',
+        r'\bошибк\w*\b',
+        r'\bошибк\w*\s+на\s+экран\w*\b',
+        r'\bчто\s+(означа\w*|значит)\s+(эта|этот|это|тот|та)\s+(ошибка|код|статус)\b',
+        r'\bчто\s+делать\s+(если|когда)\b',
+        r'\bпочему\s+(мигает|горит|светится|показывает)\b',
+        r'\b(появилась?|появился|возникл\w*)\s+(ошибка|код|статус)\b',
+        r'\b(инвертор|батарея|зарядн\w*)\s+показыва\w*\s+(ошибку|код|статус)\b',
+        r'\bкак(ой|ая|ое)?\s+статус\b',
+
+        # === English ===
+        r'\berror\s+code\w*\b',
+        r'\bfault\s+code\w*\b',
+        r'\bwhat\s+(does|is)\s+(error|fault|code|status)\b',
+        r'\bwhat\s+to\s+do\s+(if|when)\b',
+        r'\bwhy\s+(is\s+it\s+)?(blinking|flashing|showing|displaying)\b',
+        r'\b(error|fault|warning|alarm)\s+(appeared|occurred|showing)\b',
+        r'\bwhat\s+does\s+(this|the)\s+(status|code|error)\s+mean\b',
+    ]
+
+    return any(re.search(p, text_lower, re.IGNORECASE) for p in error_patterns)
+
+
+def detect_pinout_query(text: str) -> bool:
+    text_lower = text.lower()
+
+    pinout_patterns = [
+        # === Ukrainian ===
+        r'\bрозпін\w*\b',
+        r'\bпіноут\b',
+        r'\bпінаут\b',
+        r'\bяк\s+підключити\b',
+        r'\bсхем\w*\s+підключен\w*\b',
+        r'\bпідключен\w*\s+схем\w*\b',
+        r'\bяк[і\w]*\s+дроти?\b',
+        r'\b(який|яка|яке)\s+кабел\w*\b',
+        r'\bяк\s+з[`\'ʼ]єднати\b',
+        r'\bконектор\w*\b',
+        r'\bпроводк\w*\b',
+        r'\bщо\s+до\s+чого\s+(підключати|підключити)\b',
+        r'\bяк\s+підпаяти\b',
+        r'\bтемінал\w*\b',
+        r'\bклем\w*\b',
+
+        # === Russian ===
+        r'\bраспин\w*\b',
+        r'\bпиноут\b',
+        r'\bкак\s+подключить\b',
+        r'\bсхем\w*\s+подключен\w*\b',
+        r'\bподключен\w*\s+схем\w*\b',
+        r'\bкак\w*\s+провода?\b',
+        r'\b(какой|какая|какое)\s+кабел\w*\b',
+        r'\bкак\s+соединить\b',
+        r'\bконнектор\w*\b',
+        r'\bпроводк\w*\b',
+        r'\bчто\s+к\s+чему\s+(подключать|подключить)\b',
+        r'\bтерминал\w*\b',
+        r'\bклемм\w*\b',
+
+        # === English ===
+        r'\bpinout\b',
+        r'\bpin[-\s]?out\b',
+        r'\bwiring\s+diagram\b',
+        r'\bhow\s+to\s+(connect|wire|hook\s+up)\b',
+        r'\bwiring\s+schema\w*\b',
+        r'\bwhich\s+(cable|wire|connector|terminal)\b',
+        r'\bconnect(ion)?\s+diagram\b',
+        r'\bcable\s+diagram\b',
+        r'\bterminal\w*\b',
+        r'\bconnector\s+(pin\w*|layout|diagram)\b',
+    ]
+
+    return any(re.search(p, text_lower, re.IGNORECASE) for p in pinout_patterns)
+
+
+def detect_documentation_query(text: str) -> bool:
+    text_lower = text.lower()
+
+    doc_patterns = [
+        # === Ukrainian ===
+        r'\bдокументац\w*\b',
+        r'\bінструкц\w*\b',
+        r'\bмануал\w*\b',
+        r'\bпосібник\w*\b',
+        r'\bкерівництво\b',
+        r'\bдатащіт\w*\b',
+        r'\bдата[-\s]?шіт\w*\b',
+        r'\bдай\s+(документ|інструкц|мануал|посібник)\w*\b',
+        r'\bзнайди\s+(документ|інструкц|мануал|посібник)\w*\b',
+        r'\b(де\s+знайти|де\s+скачати)\s+(документ|інструкц|мануал)\w*\b',
+        r'\bPDF\b',
+        r'\bтехнічн\w*\s+документ\w*\b',
+        r'\bспецифікац\w*\b',
+
+        # === Russian ===
+        r'\bдокументац\w*\b',
+        r'\bинструкц\w*\b',
+        r'\bмануал\w*\b',
+        r'\bруководств\w*\b',
+        r'\bдатащит\w*\b',
+        r'\bдата[-\s]?шит\w*\b',
+        r'\bдай\s+(документ|инструкц|мануал|руководств)\w*\b',
+        r'\bнайди\s+(документ|инструкц|мануал|руководств)\w*\b',
+        r'\b(где\s+найти|где\s+скачать)\s+(документ|инструкц|мануал)\w*\b',
+        r'\bтехнич\w*\s+документ\w*\b',
+        r'\bспецификац\w*\b',
+
+        # === English ===
+        r'\bdocumentation\b',
+        r'\bdatasheet\b',
+        r'\bdata[-\s]?sheet\b',
+        r'\bmanual\b',
+        r'\buser\s+guide\b',
+        r'\binstallation\s+guide\b',
+        r'\bspec\w*\s+sheet\b',
+        r'\b(give|find|get|show|download)\s+(me\s+)?(the\s+)?(doc\w*|manual|datasheet)\b',
+        r'\bwhere\s+(to\s+)?(find|download|get)\s+(doc\w*|manual|datasheet)\b',
+        r'\btechnical\s+doc\w*\b',
+        r'\bspecification\w*\b',
+    ]
+
+    return any(re.search(p, text_lower, re.IGNORECASE) for p in doc_patterns)
+
+
 def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> str:
     """
     Determine query status based on extracted entities and text analysis.
@@ -190,6 +336,9 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
     STATUS logic (checked in order of priority):
     - "parallel": Parallel questions (detected by keywords)
     - "compat": Compatibility questions (detected by keywords)
+    - "error_code": Error code / fault status questions (detected by keywords)
+    - "pinout": Wiring / pinout / connection diagram questions (detected by keywords)
+    - "documentation": Documentation / datasheet / manual requests (detected by keywords)
     - "simple": Direct parameter lookup from SQL/YAML
       * Has at least 1 VALID CANONICAL model (value != null)
       * Has parameters (datasheet specs)
@@ -205,7 +354,7 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
         original_text: Original query text
 
     Returns:
-        Status: "parallel", "compat", "simple", "complex", or "lifestyle"
+        Status: "parallel", "compat", "error_code", "pinout", "documentation", "simple", "complex", or "lifestyle"
     """
     if detect_parallel_query(original_text):
         logger.debug("Detected parallel query")
@@ -214,6 +363,18 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
     if detect_compatibility_query(original_text):
         logger.debug("Detected compatibility query")
         return "compat"
+
+    if detect_error_code_query(original_text):
+        logger.debug("Detected error code query")
+        return "error_code"
+
+    if detect_pinout_query(original_text):
+        logger.debug("Detected pinout query")
+        return "pinout"
+
+    if detect_documentation_query(original_text):
+        logger.debug("Detected documentation query")
+        return "documentation"
 
     models = extracted_entities.get("model", [])
     parameters = extracted_entities.get("parameters", [])
@@ -312,6 +473,15 @@ def determine_intent_logic(status: str, extracted_entities: Dict[str, Any]) -> s
     """
     if status == "compat":
         return "compatibility_query"
+
+    if status == "error_code":
+        return "error_code_query"
+
+    if status == "pinout":
+        return "pinout_query"
+
+    if status == "documentation":
+        return "documentation_query"
 
     if status == "simple":
         return "sql_query"
@@ -445,7 +615,98 @@ if __name__ == "__main__":
                 ]
             },
             "expected": "complex"  # model value is None - not canonical
-        }
+        },
+        # === NEW TYPES ===
+        {
+            "query": "Що робити якшо в мене такий статус E0049?",
+            "entities": {
+                "manufacturer": [],
+                "model": [],
+                "equipment_type": [],
+                "parameters": []
+            },
+            "expected": "error_code"
+        },
+        {
+            "query": "What does error code E12 mean on my inverter?",
+            "entities": {
+                "manufacturer": [],
+                "model": [],
+                "equipment_type": [],
+                "parameters": []
+            },
+            "expected": "error_code"
+        },
+        {
+            "query": "Що означає ця помилка на екрані?",
+            "entities": {
+                "manufacturer": [],
+                "model": [],
+                "equipment_type": [],
+                "parameters": []
+            },
+            "expected": "error_code"
+        },
+        {
+            "query": "Яка розпіновка між інвертором та акумулятором Pylontech?",
+            "entities": {
+                "manufacturer": [{"value": "pylontech", "confidence": 0.9, "position": 40}],
+                "model": [],
+                "equipment_type": [],
+                "parameters": []
+            },
+            "expected": "pinout"
+        },
+        {
+            "query": "How to connect LuxPower to battery? Wiring diagram?",
+            "entities": {
+                "manufacturer": [{"value": "luxpower", "confidence": 0.9, "position": 10}],
+                "model": [],
+                "equipment_type": [],
+                "parameters": []
+            },
+            "expected": "pinout"
+        },
+        {
+            "query": "Схема підключення Victron MultiPlus",
+            "entities": {
+                "manufacturer": [{"value": "victron", "confidence": 0.9, "position": 20}],
+                "model": [{"value": "multiplus", "confidence": 0.9, "position": 30}],
+                "equipment_type": [],
+                "parameters": []
+            },
+            "expected": "pinout"
+        },
+        {
+            "query": "Дай документацію по моделі Pylontech US5000",
+            "entities": {
+                "manufacturer": [{"value": "pylontech", "confidence": 0.9, "position": 25}],
+                "model": [{"value": "us5000", "confidence": 0.9, "position": 35}],
+                "equipment_type": [],
+                "parameters": []
+            },
+            "expected": "documentation"
+        },
+        {
+            "query": "Give me the datasheet for LuxPower LXP-LB-EU",
+            "entities": {
+                "manufacturer": [{"value": "luxpower", "confidence": 0.9, "position": 20}],
+                "model": [{"value": "lxp_lb_eu", "confidence": 0.9, "position": 30}],
+                "equipment_type": [],
+                "parameters": []
+            },
+            "expected": "documentation"
+        },
+        {
+            "query": "Де знайти інструкцію до Dyness B4850?",
+            "entities": {
+                "manufacturer": [{"value": "dyness", "confidence": 0.9, "position": 15}],
+                "model": [{"value": "b4850", "confidence": 0.9, "position": 25}],
+                "equipment_type": [],
+                "parameters": []
+            },
+            "expected": "documentation"
+        },
     ]
 
     for i, test in enumerate(test_cases, 1):
