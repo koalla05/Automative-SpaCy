@@ -36,8 +36,7 @@ except ImportError:
     print("OpenAI package not found.  Run:  pip install openai")
     sys.exit(1)
 
-sys.path.insert(0, "/mnt/user-data/uploads")
-from llm_processor import determine_status
+from pipeline.processors.llm_processor import determine_status
 
 # ── try tabulate ──────────────────────────────────────────────────────────────
 try:

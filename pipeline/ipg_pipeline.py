@@ -1,25 +1,50 @@
 # file: ipg_pipeline.py
 import logging
 import time
+import os
+from typing import Optional
+
 from pipeline.exctractors.parameter_extractor import process_question as extract_entities
 from pipeline.processors.llm_processor import (
-    determine_status,
     build_param_bindings_logic,
     determine_intent_logic
 )
+from pipeline.processors.hybrid_classifier import classify as hybrid_classify
 
 logger = logging.getLogger("ipg_pipeline")
 
 
 class IPGPipeline:
-    def __init__(self):
-        """Initialize pipeline without LLM."""
-        logger.info("IPGPipeline initialized")
-        pass
+    def __init__(self, openai_client: Optional[object] = None):
+        """
+        Initialize pipeline with optional OpenAI client for hybrid classification.
+        
+        Args:
+            openai_client: Optional OpenAI client. If not provided, will attempt to
+                          import from OPENAI_API_KEY environment variable.
+                          If unavailable, falls back to keyword-only classification.
+        """
+        self.openai_client = openai_client
+        
+        # Try to initialize OpenAI client if not provided
+        if self.openai_client is None and os.environ.get("OPENAI_API_KEY"):
+            try:
+                from openai import OpenAI
+                self.openai_client = OpenAI()
+                logger.info("OpenAI client initialized from OPENAI_API_KEY")
+            except ImportError:
+                logger.warning("OpenAI package not available - using keyword-only classification")
+            except Exception as e:
+                logger.warning(f"Failed to initialize OpenAI client: {e} - using keyword-only classification")
+        
+        logger.info("IPGPipeline initialized (hybrid classifier enabled)")
 
     def process(self, text: str):
         """
         Process a user query through the entire pipeline.
+        
+        Uses hybrid classification: keyword-based detection with optional LLM fallback
+        for "complex" queries when OpenAI client is available.
         
         Args:
             text: User query text
@@ -36,8 +61,18 @@ class IPGPipeline:
 
             routing = extraction_result.get("routing")
 
-            status = determine_status(extracted_entities, text)
-            logger.debug(f"Determined status: {status}")
+            # Use hybrid classifier: keyword-based with optional LLM fallback
+            status, classification_meta = hybrid_classify(
+                text,
+                extracted_entities,
+                client=self.openai_client
+            )
+            
+            logger.debug(
+                f"Classification: status={status}, confidence=KW confidence, "
+                f"llm_called={classification_meta.get('llm_called', False)}"
+            )
+            logger.debug(f"Classification metadata: {classification_meta}")
 
             if status in ["simple", "complex"]:
                 param_bindings = build_param_bindings_logic(extracted_entities)
@@ -64,11 +99,13 @@ class IPGPipeline:
                 "status": status,
                 "question_intent": question_intent,
                 "extracted_entities": extracted_entities,
-                "routing": routing
+                "routing": routing,
+                "classification_meta": classification_meta  # Include classification details
             }
             
             elapsed = time.time() - start_time
-            logger.info(f"Query processed successfully in {elapsed:.2f}s - Status: {status}")
+            llm_info = f" (LLM upgraded)" if classification_meta.get("upgraded") else ""
+            logger.info(f"Query processed successfully in {elapsed:.2f}s - Status: {status}{llm_info}")
             
             return result
         
