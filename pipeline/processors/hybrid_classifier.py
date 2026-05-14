@@ -36,7 +36,7 @@ except ImportError:
     print("OpenAI package not found.  Run:  pip install openai")
     sys.exit(1)
 
-from pipeline.processors.llm_processor import determine_status
+from pipeline.processors.llm_processor import determine_status, needs_clarification
 
 # ── try tabulate ──────────────────────────────────────────────────────────────
 try:
@@ -294,9 +294,18 @@ def classify(
 
     # ── Step 3: accept upgrade only for non-complex labels ───────────────────
     final = llm_status if llm_status in LLM_UPGRADEABLE else "complex"
+    upgraded = final != "complex"
+
+    # Re-evaluate clarification when LLM changed the status — the new status
+    # has different model/code requirements that the KW clarification didn't account for.
+    if upgraded:
+        final_clarification = needs_clarification(final, entities, query)
+    else:
+        final_clarification = kw_clarification
+
     meta["final_status"] = final
-    meta["final_clarification"] = kw_clarification  # clarification follows the KW layer
-    meta["upgraded"] = (final != "complex")
+    meta["final_clarification"] = final_clarification
+    meta["upgraded"] = upgraded
     meta["total_ms"] = meta["kw_ms"] + meta["llm_ms"]
 
     return final, meta
