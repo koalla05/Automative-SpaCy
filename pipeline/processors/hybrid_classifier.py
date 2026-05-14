@@ -219,19 +219,23 @@ def classify(
         (status, meta)  where meta contains timing and routing info.
 
     meta keys:
-        kw_status       — result from keyword classifier
-        final_status    — final status after hybrid resolution
-        llm_called      — bool: was LLM invoked?
-        llm_status      — LLM result (or None)
-        llm_reason      — LLM explanation (or None)
-        kw_ms           — keyword latency in ms
-        llm_ms          — LLM latency in ms (or 0)
-        total_ms        — total latency in ms
-        upgraded        — bool: LLM changed the label away from "complex"
+        kw_status           — result from keyword classifier
+        kw_clarification    — clarification flag from keyword classifier
+        final_status        — final status after hybrid resolution
+        final_clarification — clarification flag for the final result
+        llm_called          — bool: was LLM invoked?
+        llm_status          — LLM result (or None)
+        llm_reason          — LLM explanation (or None)
+        kw_ms               — keyword latency in ms
+        llm_ms              — LLM latency in ms (or 0)
+        total_ms            — total latency in ms
+        upgraded            — bool: LLM changed the label away from "complex"
     """
     meta: dict = {
         "kw_status": None,
+        "kw_clarification": False,
         "final_status": None,
+        "final_clarification": False,
         "llm_called": False,
         "llm_status": None,
         "llm_reason": None,
@@ -243,13 +247,17 @@ def classify(
 
     # ── Step 1: keyword classifier ────────────────────────────────────────────
     t0 = time.perf_counter()
-    kw_status = determine_status(entities, query)
+    kw_result = determine_status(entities, query)
+    kw_status = kw_result["status"]
+    kw_clarification = kw_result["clarification"]
     meta["kw_ms"] = (time.perf_counter() - t0) * 1000
     meta["kw_status"] = kw_status
+    meta["kw_clarification"] = kw_clarification
 
     # Only skip LLM for "simple"
     if kw_status == "simple" or client is None:
         meta["final_status"] = kw_status
+        meta["final_clarification"] = kw_clarification
         meta["total_ms"] = meta["kw_ms"]
         return kw_status, meta
 
@@ -287,6 +295,7 @@ def classify(
     # ── Step 3: accept upgrade only for non-complex labels ───────────────────
     final = llm_status if llm_status in LLM_UPGRADEABLE else "complex"
     meta["final_status"] = final
+    meta["final_clarification"] = kw_clarification  # clarification follows the KW layer
     meta["upgraded"] = (final != "complex")
     meta["total_ms"] = meta["kw_ms"] + meta["llm_ms"]
 
@@ -407,7 +416,8 @@ def run_demo(api_key: Optional[str] = None):
 
         print(
             f"[{i:02d}] {mark} KW={meta['kw_status']:<14} {llm_tag:<22}{upgrade}"
-            f"\n       final={status:<14} expected={tc['expected']:<14}"
+            f"\n       final={status:<14} clarification={meta['final_clarification']!s:<6}"
+            f" expected={tc['expected']:<14}"
             f"  kw={meta['kw_ms']:.2f}ms  llm={meta['llm_ms']:.0f}ms"
         )
         print(f"       {tc['note']}")

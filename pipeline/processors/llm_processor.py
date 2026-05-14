@@ -223,6 +223,17 @@ def detect_error_code_query(text: str) -> bool:
         r'\bwhy\s+(is\s+it\s+)?(blinking|flashing|showing|displaying)\b',
         r'\b(error|fault|warning|alarm)\s+(appeared|occurred|showing)\b',
         r'\bwhat\s+does\s+(this|the)\s+(status|code|error)\s+mean\b',
+
+        # === Specific alphanumeric codes & well-known abbreviations (all languages) ===
+        # These also match in detect_specific_error_code; including them here ensures
+        # the KW classifier routes to error_code in the first place.
+        r'\b[EeFfWwBb]\d{2,4}\b',          # E0049, F04, W12 …
+        r'\bErr\w*\d+\b',                   # Err03, ERR_05 …
+        r'\b[EeFfWwBb]-\d{2,4}\b',          # F-12 …
+        r'\b[A-Z]{2,5}_\d{2,4}\b',          # OCP_01 …
+        r'\bOVP\b', r'\bUVP\b', r'\bOCP\b', r'\bOTP\b',
+        r'\bBMS\s+alarm\b', r'\bBMS\s+fault\b',
+        r'\bSOC\s+low\b',
     ]
 
     return any(re.search(p, text_lower, re.IGNORECASE) for p in error_patterns)
@@ -329,7 +340,69 @@ def detect_documentation_query(text: str) -> bool:
     return any(re.search(p, text_lower, re.IGNORECASE) for p in doc_patterns)
 
 
-def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> str:
+def detect_specific_error_code(text: str) -> bool:
+    """
+    Return True only when the text contains a *specific* fault/alarm/error code
+    or recognised abbreviation — not just generic error language.
+
+    Examples that match  : E0049, F04, OVP, BMS alarm, Err03, F-12, W001
+    Examples that do NOT : "what does this error mean", "помилка на екрані"
+    """
+    specific_code_patterns = [
+        # Alphanumeric codes: E0049, F04, W12, Err03, F-12, ERR_05
+        r'\b[EeFfWwBb]\d{2,4}\b',
+        r'\bErr\w*\d+\b',
+        r'\b[EeFfWwBb]-\d{2,4}\b',
+        r'\b[A-Z]{2,5}_\d{2,4}\b',
+
+        # Well-known named fault abbreviations (add more as needed)
+        r'\bOVP\b',       # Over-Voltage Protection
+        r'\bUVP\b',       # Under-Voltage Protection
+        r'\bOCP\b',       # Over-Current Protection
+        r'\bOTP\b',       # Over-Temperature Protection
+        r'\bBMS\s+alarm\b',
+        r'\bBMS\s+fault\b',
+        r'\bSOC\s+low\b',
+    ]
+    return any(re.search(p, text, re.IGNORECASE) for p in specific_code_patterns)
+
+
+def needs_clarification(status: str, extracted_entities: Dict[str, Any], original_text: str) -> bool:
+    """
+    Determine whether the classified query needs clarification — i.e. it matched
+    a keyword-based status but is missing information required to actually answer it.
+
+    Rules (deterministic, per status):
+      compat     → needs exactly 2 valid models; clarify if fewer than 2 are present
+      error_code → needs a *specific* code/abbreviation in the text; clarify if only
+                   generic error language was detected (no concrete code found)
+      all others → clarify if no valid model is present at all
+
+    Returns:
+        True  → add  "clarification": true  to the result JSON
+        False → add  "clarification": false
+    """
+    if status == "lifestyle":
+        # Social exchanges never need clarification — no model/code is expected
+        return False
+
+    models = extracted_entities.get("model", [])
+    valid_models = [m for m in models if m.get("value") is not None]
+    num_valid_models = len(valid_models)
+
+    if status == "compat":
+        # Need both sides of the compatibility pair to be known
+        return num_valid_models < 2
+
+    if status == "error_code":
+        # Need a concrete code, not just generic error vocabulary
+        return not detect_specific_error_code(original_text)
+
+    # For every other status: clarify when no model is present
+    return num_valid_models == 0
+
+
+def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> Dict[str, Any]:
     """
     Determine query status based on extracted entities and text analysis.
 
@@ -354,27 +427,35 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
         original_text: Original query text
 
     Returns:
-        Status: "parallel", "compat", "error_code", "pinout", "documentation", "simple", "complex", or "lifestyle"
+        Dict with keys:
+          "status"        — one of the status strings above
+          "clarification" — bool; True when additional info is needed to answer the query
     """
+    def _result(status: str) -> Dict[str, Any]:
+        return {
+            "status": status,
+            "clarification": needs_clarification(status, extracted_entities, original_text),
+        }
+
     if detect_parallel_query(original_text):
         logger.debug("Detected parallel query")
-        return "parallel"
+        return _result("parallel")
 
     if detect_compatibility_query(original_text):
         logger.debug("Detected compatibility query")
-        return "compat"
+        return _result("compat")
 
     if detect_error_code_query(original_text):
         logger.debug("Detected error code query")
-        return "error_code"
+        return _result("error_code")
 
     if detect_pinout_query(original_text):
         logger.debug("Detected pinout query")
-        return "pinout"
+        return _result("pinout")
 
     if detect_documentation_query(original_text):
         logger.debug("Detected documentation query")
-        return "documentation"
+        return _result("documentation")
 
     models = extracted_entities.get("model", [])
     parameters = extracted_entities.get("parameters", [])
@@ -389,20 +470,20 @@ def determine_status(extracted_entities: Dict[str, Any], original_text: str) -> 
     if num_valid_models >= 1 and num_params >= 1:
         if num_valid_models <= 2 and num_params <= 2:
             logger.debug("Query classified as simple")
-            return "simple"
+            return _result("simple")
 
     # Lifestyle is the lowest priority - only if NO technical entities at all
     if num_params > 0 or len(models) > 0:
         # Has parameters or models  = technical query
         logger.debug("Query classified as complex (has technical entities)")
-        return "complex"
+        return _result("complex")
 
     if detect_lifestyle_query(original_text):
         logger.debug("Detected lifestyle query")
-        return "lifestyle"
+        return _result("lifestyle")
 
     logger.debug("Query classified as complex (default)")
-    return "complex"
+    return _result("complex")
 
 
 def build_param_bindings_logic(extracted_entities: Dict[str, Any]) -> list:
@@ -714,7 +795,9 @@ if __name__ == "__main__":
         print(f"Test {i}: {test['query']}")
         print('=' * 70)
 
-        status = determine_status(test['entities'], test['query'])
+        result = determine_status(test['entities'], test['query'])
+        status = result["status"]
+        clarification = result["clarification"]
         intent = determine_intent_logic(status, test['entities'])
         param_bindings = build_param_bindings_logic(test['entities'])
 
@@ -722,6 +805,7 @@ if __name__ == "__main__":
         status_mark = "✓" if status == expected else "✗"
 
         print(f"\nStatus: {status} (expected: {expected}) {status_mark}")
+        print(f"Clarification needed: {clarification}")
         print(f"Intent: {intent}")
         print(f"Param bindings:")
         pprint(param_bindings)
