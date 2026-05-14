@@ -80,25 +80,31 @@ LABELS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 error_code
-  ANY fault, alarm, or device-misbehaviour question — with OR without an
-  explicit error code number.  Use this when:
-  • A specific code or abbreviation is shown  (E0049, F04, OVP, BMS alarm)
-  • An indicator/LED is blinking, red, or flashing
-  • The device is not working as expected: won't start, shuts down, beeps,
-    won't charge, trips, overheats — i.e. troubleshooting / fault diagnosis
-  Do NOT require a code number — symptom descriptions count.
+  ONLY when a specific fault / alarm / warning code or abbreviation is explicitly
+  mentioned in the user message.
+  Use this when:
+  • A specific code or abbreviation is shown (E0049, F04, OVP, BMS alarm)
+  • The user explicitly references a named alarm/state from the device
+  Do NOT use for generic troubleshooting symptoms without a code.
+  Examples that are NOT error_code:
+  • "why is this indicator red"
+  • "device won't start"
+  • "it keeps beeping"
+  • "battery overheats"
+  Those belong to complex.
 
 pinout
-  Any question about physical wiring, connections, or interface selection.
+  Any question about physical wiring, connections, interfaces, or installation.
   Use this when:
   • How to connect device A to device B (cables, terminals, ports)
-  • Which port to use (CAN, RS485, RS232, BMS port, communication port)
+  • Which port/interface to use (CAN, RS485, RS232, BMS port, communication port)
   • Wire colour, polarity, terminal labelling
-  • Cable cross-section / cable sizing between two devices  ← this is pinout,
-    NOT a calculation — it is a physical installation reference question
+  • Cable cross-section / cable sizing between two devices
   • Wiring diagrams, connection schemes, pinouts
-  Note: "RS485 чи RS232?" and "which interface for communication?" are pinout —
-  they ask which physical connection method to use, not for analysis.
+  • Questions involving physical connection between exactly 2 models/devices
+  Note:
+  • "RS485 чи RS232?" and "which interface for communication?" are pinout
+  • This is NOT for compatibility analysis or system design
 
 documentation
   Request for a document, file, or downloadable resource:
@@ -106,13 +112,23 @@ documentation
   sheets, firmware files, "where to download / find".
 
 compat
-  Whether two or more specific devices work together / are compatible.
+  Whether two DIFFERENT specific devices work together / are compatible.
+  Use this when:
+  • The user asks if device A supports / works with device B
+  • Questions about interoperability between different device types/models
+  Examples:
+  • "Is inverter X compatible with battery Y?"
+  • "Does this BMS work with this inverter?"
+  Do NOT use for combining multiple similar units together.
+  Parallel/stacking questions belong to parallel.
 
 parallel
-  Multi-unit configuration: stacking, parallel operation, 3-phase setup,
+  Multi-unit configuration using similar devices:
+  stacking, parallel operation, 3-phase setup,
   "how many units can I chain / combine / connect together", cascading.
   Ukrainian signals: об'єднати, каскад, підключити кілька, паралельно.
   English signals: chain, stack, how many units, multi-unit, scale up power.
+  Use when the user wants to combine several similar units/devices together.
 
 lifestyle
   Greetings, farewells, thanks, acknowledgements, small talk.
@@ -120,22 +136,31 @@ lifestyle
 
 complex
   Use ONLY when none of the above labels fit:
+  • Generic troubleshooting without explicit error/alarm code
   • Open-ended browsing / catalogue queries ("what inverters do you have?")
   • Requests requiring genuine calculation or system design
   • Advisory / opinion questions ("which is better, lithium or lead-acid?")
-  • Queries with >2 models or >2 parameters that need multi-row DB lookup
+  • Queries with >2 models or >2 parameters requiring multi-row DB lookup
   • Unresolved model names (marked as unresolved in entity data)
-
+  • General malfunction symptoms:
+    - "why is the indicator red"
+    - "device shuts down"
+    - "it won't charge"
+    - "it overheats"
+    
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 DECISION SHORTCUTS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-• Device behaving unexpectedly, not starting, shutting down → error_code
-• Code / alarm / indicator on screen → error_code
-• Cable, wire, port, interface, connection, wiring → pinout
-• How many units / can I stack / chain / combine → parallel
+• Explicit fault/alarm/error code mentioned (E0049, F04, OVP, BMS alarm) → error_code
+• Cable, wire, port, interface, terminal, connection, wiring → pinout
+• Questions involving physical connection between exactly 2 devices/models → pinout
+• How many units / can I stack / chain / combine / parallel operation → parallel
 • Will X work with Y / is X compatible with Y → compat
-• Give me the manual / datasheet / guide / file → documentation
+  (only for compatibility between DIFFERENT devices/models)
+• Give me the manual / datasheet / guide / firmware / file → documentation
 • Acknowledgement / reaction / greeting → lifestyle
+• Generic troubleshooting without explicit error code:
+  "indicator is red", "device won't start", "shuts down", "beeping" → complex
 • Everything else → complex
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -222,8 +247,8 @@ def classify(
     meta["kw_ms"] = (time.perf_counter() - t0) * 1000
     meta["kw_status"] = kw_status
 
-    # ── Step 2: LLM fallback only when KW returned "complex" ─────────────────
-    if kw_status != "complex" or client is None:
+    # Only skip LLM for "simple"
+    if kw_status == "simple" or client is None:
         meta["final_status"] = kw_status
         meta["total_ms"] = meta["kw_ms"]
         return kw_status, meta
