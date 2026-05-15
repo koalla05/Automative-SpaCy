@@ -396,7 +396,7 @@ def needs_clarification(status: str, extracted_entities: Dict[str, Any], origina
 
     if status == "error_code":
         # Need a concrete code, not just generic error vocabulary
-        return not detect_specific_error_code(original_text)
+        return not (detect_specific_error_code(original_text) and num_valid_models != 0)
 
     # For every other status: clarify when no model is present
     return num_valid_models == 0
