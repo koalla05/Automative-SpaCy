@@ -329,6 +329,7 @@ def detect_documentation_query(text: str) -> bool:
         r'\bdata[-\s]?sheet\b',
         r'\bmanual\b',
         r'\buser\s+guide\b',
+        r'\bguide\b',
         r'\binstallation\s+guide\b',
         r'\bspec\w*\s+sheet\b',
         r'\b(give|find|get|show|download)\s+(me\s+)?(the\s+)?(doc\w*|manual|datasheet)\b',
