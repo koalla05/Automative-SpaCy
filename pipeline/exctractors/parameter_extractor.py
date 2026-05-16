@@ -615,9 +615,39 @@ def map_parameters_to_models(parameters, models, manufacturers, eq_types, text):
                                     key=lambda m: abs(m.get("position", 0) - param.get("position", 0)))
                 logger.debug(f"  {param['key']} → {closest_model['canonical']} (same segment)")
             else:
-                closest_model = min(valid_models,
-                                    key=lambda m: abs(m.get("position", 0) - param.get("position", 0)))
-                logger.debug(f"  {param['key']} → {closest_model['canonical']} (closest overall)")
+                # No model in this segment — inherit from the nearest neighbouring
+                # segment that does have a model. Look forward first: parameters
+                # listed between two devices (e.g. "вагу і ємність") almost always
+                # belong to the device that follows them, not the one before.
+                next_model = None
+                for future_seg in segments[seg_idx + 1:]:
+                    if future_seg.get("models"):
+                        next_model = min(future_seg["models"],
+                                         key=lambda m: m.get("position", 0))
+                        break
+
+                prev_model = None
+                for past_seg in reversed(segments[:seg_idx]):
+                    if past_seg.get("models"):
+                        prev_model = min(past_seg["models"],
+                                         key=lambda m: abs(m.get("position", 0) - param.get("position", 0)))
+                        break
+
+                if next_model and prev_model:
+                    # Always prefer the next segment's model. Parameters listed
+                    # between two devices ("вагу і ємність для Dyness") belong to
+                    # the device that follows them. Raw char distance is a
+                    # misleading tiebreaker here — device names vary wildly in length.
+                    closest_model = next_model
+                elif next_model:
+                    closest_model = next_model
+                elif prev_model:
+                    closest_model = prev_model
+                else:
+                    closest_model = min(valid_models,
+                                        key=lambda m: abs(m.get("position", 0) - param.get("position", 0)))
+
+                logger.debug(f"  {param['key']} → {closest_model['canonical']} (inherited from neighbour segment)")
 
             model_value = closest_model["canonical"]
 
