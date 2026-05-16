@@ -75,11 +75,21 @@ except ImportError:
 # ══════════════════════════════════════════════════════════════════════════════
 
 MODELS_TO_TEST = [
-    "gpt-5-nano",
-    "gpt-5-mini",
-    "gpt-5.4-mini",
-    "gpt-5",
-    "gpt-4o-mini",
+    # ── GPT-5 family (current flagship, May 2026) ──────────────────────────────
+    # Ordered from smallest/fastest to largest/most-capable within each tier.
+    # Remove any model your API key does not have access to.
+    "gpt-5.4-nano",    # fastest & cheapest GPT-5.4 variant
+    "gpt-5.4-mini",    # balanced speed/intelligence
+    "gpt-5.4",         # full GPT-5.4 (higher cost, best reasoning)
+    "gpt-5.5",         # current flagship — use for baseline comparison
+
+    # ── GPT-4.1 family (still available via API, good accuracy/cost tradeoff) ──
+    "gpt-4.1-nano",    # fastest/cheapest GPT-4.1 variant
+    "gpt-4.1-mini",    # strong small model, beats gpt-4o-mini on most tasks
+    "gpt-4.1",         # GPT-4.1 full — 1M context, excellent instruction following
+
+    # ── Legacy (still API-accessible but no longer in ChatGPT UI) ─────────────
+    "gpt-4o-mini",     # kept as a baseline reference point
 ]
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -435,9 +445,13 @@ class CaseResult:
     llm_reason: Optional[str]
     llm_called: bool
     upgraded: bool
+    llm_error: Optional[str]       # None = success, str = API-level error message
     kw_ms: float
     llm_ms: float
     total_ms: float
+    prompt_tokens: int
+    completion_tokens: int
+    total_tokens: int
     status_correct: bool
     clarification_correct: bool
     fully_correct: bool
@@ -454,12 +468,23 @@ class ModelReport:
         return len(self.results)
 
     @property
+    def n_valid(self):
+        """Cases where the LLM call succeeded (or was not needed). Errored cases are excluded from accuracy."""
+        return sum(1 for r in self.results if not r.llm_error)
+
+    @property
+    def llm_errors(self):
+        return sum(1 for r in self.results if r.llm_error)
+
+    @property
     def status_accuracy(self):
-        return sum(r.status_correct for r in self.results) / self.n if self.n else 0
+        valid = [r for r in self.results if not r.llm_error]
+        return sum(r.status_correct for r in valid) / len(valid) if valid else 0
 
     @property
     def full_accuracy(self):
-        return sum(r.fully_correct for r in self.results) / self.n if self.n else 0
+        valid = [r for r in self.results if not r.llm_error]
+        return sum(r.fully_correct for r in valid) / len(valid) if valid else 0
 
     @property
     def latencies(self):
@@ -490,6 +515,45 @@ class ModelReport:
         called = self.llm_calls
         return self.upgrades / called if called else 0
 
+    # ── token metrics ──────────────────────────────────────────────────────────
+    @property
+    def total_prompt_tokens(self):
+        return sum(r.prompt_tokens for r in self.results)
+
+    @property
+    def total_completion_tokens(self):
+        return sum(r.completion_tokens for r in self.results)
+
+    @property
+    def total_tokens_used(self):
+        return sum(r.total_tokens for r in self.results)
+
+    @property
+    def avg_tokens_per_query(self):
+        return self.total_tokens_used / self.n if self.n else 0
+
+    # ── per-category aggregation ───────────────────────────────────────────────
+    def category_stats(self) -> dict:
+        """
+        Returns per-category averages for accuracy, latency, and tokens.
+        Accuracy excludes cases where the LLM call itself errored.
+        Shape: { category_name: { "n", "n_valid", "accuracy", "avg_ms", "avg_tokens" } }
+        """
+        cats = {}
+        for r in self.results:
+            cats.setdefault(r.category, []).append(r)
+        stats = {}
+        for cat, cases in sorted(cats.items()):
+            valid = [c for c in cases if not c.llm_error]
+            stats[cat] = {
+                "n":          len(cases),
+                "n_valid":    len(valid),
+                "accuracy":   sum(c.fully_correct for c in valid) / len(valid) if valid else None,
+                "avg_ms":     statistics.mean(c.total_ms for c in cases),
+                "avg_tokens": statistics.mean(c.total_tokens for c in cases),
+            }
+        return stats
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # BENCHMARK RUNNER
@@ -508,6 +572,13 @@ def run_case(tc: dict, client: OpenAI, model: str) -> CaseResult:
     status_ok = status == tc["expected_status"]
     clarification_ok = clarification == tc["expected_clarification"]
 
+    # Token usage — classify() is expected to include these in meta when an LLM
+    # call was made. Graceful fallback to 0 so the benchmark never crashes when
+    # running in KW-only mode or against a provider that omits usage data.
+    prompt_tokens     = meta.get("prompt_tokens", 0) or 0
+    completion_tokens = meta.get("completion_tokens", 0) or 0
+    total_tokens      = meta.get("total_tokens", prompt_tokens + completion_tokens)
+
     return CaseResult(
         case_id=tc["id"],
         category=tc["category"],
@@ -521,9 +592,13 @@ def run_case(tc: dict, client: OpenAI, model: str) -> CaseResult:
         llm_reason=meta.get("llm_reason"),
         llm_called=meta["llm_called"],
         upgraded=meta["upgraded"],
+        llm_error=meta.get("llm_error"),
         kw_ms=meta["kw_ms"],
         llm_ms=meta["llm_ms"],
         total_ms=meta["total_ms"],
+        prompt_tokens=prompt_tokens,
+        completion_tokens=completion_tokens,
+        total_tokens=total_tokens,
         status_correct=status_ok,
         clarification_correct=clarification_ok,
         fully_correct=status_ok and clarification_ok,
@@ -545,7 +620,14 @@ def run_model_benchmark(model: str, client: OpenAI, verbose: bool = True) -> Mod
             report.results.append(result)
 
             if verbose:
-                mark = "✓" if result.fully_correct else ("~" if result.status_correct else "✗")
+                if result.llm_error:
+                    mark = "E"   # API error — excluded from accuracy
+                elif result.fully_correct:
+                    mark = "✓"
+                elif result.status_correct:
+                    mark = "~"
+                else:
+                    mark = "✗"
                 llm_tag = f"→LLM={result.llm_status}" if result.llm_called else "(KW-only)"
                 upgrade_tag = " ⬆" if result.upgraded else ""
                 print(
@@ -555,12 +637,15 @@ def run_model_benchmark(model: str, client: OpenAI, verbose: bool = True) -> Mod
                     f"exp={result.expected_status:<14} clarif_exp={str(result.expected_clarification):<6} "
                     f"{result.total_ms:.0f}ms"
                 )
-                if not result.status_correct:
-                    print(f"           ⚠ STATUS WRONG — got '{result.final_status}', expected '{result.expected_status}'")
-                if not result.clarification_correct:
-                    print(f"           ⚠ CLARIF WRONG — got {result.final_clarification}, expected {result.expected_clarification}")
-                if result.llm_reason and not result.status_correct:
-                    print(f"           LLM reason: {result.llm_reason}")
+                if result.llm_error:
+                    print(f"           ⚡ LLM API ERROR (excluded from accuracy): {result.llm_error[:120]}")
+                else:
+                    if not result.status_correct:
+                        print(f"           ⚠ STATUS WRONG — got '{result.final_status}', expected '{result.expected_status}'")
+                    if not result.clarification_correct:
+                        print(f"           ⚠ CLARIF WRONG — got {result.final_clarification}, expected {result.expected_clarification}")
+                    if result.llm_reason and not result.status_correct:
+                        print(f"           LLM reason: {result.llm_reason}")
 
         except Exception as exc:
             report.errors.append({"id": tc["id"], "error": str(exc)})
@@ -568,12 +653,18 @@ def run_model_benchmark(model: str, client: OpenAI, verbose: bool = True) -> Mod
                 print(f"  [{tc['id']:<7}] ERROR: {exc}")
 
     if verbose:
-        print(f"\n  → Status accuracy : {report.status_accuracy * 100:.1f}%")
+        valid_n = report.n_valid
+        excl = report.llm_errors
+        excl_note = f"  ({excl} excluded — LLM API error)" if excl else ""
+        print(f"\n  → Status accuracy : {report.status_accuracy * 100:.1f}%  [on {valid_n}/{report.n} valid cases{excl_note}]")
         print(f"  → Full accuracy   : {report.full_accuracy * 100:.1f}%  (status + clarification)")
         print(f"  → Avg latency     : {report.avg_ms:.0f}ms")
         print(f"  → P95 latency     : {report.p95_ms:.0f}ms")
-        print(f"  → LLM calls       : {report.llm_calls}/{report.n}")
+        print(f"  → LLM calls       : {report.llm_calls}/{report.n}  ({report.llm_errors} errored)")
         print(f"  → LLM upgrades    : {report.upgrades} ({report.upgrade_rate * 100:.0f}% of LLM calls)")
+        print(f"  → Tokens total    : {report.total_tokens_used:,}  "
+              f"(prompt {report.total_prompt_tokens:,} / completion {report.total_completion_tokens:,})")
+        print(f"  → Avg tokens/query: {report.avg_tokens_per_query:.0f}")
 
     return report
 
@@ -594,15 +685,19 @@ def print_summary(reports: list[ModelReport]):
     rows = []
     for rank, rpt in enumerate(sorted_reports, 1):
         medal = ["🥇", "🥈", "🥉"][rank - 1] if rank <= 3 else f"  {rank}."
+        excl_note = f" ({rpt.llm_errors} err)" if rpt.llm_errors else ""
         rows.append([
             medal,
             rpt.model,
-            f"{rpt.status_accuracy * 100:.1f}%",
+            f"{rpt.status_accuracy * 100:.1f}%{excl_note}",
             f"{rpt.full_accuracy * 100:.1f}%",
             f"{rpt.avg_ms:.0f}ms",
             f"{rpt.p95_ms:.0f}ms",
+            f"{rpt.avg_tokens_per_query:.0f}",
+            f"{rpt.total_tokens_used:,}",
             f"{rpt.llm_calls}/{rpt.n}",
             f"{rpt.upgrade_rate * 100:.0f}%",
+            rpt.llm_errors,
             len(rpt.errors),
         ])
 
@@ -610,44 +705,62 @@ def print_summary(reports: list[ModelReport]):
         "Rank", "Model",
         "Status\nAccuracy", "Full\nAccuracy",
         "Avg\nLatency", "P95\nLatency",
-        "LLM\nCalls", "Upgrade\nRate", "Errors",
+        "Avg\nTokens", "Total\nTokens",
+        "LLM\nCalls", "Upgrade\nRate",
+        "LLM\nErrors", "Run\nErrors",
     ]
 
     if HAS_TABULATE:
         print(tabulate(rows, headers=headers, tablefmt="rounded_outline"))
     else:
         # Fallback plain text table
-        col_w = [6, 22, 10, 10, 10, 10, 10, 10, 8]
+        col_w = [6, 22, 10, 10, 10, 10, 10, 12, 10, 10, 8]
         header_row = "  ".join(h.replace("\n", " ").ljust(w) for h, w in zip(headers, col_w))
         print(header_row)
         print("  " + "-" * (sum(col_w) + 2 * len(col_w)))
         for row in rows:
             print("  ".join(str(v).ljust(w) for v, w in zip(row, col_w)))
 
-    # Per-category accuracy breakdown
+    # ── Per-category breakdown: accuracy + avg latency + avg tokens ────────────
     print(f"\n{'─' * 100}")
-    print("  Per-category accuracy breakdown\n")
+    print("  Per-category breakdown  (accuracy / avg latency / avg tokens per query)\n")
 
     categories = sorted(set(tc["category"] for tc in TEST_DATASET))
+
+    # Build header: Category | N | model1 (acc/ms/tok) | model2 ...
+    cat_headers = ["Category", "N"] + [r.model for r in sorted_reports]
     cat_rows = []
     for cat in categories:
-        cat_cases = [tc["id"] for tc in TEST_DATASET if tc["category"] == cat]
-        row = [cat, len(cat_cases)]
+        n_cases = sum(1 for tc in TEST_DATASET if tc["category"] == cat)
+        row = [cat, n_cases]
         for rpt in sorted_reports:
-            cat_results = [r for r in rpt.results if r.category == cat]
-            if cat_results:
-                acc = sum(r.status_correct for r in cat_results) / len(cat_results)
-                row.append(f"{acc * 100:.0f}%")
+            stats = rpt.category_stats()
+            if cat in stats:
+                s = stats[cat]
+                acc_str = f"{s['accuracy'] * 100:.0f}%" if s["accuracy"] is not None else "N/A"
+                row.append(f"{acc_str} / {s['avg_ms']:.0f}ms / {s['avg_tokens']:.0f}tok")
             else:
                 row.append("—")
         cat_rows.append(row)
 
-    cat_headers = ["Category", "N"] + [r.model for r in sorted_reports]
+    # Overall averages row — flag models with LLM errors
+    avg_row = ["OVERALL AVG", len(TEST_DATASET)]
+    for rpt in sorted_reports:
+        err_note = f" [{rpt.llm_errors} LLM err]" if rpt.llm_errors else ""
+        avg_row.append(
+            f"{rpt.full_accuracy * 100:.0f}% / {rpt.avg_ms:.0f}ms / {rpt.avg_tokens_per_query:.0f}tok{err_note}"
+        )
+    cat_rows.append(avg_row)
+
     if HAS_TABULATE:
         print(tabulate(cat_rows, headers=cat_headers, tablefmt="simple"))
     else:
+        col_w2 = [28, 4] + [36] * len(sorted_reports)
+        hdr = "  ".join(str(h).ljust(w) for h, w in zip(cat_headers, col_w2))
+        print(hdr)
+        print("  " + "-" * (sum(col_w2) + 2 * len(col_w2)))
         for row in cat_rows:
-            print("  " + "  ".join(str(v).ljust(22) for v in row))
+            print("  ".join(str(v).ljust(w) for v, w in zip(row, col_w2)))
 
     # Recommendation
     print(f"\n{'─' * 100}")
@@ -689,12 +802,28 @@ def save_results(reports: list[ModelReport], path: str = "benchmark_results.json
             "summary": {
                 "status_accuracy": round(rpt.status_accuracy, 4),
                 "full_accuracy": round(rpt.full_accuracy, 4),
+                "n_total": rpt.n,
+                "n_valid": rpt.n_valid,
+                "llm_errors": rpt.llm_errors,
                 "avg_ms": round(rpt.avg_ms, 2),
                 "p95_ms": round(rpt.p95_ms, 2),
+                "avg_tokens_per_query": round(rpt.avg_tokens_per_query, 1),
+                "total_prompt_tokens": rpt.total_prompt_tokens,
+                "total_completion_tokens": rpt.total_completion_tokens,
+                "total_tokens_used": rpt.total_tokens_used,
                 "llm_calls": rpt.llm_calls,
                 "upgrades": rpt.upgrades,
                 "upgrade_rate": round(rpt.upgrade_rate, 4),
                 "errors": len(rpt.errors),
+                "category_stats": {
+                    cat: {
+                        "n": s["n"],
+                        "accuracy": round(s["accuracy"], 4),
+                        "avg_ms": round(s["avg_ms"], 2),
+                        "avg_tokens": round(s["avg_tokens"], 1),
+                    }
+                    for cat, s in rpt.category_stats().items()
+                },
             },
             "cases": [
                 {
@@ -710,9 +839,13 @@ def save_results(reports: list[ModelReport], path: str = "benchmark_results.json
                     "llm_reason": r.llm_reason,
                     "llm_called": r.llm_called,
                     "upgraded": r.upgraded,
+                    "llm_error": r.llm_error,
                     "kw_ms": round(r.kw_ms, 2),
                     "llm_ms": round(r.llm_ms, 2),
                     "total_ms": round(r.total_ms, 2),
+                    "prompt_tokens": r.prompt_tokens,
+                    "completion_tokens": r.completion_tokens,
+                    "total_tokens": r.total_tokens,
                     "status_correct": r.status_correct,
                     "clarification_correct": r.clarification_correct,
                     "fully_correct": r.fully_correct,
@@ -763,6 +896,38 @@ def main():
     print(f"  Models  : {', '.join(models)}")
     print(f"  Queries : {len(TEST_DATASET)}")
     print(f"{'═' * 100}")
+
+    # ── Validate model names before running the full benchmark ────────────────
+    # A non-existent model name returns an empty body from the API, which
+    # causes every test case to fail with "Expecting value: line 1 column 1".
+    # Catching this early saves time and gives a clear error message.
+    print("\n  Validating model access...")
+    valid_models = []
+    for m in models:
+        try:
+            probe = client.chat.completions.create(
+                model=m,
+                messages=[{"role": "user", "content": "ping"}],
+                max_completion_tokens=1,
+            )
+            valid_models.append(m)
+            print(f"    ✓  {m}")
+        except Exception as exc:
+            err_str = str(exc)
+            if "model_not_found" in err_str or "does not exist" in err_str.lower() or "invalid_request_error" in err_str:
+                print(f"    ✗  {m}  ← MODEL NOT FOUND / no access — skipped")
+            else:
+                print(f"    ✗  {m}  ← ERROR: {err_str[:80]} — skipped")
+
+    if not valid_models:
+        print("\n  No valid models found — check your model names and API key permissions.")
+        sys.exit(1)
+
+    skipped = set(models) - set(valid_models)
+    if skipped:
+        print(f"\n  Skipping {len(skipped)} unavailable model(s): {', '.join(sorted(skipped))}")
+    models = valid_models
+    print()
 
     reports = []
     for model in models:

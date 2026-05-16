@@ -230,6 +230,9 @@ def classify(
         llm_ms              — LLM latency in ms (or 0)
         total_ms            — total latency in ms
         upgraded            — bool: LLM changed the label away from "complex"
+        prompt_tokens       — tokens in the LLM prompt (0 if LLM not called)
+        completion_tokens   — tokens in the LLM response (0 if LLM not called)
+        total_tokens        — prompt + completion tokens (0 if LLM not called)
     """
     meta: dict = {
         "kw_status": None,
@@ -239,10 +242,14 @@ def classify(
         "llm_called": False,
         "llm_status": None,
         "llm_reason": None,
+        "llm_error": None,        # set when the LLM call itself failed (API error)
         "kw_ms": 0.0,
         "llm_ms": 0.0,
         "total_ms": 0.0,
         "upgraded": False,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
     }
 
     # ── Step 1: keyword classifier ────────────────────────────────────────────
@@ -263,6 +270,7 @@ def classify(
 
     meta["llm_called"] = True
     t1 = time.perf_counter()
+    llm_error: Optional[str] = None
     try:
         user_msg = _build_user_message(query, entities)
         resp = client.chat.completions.create(
@@ -271,13 +279,24 @@ def classify(
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user",   "content": user_msg},
             ],
-            temperature=0,
             max_completion_tokens=150,
+            # temperature is intentionally omitted — newer OpenAI models (gpt-5
+            # family) reject temperature=0 and only accept the default (1).
+            # Determinism is enforced via the prompt's "CRITICAL RULES" section.
         )
         raw = resp.choices[0].message.content.strip()
         parsed = json.loads(raw)
         llm_status = parsed.get("status", "complex").lower().strip()
         llm_reason = parsed.get("reason", "")
+
+        # Capture token usage — present on every non-streaming OpenAI response.
+        # Guard with getattr so the code stays safe if a provider omits usage.
+        usage = getattr(resp, "usage", None)
+        if usage:
+            meta["prompt_tokens"]     = getattr(usage, "prompt_tokens", 0) or 0
+            meta["completion_tokens"] = getattr(usage, "completion_tokens", 0) or 0
+            meta["total_tokens"]      = getattr(usage, "total_tokens",
+                                                meta["prompt_tokens"] + meta["completion_tokens"])
 
         # Validate — reject unknown labels or forbidden "simple"
         if llm_status not in VALID_STATUSES or llm_status == "simple":
@@ -287,10 +306,12 @@ def classify(
     except Exception as exc:
         llm_status = "complex"
         llm_reason = f"LLM error: {exc}"
+        llm_error  = str(exc)
 
-    meta["llm_ms"] = (time.perf_counter() - t1) * 1000
+    meta["llm_ms"]     = (time.perf_counter() - t1) * 1000
     meta["llm_status"] = llm_status
     meta["llm_reason"] = llm_reason
+    meta["llm_error"]  = llm_error
 
     # ── Step 3: accept upgrade only for non-complex labels ───────────────────
     final = llm_status if llm_status in LLM_UPGRADEABLE else "complex"
