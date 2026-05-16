@@ -74,7 +74,10 @@ DEFAULT_PARAM_GLOSSARY = {
 
     "weight_kg": [
         "вага",
+        "вагу",
+        "ваги",
         "маса",
+        "масу",
         "вес",
         "weight kg",
         "device weight",

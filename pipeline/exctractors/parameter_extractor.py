@@ -106,13 +106,13 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
     Extract entities with confidence scores and positions.
     Now uses improved model normalization with cleaning.
     Also enriches with metadata from CSV if canonical model is found.
-    
+
     Args:
         text: Input text to extract entities from
-        
+
     Returns:
         Dictionary with extracted entities and metadata
-        
+
     Raises:
         ValueError: If input text is invalid
     """
@@ -120,11 +120,11 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
     if not text or not isinstance(text, str):
         logger.warning("Invalid input text: not a string or empty")
         return {}
-    
+
     if len(text) > 10000:
         logger.warning(f"Text exceeds maximum length (10000 chars): {len(text)}")
         raise ValueError("Text exceeds maximum length (10000 characters)")
-    
+
     try:
         nlp = ModelManager.get_nlp()
         doc = nlp(text)
@@ -132,7 +132,7 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
     except Exception as e:
         logger.error(f"NER extraction failed: {e}")
         raise RuntimeError(f"Failed to extract entities: {e}")
-    
+
     grouped: Dict[str, List[Dict[str, Any]]] = {}
 
     try:
@@ -174,7 +174,7 @@ def extract_entities_with_metadata(text: str) -> Dict[str, List[Dict[str, Any]]]
             # Avoid duplicates
             if not any(e["value"] == entity_dict["value"] for e in grouped[label]):
                 grouped[label].append(entity_dict)
-    
+
     except Exception as e:
         logger.error(f"Error processing extracted entities: {e}")
         # Return partial results even if processing fails
@@ -242,21 +242,33 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
     Detect parameters in text using exact and fuzzy matching.
     Handles plurals and variations.
     Enhanced to prioritize matches with more overlapping words.
-    
+
     Args:
         text: Input text to search for parameters
         param_glossary: Dictionary of parameter keys and their synonyms
-        
+
     Returns:
         List of found parameters with confidence scores
     """
     if not text or not isinstance(text, str):
         logger.warning("Invalid input for find_parameters")
         return []
-    
+
     try:
         lower = text.lower()
         results = []
+
+        # Build a segment index map so deduplication can tell whether two
+        # matches for the same parameter key fall in the same conjunction-
+        # delimited segment or in different ones.
+        segments = split_into_segments(text)
+
+        def get_segment_index(pos: int) -> int:
+            for i, seg in enumerate(segments):
+                if seg["start"] <= pos < seg["end"]:
+                    return i
+            # Fallback: assign to the last segment
+            return len(segments) - 1
 
         synonym_to_key = {}
         normalized_synonyms = {}
@@ -482,10 +494,14 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
 
             if key in seen_keys:
                 existing = seen_keys[key]
-                distance = abs(pos - existing["position"])
+                # Only deduplicate if both matches are in the same segment.
+                # Matches in different segments mean the same keyword was used
+                # for distinct devices/requests and must both be kept.
+                same_seg = get_segment_index(pos) == get_segment_index(existing["position"])
 
-                if distance > 50:
+                if not same_seg:
                     final_results.append(r)
+                    seen_keys[key] = r  # track latest per-segment match
                 elif r["confidence"] > existing["confidence"]:
                     final_results.remove(existing)
                     seen_keys[key] = r
@@ -495,10 +511,10 @@ def find_parameters(text: str, param_glossary: Dict[str, List[str]] = DEFAULT_PA
                 final_results.append(r)
 
         final_results.sort(key=lambda r: r["position"])
-        
+
         logger.debug(f"Found {len(final_results)} parameters")
         return final_results
-    
+
     except Exception as e:
         logger.error(f"Error finding parameters: {e}")
         return []
