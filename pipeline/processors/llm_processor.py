@@ -388,6 +388,7 @@ def needs_clarification(status: str, extracted_entities: Dict[str, Any], origina
 
     models = extracted_entities.get("model", [])
     valid_models = [m for m in models if m.get("value") is not None]
+    unresolved_models = [m for m in models if m.get("value") is None and m.get("original_value")]
     num_valid_models = len(valid_models)
 
     if status == "compat":
@@ -398,7 +399,12 @@ def needs_clarification(status: str, extracted_entities: Dict[str, Any], origina
         # Need a concrete code, not just generic error vocabulary
         return not (detect_specific_error_code(original_text) and num_valid_models != 0)
 
-    # For every other status: clarify when no model is present
+    # For every other status: clarify when no valid model is present at all,
+    # OR when some models were detected but couldn't be resolved to a canonical
+    # name — we recognised the token but don't know which device it refers to.
+    if unresolved_models:
+        return True
+
     return num_valid_models == 0
 
 
